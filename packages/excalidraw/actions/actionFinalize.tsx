@@ -2,6 +2,7 @@ import { pointFrom } from "@excalidraw/math";
 
 import { bindOrUnbindBindingElement } from "@excalidraw/element/binding";
 import {
+  isSimpleArrow,
   isValidPolygon,
   LinearElementEditor,
   newElementWith,
@@ -83,28 +84,30 @@ export const actionFinalize = register<FormData>({
         app.scene,
       );
 
-      const newArrow = !appState.selectedLinearElement?.selectedPointsIndices;
+      if (isSimpleArrow(element)) {
+        const newArrow = !appState.selectedLinearElement?.selectedPointsIndices;
 
-      const selectedPointsIndices = newArrow
-        ? [element.points.length - 1] // New arrow creation
-        : appState.selectedLinearElement.selectedPointsIndices;
+        const selectedPointsIndices = newArrow
+          ? [element.points.length - 1] // New arrow creation
+          : appState.selectedLinearElement.selectedPointsIndices;
 
-      const draggedPoints: PointsPositionUpdates =
-        selectedPointsIndices.reduce((map, index) => {
-          map.set(index, {
-            point: LinearElementEditor.pointFromAbsoluteCoords(
-              element,
-              pointFrom<GlobalPoint>(sceneCoords.x, sceneCoords.y),
-              elementsMap,
-            ),
-          });
+        const draggedPoints: PointsPositionUpdates =
+          selectedPointsIndices.reduce((map, index) => {
+            map.set(index, {
+              point: LinearElementEditor.pointFromAbsoluteCoords(
+                element,
+                pointFrom<GlobalPoint>(sceneCoords.x, sceneCoords.y),
+                elementsMap,
+              ),
+            });
 
-          return map;
-        }, new Map()) ?? new Map();
+            return map;
+          }, new Map()) ?? new Map();
 
-      bindOrUnbindBindingElement(element, draggedPoints, scene, appState, {
-        newArrow,
-      });
+        bindOrUnbindBindingElement(element, draggedPoints, scene, appState, {
+          newArrow,
+        });
+      }
 
       if (linearElementEditor !== appState.selectedLinearElement) {
         // `handlePointerUp()` updated the linear element instance,
