@@ -33,77 +33,6 @@ describe("element binding", () => {
     await render(<Excalidraw handleKeyboardGlobally={true} />);
   });
 
-  it("should create valid binding if duplicate start/end points", async () => {
-    const rect = API.createElement({
-      type: "rectangle",
-      x: 0,
-      y: 0,
-      width: 50,
-      height: 50,
-    });
-    const arrow = API.createElement({
-      type: "arrow",
-      x: 100,
-      y: 0,
-      width: 100,
-      height: 1,
-      points: [
-        pointFrom(0, 0),
-        pointFrom(0, 0),
-        pointFrom(100, 0),
-        pointFrom(100, 0),
-      ],
-    });
-    API.setElements([rect, arrow]);
-    expect(arrow.startBinding).toBe(null);
-
-    // select arrow
-    mouse.clickAt(150, 0);
-
-    // move arrow start to potential binding position
-    mouse.downAt(100, 0);
-    mouse.moveTo(55, 0);
-    mouse.up(0, 0);
-
-    // Point selection is evaluated like the points are rendered,
-    // from right to left. So clicking on the first point should move the joint,
-    // not the start point.
-    expect(arrow.startBinding).toBe(null);
-
-    // Now that the start point is free, move it into overlapping position
-    mouse.downAt(100, 0);
-    mouse.moveTo(55, 0);
-    mouse.up(0, 0);
-
-    expect(API.getSelectedElements()).toEqual([arrow]);
-
-    expect(arrow.startBinding).toEqual({
-      elementId: rect.id,
-      focus: 0,
-      gap: 0,
-      fixedPoint: expect.arrayContaining([1.1, 0]),
-    });
-
-    // Move the end point to the overlapping binding position
-    mouse.downAt(200, 0);
-    mouse.moveTo(55, 0);
-    mouse.up(0, 0);
-
-    // Both the start and the end points should be bound
-    expect(arrow.startBinding).toEqual({
-      elementId: rect.id,
-      focus: 0,
-      gap: 0,
-      fixedPoint: expect.arrayContaining([1.1, 0]),
-    });
-    expect(arrow.endBinding).toEqual({
-      elementId: rect.id,
-      focus: 0,
-      gap: 0,
-      fixedPoint: expect.arrayContaining([1.1, 0]),
-    });
-  });
-
   //@TODO fix the test with rotation
   it.skip("rotation of arrow should rebind both ends", () => {
     const rectLeft = UI.createElement("rectangle", {
@@ -399,7 +328,7 @@ describe("element binding", () => {
   });
 
   // #6459
-  it("should unbind arrow only from the latest element", () => {
+  it("should unbind arrow when arrow is resized", () => {
     const rectLeft = UI.createElement("rectangle", {
       x: 0,
       width: 200,
@@ -427,14 +356,13 @@ describe("element binding", () => {
       "mouse",
     ).se!;
 
-    Keyboard.keyDown(KEYS.CTRL_OR_CMD);
     const elX = handles[0] + handles[2] / 2;
     const elY = handles[1] + handles[3] / 2;
     mouse.downAt(elX, elY);
     mouse.moveTo(300, 400);
     mouse.up();
 
-    expect(arrow.startBinding).not.toBe(null);
+    expect(arrow.startBinding).toBe(null);
     expect(arrow.endBinding).toBe(null);
   });
 
@@ -538,7 +466,7 @@ describe("Fixed-point arrow binding", () => {
     expect(arrow.y).toBe(110);
   });
 
-  it("should create fixed-point binding when one of the arrow endpoint is inside rectangle", () => {
+  it("should create orbit binding when one of the arrow endpoint is inside rectangle", () => {
     // Create a filled solid rectangle
     UI.clickTool("rectangle");
     mouse.downAt(100, 100);
@@ -558,8 +486,8 @@ describe("Fixed-point arrow binding", () => {
     const arrow = API.getSelectedElement() as ExcalidrawLinearElement;
     expect(arrow.x).toBe(10);
     expect(arrow.y).toBe(10);
-    expect(arrow.width).toBe(150);
-    expect(arrow.height).toBe(150);
+    expect(arrow.width).toBeCloseTo(86.4669660940663);
+    expect(arrow.height).toBeCloseTo(86.46696609406821);
 
     // Should bind to the rectangle since endpoint is inside
     expect(arrow.startBinding).toBe(null);
@@ -581,8 +509,8 @@ describe("Fixed-point arrow binding", () => {
     // Check if the arrow moved
     expect(arrow.x).toBe(10);
     expect(arrow.y).toBe(10);
-    expect(arrow.width).toBe(300);
-    expect(arrow.height).toBe(150);
+    expect(arrow.width).toBeCloseTo(235);
+    expect(arrow.height).toBeCloseTo(117.5);
   });
 
   it("should maintain relative position when arrow start point is dragged outside and rectangle is moved", () => {
@@ -759,7 +687,7 @@ describe("line segment extension binding", () => {
     await render(<Excalidraw handleKeyboardGlobally={true} />);
   });
 
-  it("should use point binding when extended segment intersects element", () => {
+  it("should bind when extended segment intersects element", () => {
     // Create a rectangle that will be intersected by the extended arrow segment
     const rect = API.createElement({
       type: "rectangle",
@@ -779,14 +707,14 @@ describe("line segment extension binding", () => {
 
     const arrow = API.getSelectedElement() as ExcalidrawLinearElement;
 
-    // Should create a normal point binding since the extended line segment
+    // Should create a binding since the extended line segment
     // from the last arrow segment intersects the rectangle
     expect(arrow.endBinding?.elementId).toBe(rect.id);
-    expect(arrow.endBinding).toHaveProperty("focus");
-    expect(arrow.endBinding).toHaveProperty("gap");
+    expect(arrow.endBinding).toHaveProperty("mode");
+    expect(arrow.endBinding).toHaveProperty("fixedPoint");
   });
 
-  it("should use fixed point binding when extended segment misses element", () => {
+  it("should bind even if the arrow is not pointing at the element", () => {
     // Create a rectangle positioned so the extended arrow segment will miss it
     const rect = API.createElement({
       type: "rectangle",

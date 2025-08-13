@@ -45,6 +45,7 @@ import {
 import { wrapText } from "./textWrapping";
 import {
   isArrowElement,
+  isBindingElement,
   isBoundToContainer,
   isElbowArrow,
   isFrameLikeElement,
@@ -73,7 +74,9 @@ import type {
   ExcalidrawImageElement,
   ElementsMap,
   ExcalidrawElbowArrowElement,
+  ExcalidrawArrowElement,
 } from "./types";
+import type { ElementUpdate } from "./mutateElement";
 
 // Returns true when transform (resizing/rotation) happened
 export const transformElements = (
@@ -819,12 +822,28 @@ export const resizeSingleElement = (
     Number.isFinite(newOrigin.x) &&
     Number.isFinite(newOrigin.y)
   ) {
-    const updates = {
+    let updates: ElementUpdate<ExcalidrawElement> = {
       ...newOrigin,
       width: Math.abs(nextWidth),
       height: Math.abs(nextHeight),
       ...rescaledPoints,
     };
+
+    if (isBindingElement(latestElement)) {
+      if (latestElement.startBinding) {
+        updates = {
+          ...updates,
+          startBinding: null,
+        } as ElementUpdate<ExcalidrawArrowElement>;
+      }
+
+      if (latestElement.endBinding) {
+        updates = {
+          ...updates,
+          endBinding: null,
+        } as ElementUpdate<ExcalidrawArrowElement>;
+      }
+    }
 
     scene.mutateElement(latestElement, updates, {
       informMutation: shouldInformMutation,

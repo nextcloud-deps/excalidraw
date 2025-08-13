@@ -6152,7 +6152,6 @@ exports[`regression tests > draw every type of shape > [end of test] appState 1`
   "defaultSidebarDockedPreference": false,
   "editingFrame": null,
   "editingGroupId": null,
-  "editingLinearElement": null,
   "editingTextElement": null,
   "elementsToHighlight": null,
   "errorMessage": null,
@@ -6562,7 +6561,10 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
           "selectedElementIds": {
             "id15": true,
           },
-          "selectedLinearElement": null,
+          "selectedLinearElement": {
+            "elementId": "id15",
+            "isEditing": false,
+          },
         },
         "inserted": {
           "selectedElementIds": {
@@ -6590,13 +6592,10 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
             "fillStyle": "solid",
             "frameId": null,
             "groupIds": [],
-            "height": 10,
+            "height": 0,
             "index": "a5",
             "isDeleted": false,
-            "lastCommittedPoint": [
-              50,
-              10,
-            ],
+            "lastCommittedPoint": null,
             "link": null,
             "locked": false,
             "opacity": 100,
@@ -6606,8 +6605,8 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
                 0,
               ],
               [
-                50,
-                10,
+                0,
+                0,
               ],
             ],
             "roughness": 1,
@@ -6620,20 +6619,72 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
             "strokeStyle": "solid",
             "strokeWidth": 2,
             "type": "arrow",
-            "version": 6,
-            "width": 50,
+            "version": 3,
+            "width": 0,
             "x": 310,
             "y": -10,
           },
           "inserted": {
             "isDeleted": true,
-            "version": 5,
+            "version": 2,
           },
         },
       },
       "updated": {},
     },
     "id": "id17",
+  },
+  {
+    "appState": AppStateDelta {
+      "delta": Delta {
+        "deleted": {},
+        "inserted": {},
+      },
+    },
+    "elements": {
+      "added": {},
+      "removed": {},
+      "updated": {
+        "id15": {
+          "deleted": {
+            "height": 10,
+            "lastCommittedPoint": [
+              50,
+              10,
+            ],
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                50,
+                10,
+              ],
+            ],
+            "version": 5,
+            "width": 50,
+          },
+          "inserted": {
+            "height": 0,
+            "lastCommittedPoint": null,
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                0,
+                0,
+              ],
+            ],
+            "version": 3,
+            "width": 0,
+          },
+        },
+      },
+    },
+    "id": "id19",
   },
   {
     "appState": AppStateDelta {
@@ -6667,7 +6718,7 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
                 20,
               ],
             ],
-            "version": 8,
+            "version": 7,
             "width": 80,
           },
           "inserted": {
@@ -6686,32 +6737,11 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
                 10,
               ],
             ],
-            "version": 6,
+            "version": 5,
             "width": 50,
           },
         },
       },
-    },
-    "id": "id19",
-  },
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
-        "deleted": {
-          "selectedLinearElement": {
-            "elementId": "id15",
-            "isEditing": false,
-          },
-        },
-        "inserted": {
-          "selectedLinearElement": null,
-        },
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {},
     },
     "id": "id21",
   },
@@ -6719,9 +6749,7 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
     "appState": AppStateDelta {
       "delta": Delta {
         "deleted": {
-          "selectedElementIds": {
-            "id22": true,
-          },
+          "selectedElementIds": {},
           "selectedLinearElement": null,
         },
         "inserted": {
@@ -6749,13 +6777,10 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
             "fillStyle": "solid",
             "frameId": null,
             "groupIds": [],
-            "height": 10,
+            "height": 0,
             "index": "a6",
             "isDeleted": false,
-            "lastCommittedPoint": [
-              50,
-              10,
-            ],
+            "lastCommittedPoint": null,
             "link": null,
             "locked": false,
             "opacity": 100,
@@ -6765,8 +6790,8 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
                 0,
               ],
               [
-                50,
-                10,
+                0,
+                0,
               ],
             ],
             "polygon": false,
@@ -6778,20 +6803,78 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
             "strokeStyle": "solid",
             "strokeWidth": 2,
             "type": "line",
-            "version": 6,
-            "width": 50,
+            "version": 3,
+            "width": 0,
             "x": 430,
             "y": -10,
           },
           "inserted": {
             "isDeleted": true,
-            "version": 5,
+            "version": 2,
           },
         },
       },
       "updated": {},
     },
     "id": "id24",
+  },
+  {
+    "appState": AppStateDelta {
+      "delta": Delta {
+        "deleted": {
+          "selectedElementIds": {
+            "id22": true,
+          },
+        },
+        "inserted": {
+          "selectedElementIds": {},
+        },
+      },
+    },
+    "elements": {
+      "added": {},
+      "removed": {},
+      "updated": {
+        "id22": {
+          "deleted": {
+            "height": 10,
+            "lastCommittedPoint": [
+              50,
+              10,
+            ],
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                50,
+                10,
+              ],
+            ],
+            "version": 5,
+            "width": 50,
+          },
+          "inserted": {
+            "height": 0,
+            "lastCommittedPoint": null,
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                0,
+                0,
+              ],
+            ],
+            "version": 3,
+            "width": 0,
+          },
+        },
+      },
+    },
+    "id": "id26",
   },
   {
     "appState": AppStateDelta {
@@ -6825,7 +6908,7 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
                 20,
               ],
             ],
-            "version": 8,
+            "version": 7,
             "width": 80,
           },
           "inserted": {
@@ -6844,13 +6927,13 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
                 10,
               ],
             ],
-            "version": 6,
+            "version": 5,
             "width": 50,
           },
         },
       },
     },
-    "id": "id26",
+    "id": "id28",
   },
   {
     "appState": AppStateDelta {
@@ -6871,7 +6954,7 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
       "removed": {},
       "updated": {},
     },
-    "id": "id28",
+    "id": "id30",
   },
   {
     "appState": AppStateDelta {
@@ -6891,7 +6974,7 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
       "removed": {},
       "updated": {},
     },
-    "id": "id30",
+    "id": "id32",
   },
   {
     "appState": AppStateDelta {
@@ -6910,7 +6993,7 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
     "elements": {
       "added": {},
       "removed": {
-        "id31": {
+        "id33": {
           "deleted": {
             "angle": 0,
             "backgroundColor": "transparent",
@@ -6968,7 +7051,7 @@ exports[`regression tests > draw every type of shape > [end of test] undo stack 
       },
       "updated": {},
     },
-    "id": "id33",
+    "id": "id35",
   },
 ]
 `;
@@ -8625,41 +8708,10 @@ exports[`regression tests > key 5 selects arrow tool > [end of test] appState 1`
   "currentItemStrokeStyle": "solid",
   "currentItemStrokeWidth": 2,
   "currentItemTextAlign": "left",
-  "cursorButton": "up",
+  "cursorButton": "down",
   "defaultSidebarDockedPreference": false,
   "editingFrame": null,
   "editingGroupId": null,
-  "editingLinearElement": {
-    "customLineAngle": null,
-    "elbowed": false,
-    "elementId": "id0",
-    "hoverPointIndex": -1,
-    "isDragging": false,
-    "isEditing": false,
-    "lastUncommittedPoint": null,
-    "pointerDownState": {
-      "arrowOriginalStartPoint": [
-        10,
-        10,
-      ],
-      "lastClickedIsEndPoint": false,
-      "lastClickedPoint": -1,
-      "origin": null,
-      "prevSelectedPointsIndices": null,
-      "segmentMidpoint": {
-        "added": false,
-        "index": null,
-        "value": null,
-      },
-    },
-    "pointerOffset": {
-      "x": 0,
-      "y": 0,
-    },
-    "segmentMidPointHoveredCoords": null,
-    "selectedPointsIndices": null,
-    "startBindingElement": null,
-  },
   "editingTextElement": null,
   "elementsToHighlight": null,
   "errorMessage": null,
@@ -8725,6 +8777,7 @@ exports[`regression tests > key 5 selects arrow tool > [end of test] appState 1`
     "isEditing": false,
     "lastUncommittedPoint": null,
     "pointerDownState": {
+      "arrowStartIsInside": false,
       "lastClickedIsEndPoint": false,
       "lastClickedPoint": -1,
       "origin": null,
@@ -8887,7 +8940,6 @@ exports[`regression tests > key 6 selects line tool > [end of test] appState 1`]
   "defaultSidebarDockedPreference": false,
   "editingFrame": null,
   "editingGroupId": null,
-  "editingLinearElement": null,
   "editingTextElement": null,
   "elementsToHighlight": null,
   "errorMessage": null,
@@ -8953,6 +9005,7 @@ exports[`regression tests > key 6 selects line tool > [end of test] appState 1`]
     "isEditing": false,
     "lastUncommittedPoint": null,
     "pointerDownState": {
+      "arrowStartIsInside": false,
       "lastClickedIsEndPoint": false,
       "lastClickedPoint": -1,
       "origin": null,
@@ -9304,41 +9357,10 @@ exports[`regression tests > key a selects arrow tool > [end of test] appState 1`
   "currentItemStrokeStyle": "solid",
   "currentItemStrokeWidth": 2,
   "currentItemTextAlign": "left",
-  "cursorButton": "up",
+  "cursorButton": "down",
   "defaultSidebarDockedPreference": false,
   "editingFrame": null,
   "editingGroupId": null,
-  "editingLinearElement": {
-    "customLineAngle": null,
-    "elbowed": false,
-    "elementId": "id0",
-    "hoverPointIndex": -1,
-    "isDragging": false,
-    "isEditing": false,
-    "lastUncommittedPoint": null,
-    "pointerDownState": {
-      "arrowOriginalStartPoint": [
-        10,
-        10,
-      ],
-      "lastClickedIsEndPoint": false,
-      "lastClickedPoint": -1,
-      "origin": null,
-      "prevSelectedPointsIndices": null,
-      "segmentMidpoint": {
-        "added": false,
-        "index": null,
-        "value": null,
-      },
-    },
-    "pointerOffset": {
-      "x": 0,
-      "y": 0,
-    },
-    "segmentMidPointHoveredCoords": null,
-    "selectedPointsIndices": null,
-    "startBindingElement": null,
-  },
   "editingTextElement": null,
   "elementsToHighlight": null,
   "errorMessage": null,
@@ -9404,6 +9426,7 @@ exports[`regression tests > key a selects arrow tool > [end of test] appState 1`
     "isEditing": false,
     "lastUncommittedPoint": null,
     "pointerDownState": {
+      "arrowStartIsInside": false,
       "lastClickedIsEndPoint": false,
       "lastClickedPoint": -1,
       "origin": null,
@@ -9745,7 +9768,6 @@ exports[`regression tests > key l selects line tool > [end of test] appState 1`]
   "defaultSidebarDockedPreference": false,
   "editingFrame": null,
   "editingGroupId": null,
-  "editingLinearElement": null,
   "editingTextElement": null,
   "elementsToHighlight": null,
   "errorMessage": null,
@@ -9811,6 +9833,7 @@ exports[`regression tests > key l selects line tool > [end of test] appState 1`]
     "isEditing": false,
     "lastUncommittedPoint": null,
     "pointerDownState": {
+      "arrowStartIsInside": false,
       "lastClickedIsEndPoint": false,
       "lastClickedPoint": -1,
       "origin": null,
@@ -14492,37 +14515,6 @@ exports[`regression tests > undo/redo drawing an element > [end of test] appStat
   "defaultSidebarDockedPreference": false,
   "editingFrame": null,
   "editingGroupId": null,
-  "editingLinearElement": {
-    "customLineAngle": null,
-    "elbowed": false,
-    "elementId": "id6",
-    "hoverPointIndex": -1,
-    "isDragging": false,
-    "isEditing": false,
-    "lastUncommittedPoint": null,
-    "pointerDownState": {
-      "arrowOriginalStartPoint": [
-        130,
-        10,
-      ],
-      "lastClickedIsEndPoint": false,
-      "lastClickedPoint": -1,
-      "origin": null,
-      "prevSelectedPointsIndices": null,
-      "segmentMidpoint": {
-        "added": false,
-        "index": null,
-        "value": null,
-      },
-    },
-    "pointerOffset": {
-      "x": 0,
-      "y": 0,
-    },
-    "segmentMidPointHoveredCoords": null,
-    "selectedPointsIndices": null,
-    "startBindingElement": null,
-  },
   "editingTextElement": null,
   "elementsToHighlight": null,
   "errorMessage": null,
@@ -14613,27 +14605,6 @@ exports[`regression tests > undo/redo drawing an element > [end of test] redo st
   {
     "appState": AppStateDelta {
       "delta": Delta {
-        "deleted": {
-          "selectedLinearElement": null,
-        },
-        "inserted": {
-          "selectedLinearElement": {
-            "elementId": "id6",
-            "isEditing": false,
-          },
-        },
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {},
-    },
-    "id": "id13",
-  },
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
         "deleted": {},
         "inserted": {},
       },
@@ -14659,7 +14630,7 @@ exports[`regression tests > undo/redo drawing an element > [end of test] redo st
                 10,
               ],
             ],
-            "version": 9,
+            "version": 8,
             "width": 60,
           },
           "inserted": {
@@ -14682,8 +14653,60 @@ exports[`regression tests > undo/redo drawing an element > [end of test] redo st
                 20,
               ],
             ],
-            "version": 8,
+            "version": 7,
             "width": 100,
+          },
+        },
+      },
+    },
+    "id": "id13",
+  },
+  {
+    "appState": AppStateDelta {
+      "delta": Delta {
+        "deleted": {},
+        "inserted": {},
+      },
+    },
+    "elements": {
+      "added": {},
+      "removed": {},
+      "updated": {
+        "id6": {
+          "deleted": {
+            "height": 0,
+            "lastCommittedPoint": null,
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                0,
+                0,
+              ],
+            ],
+            "version": 9,
+            "width": 0,
+          },
+          "inserted": {
+            "height": 10,
+            "lastCommittedPoint": [
+              60,
+              10,
+            ],
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                60,
+                10,
+              ],
+            ],
+            "version": 8,
+            "width": 60,
           },
         },
       },
@@ -14697,10 +14720,15 @@ exports[`regression tests > undo/redo drawing an element > [end of test] redo st
           "selectedElementIds": {
             "id3": true,
           },
+          "selectedLinearElement": null,
         },
         "inserted": {
           "selectedElementIds": {
             "id6": true,
+          },
+          "selectedLinearElement": {
+            "elementId": "id6",
+            "isEditing": false,
           },
         },
       },
@@ -14723,13 +14751,10 @@ exports[`regression tests > undo/redo drawing an element > [end of test] redo st
             "fillStyle": "solid",
             "frameId": null,
             "groupIds": [],
-            "height": 10,
+            "height": 0,
             "index": "a2",
             "isDeleted": false,
-            "lastCommittedPoint": [
-              60,
-              10,
-            ],
+            "lastCommittedPoint": null,
             "link": null,
             "locked": false,
             "opacity": 100,
@@ -14739,8 +14764,8 @@ exports[`regression tests > undo/redo drawing an element > [end of test] redo st
                 0,
               ],
               [
-                60,
-                10,
+                0,
+                0,
               ],
             ],
             "roughness": 1,
@@ -14754,7 +14779,7 @@ exports[`regression tests > undo/redo drawing an element > [end of test] redo st
             "strokeWidth": 2,
             "type": "arrow",
             "version": 9,
-            "width": 60,
+            "width": 0,
             "x": 130,
             "y": 10,
           },
