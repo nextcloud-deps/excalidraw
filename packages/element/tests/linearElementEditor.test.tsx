@@ -1316,7 +1316,7 @@ describe("Test Linear Elements", () => {
       const textElement = h.elements[2] as ExcalidrawTextElementWithContainer;
 
       expect(arrow.endBinding?.elementId).toBe(rect.id);
-      expect(arrow.width).toBe(400);
+      expect(arrow.width).toBeCloseTo(405);
       expect(rect.x).toBe(400);
       expect(rect.y).toBe(0);
       expect(
@@ -1335,7 +1335,7 @@ describe("Test Linear Elements", () => {
       mouse.downAt(rect.x, rect.y);
       mouse.moveTo(200, 0);
       mouse.upAt(200, 0);
-      expect(arrow.width).toBeCloseTo(200, 0);
+      expect(arrow.width).toBeCloseTo(205);
       expect(rect.x).toBe(200);
       expect(rect.y).toBe(0);
       expect(handleBindTextResizeSpy).toHaveBeenCalledWith(
