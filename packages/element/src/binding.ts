@@ -145,6 +145,7 @@ export const bindOrUnbindBindingElement = (
       ...opts,
     },
   );
+
   bindOrUnbindBindingElementEdge(arrow, start, "start", scene);
   bindOrUnbindBindingElementEdge(arrow, end, "end", scene);
   if (!isElbowArrow(arrow) && (start.focusPoint || end.focusPoint)) {

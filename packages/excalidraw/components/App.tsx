@@ -763,6 +763,27 @@ class App extends React.Component<AppProps, AppState> {
     this.actionManager.registerAction(createRedoAction(this.history));
   }
 
+  // setState: React.Component<AppProps, AppState>["setState"] = (
+  //   state,
+  //   callback?,
+  // ) => {
+  //   let newState: Parameters<typeof this.setState>[0] = null;
+  //   if (typeof state === "function") {
+  //     newState = state(this.state, this.props) as Pick<
+  //       AppState,
+  //       keyof AppState
+  //     >;
+  //   } else {
+  //     newState = state as Pick<AppState, keyof AppState>;
+  //   }
+
+  //   if (newState && Object.hasOwn(newState, "selectedLinearElement")) {
+  //     console.trace(!!newState.selectedLinearElement);
+  //   }
+
+  //   super.setState(newState, callback);
+  // };
+
   updateEditorAtom = <Value, Args extends unknown[], Result>(
     atom: WritableAtom<Value, Args, Result>,
     ...args: Args
@@ -2494,47 +2515,6 @@ class App extends React.Component<AppProps, AppState> {
           configurable: true,
           value: (...args: Parameters<typeof setState>) => {
             return this.setState(...args);
-          },
-        },
-        watchState: {
-          configurable: true,
-          value: (
-            callback:
-              | ((
-                  prevState: Parameters<typeof setState>,
-                  nextState: Parameters<typeof setState> | null,
-                ) => void)
-              | undefined,
-          ) => {
-            if (callback) {
-              (window as any).__originalSetState = this.setState;
-              this.setState = new Proxy(this.setState, {
-                apply: (target, thisArg, [state, cb]) => {
-                  const prevState = thisArg.state;
-                  let newState: Parameters<typeof setState> | null = null;
-
-                  // Log state change for debugging
-                  if (typeof state === "function") {
-                    newState = state(prevState, this.props);
-                  } else if (state) {
-                    newState = state;
-                  }
-
-                  try {
-                    callback(prevState, newState);
-                  } catch (error) {
-                    console.warn("Error in watchState callback:", error);
-                  }
-
-                  if (newState) {
-                    target.bind(thisArg)(newState as any, cb);
-                  }
-                },
-              });
-            } else if ((window as any).__originalSetState) {
-              this.setState = (window as any).__originalSetState;
-              delete (window as any).__originalSetState;
-            }
           },
         },
         app: {
@@ -7996,7 +7976,13 @@ class App extends React.Component<AppProps, AppState> {
           lastCommittedPoint:
             multiElement.points[multiElement.points.length - 1],
         });
-        this.actionManager.executeAction(actionFinalize);
+        this.actionManager.executeAction(actionFinalize, "ui", {
+          event: event.nativeEvent,
+          sceneCoords: {
+            x: pointerDownState.origin.x,
+            y: pointerDownState.origin.y,
+          },
+        });
         return;
       }
 
@@ -8183,7 +8169,7 @@ class App extends React.Component<AppProps, AppState> {
       this.setState((prevState) => {
         let linearElementEditor = null;
         let nextSelectedElementIds = prevState.selectedElementIds;
-        if (isSimpleArrow(element)) {
+        if (isBindingElement(element)) {
           const linearElement = new LinearElementEditor(
             element,
             this.scene.getNonDeletedElementsMap(),

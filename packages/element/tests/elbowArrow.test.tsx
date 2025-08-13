@@ -155,8 +155,8 @@ describe("elbow arrow routing", () => {
     expect(arrow.width).toEqual(90);
     expect(arrow.height).toEqual(200);
   });
+
   it("can generate proper points for bound elbow arrow", () => {
-    const scene = new Scene();
     const rectangle1 = API.createElement({
       type: "rectangle",
       x: -150,
@@ -180,17 +180,15 @@ describe("elbow arrow routing", () => {
       height: 200,
       points: [pointFrom(0, 0), pointFrom(90, 200)],
     }) as ExcalidrawElbowArrowElement;
-    scene.insertElement(rectangle1);
-    scene.insertElement(rectangle2);
-    scene.insertElement(arrow);
+    API.setElements([rectangle1, rectangle2, arrow]);
 
-    bindBindingElement(arrow, rectangle1, "orbit", "start", scene);
-    bindBindingElement(arrow, rectangle2, "orbit", "end", scene);
+    bindBindingElement(arrow, rectangle1, "orbit", "start", h.scene);
+    bindBindingElement(arrow, rectangle2, "orbit", "end", h.scene);
 
     expect(arrow.startBinding).not.toBe(null);
     expect(arrow.endBinding).not.toBe(null);
 
-    h.app.scene.mutateElement(arrow, {
+    h.scene.mutateElement(arrow, {
       points: [pointFrom<LocalPoint>(0, 0), pointFrom<LocalPoint>(90, 200)],
     });
 
