@@ -222,7 +222,19 @@ const rotateSingleElement = (
   }
   const boundTextElementId = getBoundTextElementId(element);
 
-  scene.mutateElement(element, { angle });
+  let update: ElementUpdate<NonDeletedExcalidrawElement> = {
+    angle,
+  };
+
+  if (isBindingElement(element)) {
+    update = {
+      ...update,
+      startBinding: null,
+      endBinding: null,
+    } as ElementUpdate<ExcalidrawArrowElement>;
+  }
+
+  scene.mutateElement(element, update);
   if (boundTextElementId) {
     const textElement =
       scene.getElement<ExcalidrawTextElementWithContainer>(boundTextElementId);

@@ -408,19 +408,13 @@ const bindingStrategyForNewSimpleArrowEndpointDragging = (
       const otherIsInsideBinding =
         !!appState.selectedLinearElement?.pointerDownState.arrowStartIsInside;
 
-      // We need to "jump" the start point out with the detached
-      // focus point of the center of the bound element
-      invariant(
-        arrowOriginalStartPoint,
-        "Arrow original start point must be defined",
-      );
       const other: BindingStrategy = {
         mode: otherIsInsideBinding ? "inside" : "orbit",
         element: otherElement,
         focusPoint: snapToCenter(
           otherElement,
           elementsMap,
-          arrowOriginalStartPoint,
+          arrowOriginalStartPoint ?? pointFrom<GlobalPoint>(arrow.x, arrow.y),
         ),
       };
 
