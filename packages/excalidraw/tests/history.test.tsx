@@ -1639,14 +1639,12 @@ describe("history", () => {
         expect(arrow.startBinding).toEqual({
           elementId: rect1.id,
           fixedPoint: expect.arrayContaining([1, 0.5001]),
-          focus: 0,
-          gap: 0,
+          mode: "orbit",
         });
         expect(arrow.endBinding).toEqual({
           elementId: rect2.id,
           fixedPoint: expect.arrayContaining([0, 0.5001]),
-          focus: 0,
-          gap: 0,
+          mode: "orbit",
         });
         expect(rect1.boundElements).toStrictEqual([
           { id: text.id, type: "text" },
@@ -1664,14 +1662,12 @@ describe("history", () => {
         expect(arrow.startBinding).toEqual({
           elementId: rect1.id,
           fixedPoint: expect.arrayContaining([1, 0.5001]),
-          focus: 0,
-          gap: 0,
+          mode: "orbit",
         });
         expect(arrow.endBinding).toEqual({
           elementId: rect2.id,
           fixedPoint: expect.arrayContaining([0, 0.5001]),
-          focus: 0,
-          gap: 0,
+          mode: "orbit",
         });
         expect(h.elements).toEqual([
           expect.objectContaining({
@@ -1689,14 +1685,12 @@ describe("history", () => {
         expect(arrow.startBinding).toEqual({
           elementId: rect1.id,
           fixedPoint: expect.arrayContaining([1, 0.5001]),
-          focus: 0,
-          gap: 0,
+          mode: "orbit",
         });
         expect(arrow.endBinding).toEqual({
           elementId: rect2.id,
           fixedPoint: expect.arrayContaining([0, 0.5001]),
-          focus: 0,
-          gap: 0,
+          mode: "orbit",
         });
         expect(h.elements).toEqual([
           expect.objectContaining({
@@ -1722,14 +1716,12 @@ describe("history", () => {
         expect(arrow.startBinding).toEqual({
           elementId: rect1.id,
           fixedPoint: expect.arrayContaining([1, 0.5001]),
-          focus: 0,
-          gap: 0,
+          mode: "orbit",
         });
         expect(arrow.endBinding).toEqual({
           elementId: rect2.id,
           fixedPoint: expect.arrayContaining([0, 0.5001]),
-          focus: 0,
-          gap: 0,
+          mode: "orbit",
         });
         expect(h.elements).toEqual([
           expect.objectContaining({
@@ -1747,14 +1739,12 @@ describe("history", () => {
         expect(arrow.startBinding).toEqual({
           elementId: rect1.id,
           fixedPoint: expect.arrayContaining([1, 0.5001]),
-          focus: 0,
-          gap: 0,
+          mode: "orbit",
         });
         expect(arrow.endBinding).toEqual({
           elementId: rect2.id,
           fixedPoint: expect.arrayContaining([0, 0.5001]),
-          focus: 0,
-          gap: 0,
+          mode: "orbit",
         });
         expect(h.elements).toEqual([
           expect.objectContaining({
@@ -1803,13 +1793,19 @@ describe("history", () => {
               id: arrow.id,
               startBinding: expect.objectContaining({
                 elementId: rect1.id,
-                focus: expect.toBeNonNaNNumber(),
-                gap: expect.toBeNonNaNNumber(),
+                fixedPoint: expect.arrayContaining([
+                  expect.toBeNonNaNNumber(),
+                  expect.toBeNonNaNNumber(),
+                ]),
+                mode: "orbit",
               }),
               endBinding: expect.objectContaining({
                 elementId: rect2.id,
-                focus: expect.toBeNonNaNNumber(),
-                gap: expect.toBeNonNaNNumber(),
+                fixedPoint: expect.arrayContaining([
+                  expect.toBeNonNaNNumber(),
+                  expect.toBeNonNaNNumber(),
+                ]),
+                mode: "orbit",
               }),
               isDeleted: true,
             }),
@@ -1848,13 +1844,19 @@ describe("history", () => {
               id: arrow.id,
               startBinding: expect.objectContaining({
                 elementId: rect1.id,
-                focus: expect.toBeNonNaNNumber(),
-                gap: expect.toBeNonNaNNumber(),
+                fixedPoint: expect.arrayContaining([
+                  expect.toBeNonNaNNumber(),
+                  expect.toBeNonNaNNumber(),
+                ]),
+                mode: "orbit",
               }),
               endBinding: expect.objectContaining({
                 elementId: rect2.id,
-                focus: expect.toBeNonNaNNumber(),
-                gap: expect.toBeNonNaNNumber(),
+                fixedPoint: expect.arrayContaining([
+                  expect.toBeNonNaNNumber(),
+                  expect.toBeNonNaNNumber(),
+                ]),
+                mode: "orbit",
               }),
               isDeleted: false,
             }),
@@ -1892,8 +1894,11 @@ describe("history", () => {
               startBinding: null,
               endBinding: expect.objectContaining({
                 elementId: rect2.id,
-                focus: expect.toBeNonNaNNumber(),
-                gap: expect.toBeNonNaNNumber(),
+                fixedPoint: expect.arrayContaining([
+                  expect.toBeNonNaNNumber(),
+                  expect.toBeNonNaNNumber(),
+                ]),
+                mode: "orbit",
               }),
               isDeleted: false,
             }),
@@ -1927,13 +1932,19 @@ describe("history", () => {
               id: arrow.id,
               startBinding: expect.objectContaining({
                 elementId: rect1.id,
-                focus: expect.toBeNonNaNNumber(),
-                gap: expect.toBeNonNaNNumber(),
+                fixedPoint: expect.arrayContaining([
+                  expect.toBeNonNaNNumber(),
+                  expect.toBeNonNaNNumber(),
+                ]),
+                mode: "orbit",
               }),
               endBinding: expect.objectContaining({
                 elementId: rect2.id,
-                focus: expect.toBeNonNaNNumber(),
-                gap: expect.toBeNonNaNNumber(),
+                fixedPoint: expect.arrayContaining([
+                  expect.toBeNonNaNNumber(),
+                  expect.toBeNonNaNNumber(),
+                ]),
+                mode: "orbit",
               }),
               isDeleted: false,
             }),
@@ -2000,13 +2011,19 @@ describe("history", () => {
               id: arrow.id,
               startBinding: expect.objectContaining({
                 elementId: rect1.id,
-                focus: expect.toBeNonNaNNumber(),
-                gap: expect.toBeNonNaNNumber(),
+                fixedPoint: expect.arrayContaining([
+                  expect.toBeNonNaNNumber(),
+                  expect.toBeNonNaNNumber(),
+                ]),
+                mode: "orbit",
               }),
               endBinding: expect.objectContaining({
                 elementId: rect2.id,
-                focus: expect.toBeNonNaNNumber(),
-                gap: expect.toBeNonNaNNumber(),
+                fixedPoint: expect.arrayContaining([
+                  expect.toBeNonNaNNumber(),
+                  expect.toBeNonNaNNumber(),
+                ]),
+                mode: "orbit",
               }),
               isDeleted: false,
             }),
@@ -4582,13 +4599,19 @@ describe("history", () => {
               id: arrowId,
               startBinding: expect.objectContaining({
                 elementId: rect1.id,
-                focus: expect.toBeNonNaNNumber(),
-                gap: expect.toBeNonNaNNumber(),
+                fixedPoint: expect.arrayContaining([
+                  expect.toBeNonNaNNumber(),
+                  expect.toBeNonNaNNumber(),
+                ]),
+                mode: "orbit",
               }),
               endBinding: expect.objectContaining({
                 elementId: rect2.id,
-                focus: expect.toBeNonNaNNumber(),
-                gap: expect.toBeNonNaNNumber(),
+                fixedPoint: expect.arrayContaining([
+                  expect.toBeNonNaNNumber(),
+                  expect.toBeNonNaNNumber(),
+                ]),
+                mode: "orbit",
               }),
             }),
           ]),
@@ -4716,13 +4739,19 @@ describe("history", () => {
               id: arrowId,
               startBinding: expect.objectContaining({
                 elementId: rect1.id,
-                focus: expect.toBeNonNaNNumber(),
-                gap: expect.toBeNonNaNNumber(),
+                fixedPoint: expect.arrayContaining([
+                  expect.toBeNonNaNNumber(),
+                  expect.toBeNonNaNNumber(),
+                ]),
+                mode: "orbit",
               }),
               endBinding: expect.objectContaining({
                 elementId: rect2.id,
-                focus: expect.toBeNonNaNNumber(),
-                gap: expect.toBeNonNaNNumber(),
+                fixedPoint: expect.arrayContaining([
+                  expect.toBeNonNaNNumber(),
+                  expect.toBeNonNaNNumber(),
+                ]),
+                mode: "orbit",
               }),
             }),
           ]),
@@ -4908,8 +4937,7 @@ describe("history", () => {
                     expect.toBeNonNaNNumber(),
                     expect.toBeNonNaNNumber(),
                   ],
-                  focus: expect.toBeNonNaNNumber(),
-                  gap: expect.toBeNonNaNNumber(),
+                  mode: "orbit",
                 }),
                 endBinding: expect.objectContaining({
                   // now we are back in the previous state!
@@ -4918,8 +4946,7 @@ describe("history", () => {
                     expect.toBeNonNaNNumber(),
                     expect.toBeNonNaNNumber(),
                   ],
-                  focus: expect.toBeNonNaNNumber(),
-                  gap: expect.toBeNonNaNNumber(),
+                  mode: "orbit",
                 }),
               }),
               expect.objectContaining({
@@ -4988,8 +5015,7 @@ describe("history", () => {
                     expect.toBeNonNaNNumber(),
                     expect.toBeNonNaNNumber(),
                   ],
-                  focus: expect.toBeNonNaNNumber(),
-                  gap: expect.toBeNonNaNNumber(),
+                  mode: "orbit",
                 }),
                 endBinding: expect.objectContaining({
                   elementId: rect2.id,
@@ -4997,8 +5023,7 @@ describe("history", () => {
                     expect.toBeNonNaNNumber(),
                     expect.toBeNonNaNNumber(),
                   ],
-                  focus: expect.toBeNonNaNNumber(),
-                  gap: expect.toBeNonNaNNumber(),
+                  mode: "orbit",
                 }),
                 isDeleted: true,
               }),
@@ -5028,8 +5053,7 @@ describe("history", () => {
                     expect.toBeNonNaNNumber(),
                     expect.toBeNonNaNNumber(),
                   ],
-                  focus: expect.toBeNonNaNNumber(),
-                  gap: expect.toBeNonNaNNumber(),
+                  mode: "orbit",
                 },
                 endBinding: expect.objectContaining({
                   elementId: rect2.id,
@@ -5037,8 +5061,7 @@ describe("history", () => {
                     expect.toBeNonNaNNumber(),
                     expect.toBeNonNaNNumber(),
                   ],
-                  focus: expect.toBeNonNaNNumber(),
-                  gap: expect.toBeNonNaNNumber(),
+                  mode: "orbit",
                 }),
                 isDeleted: false,
               }),
@@ -5127,13 +5150,19 @@ describe("history", () => {
               id: arrowId,
               startBinding: expect.objectContaining({
                 elementId: rect1.id,
-                focus: expect.toBeNonNaNNumber(),
-                gap: expect.toBeNonNaNNumber(),
+                fixedPoint: expect.arrayContaining([
+                  expect.toBeNonNaNNumber(),
+                  expect.toBeNonNaNNumber(),
+                ]),
+                mode: "orbit",
               }),
               endBinding: expect.objectContaining({
                 elementId: rect2.id,
-                focus: expect.toBeNonNaNNumber(),
-                gap: expect.toBeNonNaNNumber(),
+                fixedPoint: expect.arrayContaining([
+                  expect.toBeNonNaNNumber(),
+                  expect.toBeNonNaNNumber(),
+                ]),
+                mode: "orbit",
               }),
               isDeleted: false,
             }),
