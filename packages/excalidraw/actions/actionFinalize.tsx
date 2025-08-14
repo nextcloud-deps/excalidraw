@@ -2,7 +2,6 @@ import { pointFrom } from "@excalidraw/math";
 
 import { bindOrUnbindBindingElement } from "@excalidraw/element/binding";
 import {
-  isSimpleArrow,
   isValidPolygon,
   LinearElementEditor,
   newElementWith,
@@ -29,7 +28,6 @@ import { CaptureUpdateAction } from "@excalidraw/element";
 
 import type { GlobalPoint, LocalPoint } from "@excalidraw/math";
 import type {
-  ExcalidrawArrowElement,
   ExcalidrawElement,
   ExcalidrawLinearElement,
   NonDeleted,
@@ -61,7 +59,7 @@ export const actionFinalize = register<FormData>({
 
     if (data && appState.selectedLinearElement) {
       const { event, sceneCoords } = data;
-      const element = LinearElementEditor.getElement<ExcalidrawArrowElement>(
+      const element = LinearElementEditor.getElement(
         appState.selectedLinearElement.elementId,
         elementsMap,
       );
@@ -83,7 +81,7 @@ export const actionFinalize = register<FormData>({
         app.scene,
       );
 
-      if (isSimpleArrow(element)) {
+      if (isBindingElement(element)) {
         const newArrow = !appState.selectedLinearElement?.selectedPointsIndices;
 
         const selectedPointsIndices = newArrow
@@ -106,6 +104,16 @@ export const actionFinalize = register<FormData>({
         bindOrUnbindBindingElement(element, draggedPoints, scene, appState, {
           newArrow,
         });
+      } else if (isLineElement(element)) {
+        if (
+          appState.selectedLinearElement?.isEditing &&
+          !appState.newElement &&
+          !isValidPolygon(element.points)
+        ) {
+          scene.mutateElement(element, {
+            polygon: false,
+          });
+        }
       }
 
       if (linearElementEditor !== appState.selectedLinearElement) {
@@ -126,57 +134,6 @@ export const actionFinalize = register<FormData>({
         }
 
         return {
-          elements: newElements,
-          appState: {
-            ...appState,
-            selectedLinearElement: {
-              ...linearElementEditor,
-              selectedPointsIndices: null,
-            },
-            suggestedBindings: [],
-            newElement: null,
-            multiElement: null,
-          },
-          captureUpdate: CaptureUpdateAction.IMMEDIATELY,
-        };
-      }
-    }
-
-    if (appState.selectedLinearElement?.isEditing && !appState.newElement) {
-      const { elementId } = appState.selectedLinearElement;
-      const element = LinearElementEditor.getElement(elementId, elementsMap);
-
-      if (element) {
-        if (isBindingElement(element)) {
-          const updates =
-            appState.selectedLinearElement?.pointerDownState.prevSelectedPointsIndices?.reduce(
-              (updates, index) => {
-                updates.set(index, {
-                  point: element.points[index],
-                  draggedPoints: true,
-                });
-
-                return updates;
-              },
-              new Map(),
-            ) ?? new Map();
-          const allPointsSelected =
-            appState.selectedLinearElement?.pointerDownState
-              .prevSelectedPointsIndices?.length === element.points.length;
-
-          // Dragging the entire arrow doesn't allow binding.
-          if (!allPointsSelected) {
-            bindOrUnbindBindingElement(element, updates, scene, appState);
-          }
-        }
-
-        if (isLineElement(element) && !isValidPolygon(element.points)) {
-          scene.mutateElement(element, {
-            polygon: false,
-          });
-        }
-
-        return {
           elements:
             element.points.length < 2 || isInvisiblySmallElement(element)
               ? elements.map((el) => {
@@ -185,15 +142,18 @@ export const actionFinalize = register<FormData>({
                   }
                   return el;
                 })
-              : undefined,
+              : newElements,
           appState: {
             ...appState,
             cursorButton: "up",
-            selectedLinearElement: new LinearElementEditor(
-              element,
-              arrayToMap(elementsMap),
-              false, // exit editing mode
-            ),
+            selectedLinearElement: {
+              ...linearElementEditor,
+              selectedPointsIndices: null,
+              isEditing: false,
+            },
+            suggestedBindings: [],
+            newElement: null,
+            multiElement: null,
           },
           captureUpdate: CaptureUpdateAction.IMMEDIATELY,
         };
