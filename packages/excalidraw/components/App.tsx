@@ -5960,6 +5960,10 @@ class App extends React.Component<AppProps, AppState> {
 
     const scenePointer = viewportCoordsToSceneCoords(event, this.state);
     const { x: scenePointerX, y: scenePointerY } = scenePointer;
+    this.lastPointerMoveCoords = {
+      x: scenePointerX,
+      y: scenePointerY,
+    };
 
     if (
       !this.state.newElement &&
@@ -6176,6 +6180,15 @@ class App extends React.Component<AppProps, AppState> {
                           }
                         : null,
                     });
+                  });
+                  this.scene.mutateElement(multiElement, {
+                    points: [
+                      ...multiElement.points.slice(0, -1),
+                      pointFrom<LocalPoint>(
+                        this.lastPointerMoveCoords!.x - multiElement.x,
+                        this.lastPointerMoveCoords!.y - multiElement.y,
+                      ),
+                    ],
                   });
                 }
 
@@ -8624,8 +8637,22 @@ class App extends React.Component<AppProps, AppState> {
                       pointerDownState.origin.y;
                     pointerDownState.drag.hasOccurred = true;
 
-                    this.setState(newState);
+                    flushSync(() => {
+                      this.setState(newState);
+                    });
                   }
+
+                  this.scene.mutateElement(element, {
+                    points: [
+                      ...element.points.slice(0, -1),
+                      pointFrom<LocalPoint>(
+                        (this.lastPointerMoveCoords?.x ??
+                          pointerDownState.origin.x) - element.x,
+                        (this.lastPointerMoveCoords?.y ??
+                          pointerDownState.origin.y) - element.y,
+                      ),
+                    ],
+                  });
                 }
 
                 this.bindModeHandler = null;
