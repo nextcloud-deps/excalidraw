@@ -8000,7 +8000,7 @@ class App extends React.Component<AppProps, AppState> {
 
       // clicking inside commit zone → finalize arrow
       if (
-        hoveredElementForBinding ||
+        (isBindingElement(multiElement) && hoveredElementForBinding) ||
         (multiElement.points.length > 1 &&
           lastCommittedPoint &&
           pointDistance(

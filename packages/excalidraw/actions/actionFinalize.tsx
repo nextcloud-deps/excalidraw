@@ -6,7 +6,6 @@ import {
   isValidPolygon,
   LinearElementEditor,
   newElementWith,
-  getHoveredElementForBinding,
 } from "@excalidraw/element";
 
 import {
@@ -229,21 +228,10 @@ export const actionFinalize = register<FormData>({
         element.type !== "freedraw" &&
         appState.lastPointerDownWith !== "touch"
       ) {
-        const { x: rx, y: ry, points, lastCommittedPoint } = element;
-        const lastGlobalPoint = pointFrom<GlobalPoint>(
-          rx + points[points.length - 1][0],
-          ry + points[points.length - 1][1],
-        );
-        const hoveredElementForBinding = getHoveredElementForBinding(
-          lastGlobalPoint,
-          app.scene.getNonDeletedElements(),
-          elementsMap,
-          app.state.zoom,
-        );
+        const { points, lastCommittedPoint } = element;
         if (
-          !hoveredElementForBinding &&
-          (!lastCommittedPoint ||
-            points[points.length - 1] !== lastCommittedPoint)
+          !lastCommittedPoint ||
+          points[points.length - 1] !== lastCommittedPoint
         ) {
           scene.mutateElement(element, {
             points: element.points.slice(0, -1),
