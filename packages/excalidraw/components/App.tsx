@@ -8697,7 +8697,22 @@ class App extends React.Component<AppProps, AppState> {
           pointerDownState.lastCoords.y = y;
           pointerDownState.drag.hasOccurred = true;
 
-          this.setState(newState);
+          if (
+            !isShallowEqual(
+              newState.suggestedBindings ?? [],
+              this.state.suggestedBindings,
+            ) ||
+            !isShallowEqual(
+              newState.selectedLinearElement?.selectedPointsIndices ?? [],
+              this.state.selectedLinearElement?.selectedPointsIndices ?? [],
+            ) ||
+            newState.selectedLinearElement?.hoverPointIndex !==
+              this.state.selectedLinearElement?.hoverPointIndex ||
+            newState.selectedLinearElement?.customLineAngle !==
+              this.state.selectedLinearElement?.customLineAngle
+          ) {
+            this.setState(newState);
+          }
 
           return;
         }

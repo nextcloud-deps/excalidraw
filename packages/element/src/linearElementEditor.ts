@@ -492,10 +492,9 @@ export class LinearElementEditor {
       };
 
       return {
-        ...app.state,
         selectedLinearElement: newLinearElementEditor,
         suggestedBindings,
-      };
+      } as Pick<AppState, keyof AppState>;
     }
 
     return null;
