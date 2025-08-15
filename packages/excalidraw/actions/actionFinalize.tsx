@@ -151,6 +151,7 @@ export const actionFinalize = register<FormData>({
               selectedPointsIndices: null,
               isEditing: false,
             },
+            selectionElement: null,
             suggestedBindings: [],
             newElement: null,
             multiElement: null,

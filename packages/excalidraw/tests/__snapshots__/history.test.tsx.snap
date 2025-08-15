@@ -91,35 +91,7 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
   },
   "selectedElementsAreBeingDragged": false,
   "selectedGroupIds": {},
-  "selectionElement": {
-    "angle": 0,
-    "backgroundColor": "transparent",
-    "boundElements": null,
-    "customData": undefined,
-    "fillStyle": "solid",
-    "frameId": null,
-    "groupIds": [],
-    "height": 0,
-    "id": "id12",
-    "index": null,
-    "isDeleted": false,
-    "link": null,
-    "locked": false,
-    "opacity": 100,
-    "roughness": 1,
-    "roundness": null,
-    "seed": 2004587015,
-    "strokeColor": "#1e1e1e",
-    "strokeStyle": "solid",
-    "strokeWidth": 2,
-    "type": "selection",
-    "updated": 1,
-    "version": 1,
-    "versionNonce": 0,
-    "width": 0,
-    "x": 100,
-    "y": 0,
-  },
+  "selectionElement": null,
   "shouldCacheIgnoreZoom": false,
   "showHyperlinkPopup": false,
   "showWelcomeScreen": true,
@@ -171,7 +143,7 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
   "strokeWidth": 2,
   "type": "rectangle",
   "updated": 1,
-  "version": 3,
+  "version": 5,
   "width": 100,
   "x": -100,
   "y": -50,
@@ -182,12 +154,7 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
 {
   "angle": 0,
   "backgroundColor": "transparent",
-  "boundElements": [
-    {
-      "id": "id4",
-      "type": "arrow",
-    },
-  ],
+  "boundElements": [],
   "customData": undefined,
   "fillStyle": "solid",
   "frameId": null,
@@ -206,7 +173,7 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
   "strokeWidth": 2,
   "type": "rectangle",
   "updated": 1,
-  "version": 3,
+  "version": 4,
   "width": 100,
   "x": 100,
   "y": -50,
@@ -221,24 +188,18 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
   "customData": undefined,
   "elbowed": false,
   "endArrowhead": "arrow",
-  "endBinding": {
-    "elementId": "id1",
-    "fixedPoint": [
-      0,
-      "0.50010",
-    ],
-    "mode": "orbit",
-  },
+  "endBinding": null,
   "fillStyle": "solid",
   "frameId": null,
   "groupIds": [],
-  "height": "0.00047",
+  "height": "0.03787",
   "id": "id4",
   "index": "a2",
   "isDeleted": false,
   "lastCommittedPoint": null,
   "link": null,
   "locked": false,
+  "moveMidPointsWithElement": false,
   "opacity": 100,
   "points": [
     [
@@ -246,8 +207,8 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
       0,
     ],
     [
-      90,
-      "0.00047",
+      95,
+      "0.03787",
     ],
   ],
   "roughness": 1,
@@ -268,10 +229,10 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
   "strokeWidth": 2,
   "type": "arrow",
   "updated": 1,
-  "version": 12,
-  "width": 90,
+  "version": 16,
+  "width": 95,
   "x": 5,
-  "y": "0.00950",
+  "y": "0.01199",
 }
 `;
 
@@ -279,7 +240,158 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
 
 exports[`history > multiplayer undo/redo > conflicts in arrows and their bindable elements > should rebind bindings when both are updated through the history and the arrow got bound to a different element in the meantime > [end of test] number of renders 1`] = `12`;
 
-exports[`history > multiplayer undo/redo > conflicts in arrows and their bindable elements > should rebind bindings when both are updated through the history and the arrow got bound to a different element in the meantime > [end of test] redo stack 1`] = `[]`;
+exports[`history > multiplayer undo/redo > conflicts in arrows and their bindable elements > should rebind bindings when both are updated through the history and the arrow got bound to a different element in the meantime > [end of test] redo stack 1`] = `
+[
+  {
+    "appState": AppStateDelta {
+      "delta": Delta {
+        "deleted": {},
+        "inserted": {},
+      },
+    },
+    "elements": {
+      "added": {},
+      "removed": {},
+      "updated": {
+        "id1": {
+          "deleted": {
+            "boundElements": [],
+            "version": 4,
+          },
+          "inserted": {
+            "boundElements": [
+              {
+                "id": "id4",
+                "type": "arrow",
+              },
+            ],
+            "version": 3,
+          },
+        },
+        "id4": {
+          "deleted": {
+            "endBinding": null,
+            "height": "0.88851",
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                90,
+                "0.88851",
+              ],
+            ],
+            "startBinding": {
+              "elementId": "id0",
+              "fixedPoint": [
+                1,
+                "0.50010",
+              ],
+              "mode": "orbit",
+            },
+            "version": 14,
+          },
+          "inserted": {
+            "endBinding": {
+              "elementId": "id1",
+              "fixedPoint": [
+                0,
+                "0.50010",
+              ],
+              "mode": "orbit",
+            },
+            "height": "0.00047",
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                90,
+                "0.00047",
+              ],
+            ],
+            "startBinding": {
+              "elementId": "id0",
+              "fixedPoint": [
+                1,
+                "0.50010",
+              ],
+              "mode": "orbit",
+            },
+            "version": 12,
+          },
+        },
+      },
+    },
+    "id": "id17",
+  },
+  {
+    "appState": AppStateDelta {
+      "delta": Delta {
+        "deleted": {},
+        "inserted": {},
+      },
+    },
+    "elements": {
+      "added": {},
+      "removed": {},
+      "updated": {
+        "id4": {
+          "deleted": {
+            "height": "0.03787",
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                95,
+                "0.03787",
+              ],
+            ],
+            "startBinding": {
+              "elementId": "id0",
+              "fixedPoint": [
+                1,
+                "0.50010",
+              ],
+              "mode": "orbit",
+            },
+            "version": 16,
+            "width": 95,
+          },
+          "inserted": {
+            "height": "0.88851",
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                90,
+                "0.88851",
+              ],
+            ],
+            "startBinding": {
+              "elementId": "id0",
+              "fixedPoint": [
+                1,
+                "0.50010",
+              ],
+              "mode": "orbit",
+            },
+            "version": 14,
+            "width": 90,
+          },
+        },
+      },
+    },
+    "id": "id18",
+  },
+]
+`;
 
 exports[`history > multiplayer undo/redo > conflicts in arrows and their bindable elements > should rebind bindings when both are updated through the history and the arrow got bound to a different element in the meantime > [end of test] undo stack 1`] = `
 [
@@ -588,154 +700,6 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
     },
     "id": "id11",
   },
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
-        "deleted": {},
-        "inserted": {},
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {
-        "id4": {
-          "deleted": {
-            "height": "0.93837",
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                90,
-                "0.93837",
-              ],
-            ],
-            "startBinding": {
-              "elementId": "id0",
-              "fixedPoint": [
-                1,
-                "0.50010",
-              ],
-              "mode": "orbit",
-            },
-            "version": 10,
-            "width": 90,
-          },
-          "inserted": {
-            "height": "0.00950",
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                95,
-                "-0.00950",
-              ],
-            ],
-            "startBinding": {
-              "elementId": "id0",
-              "fixedPoint": [
-                1,
-                "0.50010",
-              ],
-              "mode": "orbit",
-            },
-            "version": 9,
-            "width": 95,
-          },
-        },
-      },
-    },
-    "id": "id14",
-  },
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
-        "deleted": {},
-        "inserted": {},
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {
-        "id1": {
-          "deleted": {
-            "boundElements": [
-              {
-                "id": "id4",
-                "type": "arrow",
-              },
-            ],
-            "version": 3,
-          },
-          "inserted": {
-            "boundElements": [],
-            "version": 2,
-          },
-        },
-        "id4": {
-          "deleted": {
-            "endBinding": {
-              "elementId": "id1",
-              "fixedPoint": [
-                0,
-                "0.50010",
-              ],
-              "mode": "orbit",
-            },
-            "height": "0.00047",
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                90,
-                "0.00047",
-              ],
-            ],
-            "startBinding": {
-              "elementId": "id0",
-              "fixedPoint": [
-                1,
-                "0.50010",
-              ],
-              "mode": "orbit",
-            },
-            "version": 12,
-          },
-          "inserted": {
-            "endBinding": null,
-            "height": "0.93837",
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                90,
-                "0.93837",
-              ],
-            ],
-            "startBinding": {
-              "elementId": "id0",
-              "fixedPoint": [
-                1,
-                "0.50010",
-              ],
-              "mode": "orbit",
-            },
-            "version": 10,
-          },
-        },
-      },
-    },
-    "id": "id16",
-  },
 ]
 `;
 
@@ -830,35 +794,7 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
   },
   "selectedElementsAreBeingDragged": false,
   "selectedGroupIds": {},
-  "selectionElement": {
-    "angle": 0,
-    "backgroundColor": "transparent",
-    "boundElements": null,
-    "customData": undefined,
-    "fillStyle": "solid",
-    "frameId": null,
-    "groupIds": [],
-    "height": 0,
-    "id": "id14",
-    "index": null,
-    "isDeleted": false,
-    "link": null,
-    "locked": false,
-    "opacity": 100,
-    "roughness": 1,
-    "roundness": null,
-    "seed": 1292308681,
-    "strokeColor": "#1e1e1e",
-    "strokeStyle": "solid",
-    "strokeWidth": 2,
-    "type": "selection",
-    "updated": 1,
-    "version": 1,
-    "versionNonce": 0,
-    "width": 0,
-    "x": 100,
-    "y": 0,
-  },
+  "selectionElement": null,
   "shouldCacheIgnoreZoom": false,
   "showHyperlinkPopup": false,
   "showWelcomeScreen": true,
@@ -910,7 +846,7 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
   "strokeWidth": 2,
   "type": "rectangle",
   "updated": 1,
-  "version": 3,
+  "version": 5,
   "width": 100,
   "x": -100,
   "y": -50,
@@ -921,12 +857,7 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
 {
   "angle": 0,
   "backgroundColor": "transparent",
-  "boundElements": [
-    {
-      "id": "id4",
-      "type": "arrow",
-    },
-  ],
+  "boundElements": [],
   "customData": undefined,
   "fillStyle": "solid",
   "frameId": null,
@@ -945,7 +876,7 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
   "strokeWidth": 2,
   "type": "rectangle",
   "updated": 1,
-  "version": 3,
+  "version": 4,
   "width": 100,
   "x": 100,
   "y": -50,
@@ -960,24 +891,18 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
   "customData": undefined,
   "elbowed": false,
   "endArrowhead": "arrow",
-  "endBinding": {
-    "elementId": "id1",
-    "fixedPoint": [
-      0,
-      "0.50010",
-    ],
-    "mode": "orbit",
-  },
+  "endBinding": null,
   "fillStyle": "solid",
   "frameId": null,
   "groupIds": [],
-  "height": "0.04676",
+  "height": "0.88851",
   "id": "id4",
   "index": "a2",
   "isDeleted": false,
   "lastCommittedPoint": null,
   "link": null,
   "locked": false,
+  "moveMidPointsWithElement": false,
   "opacity": 100,
   "points": [
     [
@@ -986,7 +911,7 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
     ],
     [
       90,
-      "-0.04676",
+      "0.88851",
     ],
   ],
   "roughness": 1,
@@ -1007,7 +932,7 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
   "strokeWidth": 2,
   "type": "arrow",
   "updated": 1,
-  "version": 14,
+  "version": 18,
   "width": 90,
   "x": 5,
   "y": "0.05936",
@@ -1018,7 +943,158 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
 
 exports[`history > multiplayer undo/redo > conflicts in arrows and their bindable elements > should rebind bindings when both are updated through the history and there are no conflicting updates in the meantime > [end of test] number of renders 1`] = `14`;
 
-exports[`history > multiplayer undo/redo > conflicts in arrows and their bindable elements > should rebind bindings when both are updated through the history and there are no conflicting updates in the meantime > [end of test] redo stack 1`] = `[]`;
+exports[`history > multiplayer undo/redo > conflicts in arrows and their bindable elements > should rebind bindings when both are updated through the history and there are no conflicting updates in the meantime > [end of test] redo stack 1`] = `
+[
+  {
+    "appState": AppStateDelta {
+      "delta": Delta {
+        "deleted": {},
+        "inserted": {},
+      },
+    },
+    "elements": {
+      "added": {},
+      "removed": {},
+      "updated": {
+        "id1": {
+          "deleted": {
+            "boundElements": [],
+            "version": 4,
+          },
+          "inserted": {
+            "boundElements": [
+              {
+                "id": "id4",
+                "type": "arrow",
+              },
+            ],
+            "version": 3,
+          },
+        },
+        "id4": {
+          "deleted": {
+            "endBinding": null,
+            "height": "0.00900",
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                90,
+                "-0.00900",
+              ],
+            ],
+            "startBinding": {
+              "elementId": "id0",
+              "fixedPoint": [
+                1,
+                "0.50010",
+              ],
+              "mode": "orbit",
+            },
+            "version": 16,
+          },
+          "inserted": {
+            "endBinding": {
+              "elementId": "id1",
+              "fixedPoint": [
+                0,
+                "0.50010",
+              ],
+              "mode": "orbit",
+            },
+            "height": "0.04676",
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                90,
+                "-0.04676",
+              ],
+            ],
+            "startBinding": {
+              "elementId": "id0",
+              "fixedPoint": [
+                1,
+                "0.50010",
+              ],
+              "mode": "orbit",
+            },
+            "version": 14,
+          },
+        },
+      },
+    },
+    "id": "id21",
+  },
+  {
+    "appState": AppStateDelta {
+      "delta": Delta {
+        "deleted": {},
+        "inserted": {},
+      },
+    },
+    "elements": {
+      "added": {},
+      "removed": {},
+      "updated": {
+        "id4": {
+          "deleted": {
+            "height": "0.88851",
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                90,
+                "0.88851",
+              ],
+            ],
+            "startBinding": {
+              "elementId": "id0",
+              "fixedPoint": [
+                1,
+                "0.50010",
+              ],
+              "mode": "orbit",
+            },
+            "version": 18,
+            "y": "0.05936",
+          },
+          "inserted": {
+            "height": "0.00900",
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                90,
+                "-0.00900",
+              ],
+            ],
+            "startBinding": {
+              "elementId": "id0",
+              "fixedPoint": [
+                1,
+                "0.50010",
+              ],
+              "mode": "orbit",
+            },
+            "version": 16,
+            "y": "0.00950",
+          },
+        },
+      },
+    },
+    "id": "id22",
+  },
+]
+`;
 
 exports[`history > multiplayer undo/redo > conflicts in arrows and their bindable elements > should rebind bindings when both are updated through the history and there are no conflicting updates in the meantime > [end of test] undo stack 1`] = `
 [
@@ -1452,154 +1528,6 @@ exports[`history > multiplayer undo/redo > conflicts in arrows and their bindabl
       },
     },
     "id": "id16",
-  },
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
-        "deleted": {},
-        "inserted": {},
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {
-        "id4": {
-          "deleted": {
-            "height": "0.05886",
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                90,
-                "-0.05886",
-              ],
-            ],
-            "startBinding": {
-              "elementId": "id0",
-              "fixedPoint": [
-                1,
-                "0.50010",
-              ],
-              "mode": "orbit",
-            },
-            "version": 12,
-            "y": "0.05936",
-          },
-          "inserted": {
-            "height": "0.93837",
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                90,
-                "0.93837",
-              ],
-            ],
-            "startBinding": {
-              "elementId": "id0",
-              "fixedPoint": [
-                1,
-                "0.50010",
-              ],
-              "mode": "orbit",
-            },
-            "version": 11,
-            "y": "0.00950",
-          },
-        },
-      },
-    },
-    "id": "id18",
-  },
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
-        "deleted": {},
-        "inserted": {},
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {
-        "id1": {
-          "deleted": {
-            "boundElements": [
-              {
-                "id": "id4",
-                "type": "arrow",
-              },
-            ],
-            "version": 3,
-          },
-          "inserted": {
-            "boundElements": [],
-            "version": 2,
-          },
-        },
-        "id4": {
-          "deleted": {
-            "endBinding": {
-              "elementId": "id1",
-              "fixedPoint": [
-                0,
-                "0.50010",
-              ],
-              "mode": "orbit",
-            },
-            "height": "0.04676",
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                90,
-                "-0.04676",
-              ],
-            ],
-            "startBinding": {
-              "elementId": "id0",
-              "fixedPoint": [
-                1,
-                "0.50010",
-              ],
-              "mode": "orbit",
-            },
-            "version": 14,
-          },
-          "inserted": {
-            "endBinding": null,
-            "height": "0.05886",
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                90,
-                "-0.05886",
-              ],
-            ],
-            "startBinding": {
-              "elementId": "id0",
-              "fixedPoint": [
-                1,
-                "0.50010",
-              ],
-              "mode": "orbit",
-            },
-            "version": 12,
-          },
-        },
-      },
-    },
-    "id": "id20",
   },
 ]
 `;
@@ -21148,35 +21076,7 @@ exports[`history > singleplayer undo/redo > should support linear element creati
   },
   "selectedElementsAreBeingDragged": false,
   "selectedGroupIds": {},
-  "selectionElement": {
-    "angle": 0,
-    "backgroundColor": "transparent",
-    "boundElements": null,
-    "customData": undefined,
-    "fillStyle": "solid",
-    "frameId": null,
-    "groupIds": [],
-    "height": 0,
-    "id": "id17",
-    "index": null,
-    "isDeleted": false,
-    "link": null,
-    "locked": false,
-    "opacity": 100,
-    "roughness": 1,
-    "roundness": null,
-    "seed": 640725609,
-    "strokeColor": "#1e1e1e",
-    "strokeStyle": "solid",
-    "strokeWidth": 2,
-    "type": "selection",
-    "updated": 1,
-    "version": 1,
-    "versionNonce": 0,
-    "width": 0,
-    "x": 20,
-    "y": 20,
-  },
+  "selectionElement": null,
   "shouldCacheIgnoreZoom": false,
   "showHyperlinkPopup": false,
   "showWelcomeScreen": true,
@@ -21212,13 +21112,13 @@ exports[`history > singleplayer undo/redo > should support linear element creati
   "fillStyle": "solid",
   "frameId": null,
   "groupIds": [],
-  "height": 20,
+  "height": 10,
   "id": "id0",
   "index": "a0",
   "isDeleted": false,
   "lastCommittedPoint": [
-    20,
-    0,
+    10,
+    10,
   ],
   "link": null,
   "locked": false,
@@ -21232,10 +21132,6 @@ exports[`history > singleplayer undo/redo > should support linear element creati
       10,
       10,
     ],
-    [
-      20,
-      20,
-    ],
   ],
   "roughness": 1,
   "roundness": {
@@ -21248,8 +21144,8 @@ exports[`history > singleplayer undo/redo > should support linear element creati
   "strokeWidth": 2,
   "type": "arrow",
   "updated": 1,
-  "version": 8,
-  "width": 20,
+  "version": 10,
+  "width": 10,
   "x": 0,
   "y": 0,
 }
@@ -21257,7 +21153,7 @@ exports[`history > singleplayer undo/redo > should support linear element creati
 
 exports[`history > singleplayer undo/redo > should support linear element creation and points manipulation through the editor > [end of test] number of elements 1`] = `1`;
 
-exports[`history > singleplayer undo/redo > should support linear element creation and points manipulation through the editor > [end of test] number of renders 1`] = `15`;
+exports[`history > singleplayer undo/redo > should support linear element creation and points manipulation through the editor > [end of test] number of renders 1`] = `17`;
 
 exports[`history > singleplayer undo/redo > should support linear element creation and points manipulation through the editor > [end of test] redo stack 1`] = `
 [
@@ -21284,6 +21180,140 @@ exports[`history > singleplayer undo/redo > should support linear element creati
       "updated": {},
     },
     "id": "id14",
+  },
+  {
+    "appState": AppStateDelta {
+      "delta": Delta {
+        "deleted": {},
+        "inserted": {},
+      },
+    },
+    "elements": {
+      "added": {},
+      "removed": {},
+      "updated": {
+        "id0": {
+          "deleted": {
+            "height": 10,
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                10,
+                10,
+              ],
+              [
+                20,
+                0,
+              ],
+            ],
+            "version": 9,
+          },
+          "inserted": {
+            "height": 20,
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                10,
+                10,
+              ],
+              [
+                20,
+                20,
+              ],
+            ],
+            "version": 8,
+          },
+        },
+      },
+    },
+    "id": "id18",
+  },
+  {
+    "appState": AppStateDelta {
+      "delta": Delta {
+        "deleted": {
+          "selectedLinearElement": {
+            "elementId": "id0",
+            "isEditing": false,
+          },
+        },
+        "inserted": {
+          "selectedLinearElement": {
+            "elementId": "id0",
+            "isEditing": true,
+          },
+        },
+      },
+    },
+    "elements": {
+      "added": {},
+      "removed": {},
+      "updated": {},
+    },
+    "id": "id19",
+  },
+  {
+    "appState": AppStateDelta {
+      "delta": Delta {
+        "deleted": {},
+        "inserted": {},
+      },
+    },
+    "elements": {
+      "added": {},
+      "removed": {},
+      "updated": {
+        "id0": {
+          "deleted": {
+            "lastCommittedPoint": [
+              10,
+              10,
+            ],
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                10,
+                10,
+              ],
+            ],
+            "version": 10,
+            "width": 10,
+          },
+          "inserted": {
+            "lastCommittedPoint": [
+              20,
+              0,
+            ],
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                10,
+                10,
+              ],
+              [
+                20,
+                0,
+              ],
+            ],
+            "version": 9,
+            "width": 20,
+          },
+        },
+      },
+    },
+    "id": "id20",
   },
 ]
 `;
@@ -21416,140 +21446,6 @@ exports[`history > singleplayer undo/redo > should support linear element creati
       },
     },
     "id": "id4",
-  },
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
-        "deleted": {},
-        "inserted": {},
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {
-        "id0": {
-          "deleted": {
-            "lastCommittedPoint": [
-              20,
-              0,
-            ],
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                10,
-                10,
-              ],
-              [
-                20,
-                0,
-              ],
-            ],
-            "version": 7,
-            "width": 20,
-          },
-          "inserted": {
-            "lastCommittedPoint": [
-              10,
-              10,
-            ],
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                10,
-                10,
-              ],
-            ],
-            "version": 5,
-            "width": 10,
-          },
-        },
-      },
-    },
-    "id": "id6",
-  },
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
-        "deleted": {
-          "selectedLinearElement": {
-            "elementId": "id0",
-            "isEditing": true,
-          },
-        },
-        "inserted": {
-          "selectedLinearElement": {
-            "elementId": "id0",
-            "isEditing": false,
-          },
-        },
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {},
-    },
-    "id": "id8",
-  },
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
-        "deleted": {},
-        "inserted": {},
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {
-        "id0": {
-          "deleted": {
-            "height": 20,
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                10,
-                10,
-              ],
-              [
-                20,
-                20,
-              ],
-            ],
-            "version": 8,
-          },
-          "inserted": {
-            "height": 10,
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                10,
-                10,
-              ],
-              [
-                20,
-                0,
-              ],
-            ],
-            "version": 7,
-          },
-        },
-      },
-    },
-    "id": "id11",
   },
 ]
 `;
