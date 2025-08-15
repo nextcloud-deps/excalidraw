@@ -8642,18 +8642,26 @@ class App extends React.Component<AppProps, AppState> {
                       this.setState(newState);
                     });
                   }
-
-                  this.scene.mutateElement(element, {
-                    points: [
-                      ...element.points.slice(0, -1),
-                      pointFrom<LocalPoint>(
-                        (this.lastPointerMoveCoords?.x ??
-                          pointerDownState.origin.x) - element.x,
-                        (this.lastPointerMoveCoords?.y ??
-                          pointerDownState.origin.y) - element.y,
-                      ),
-                    ],
-                  });
+                  const selectedPointIndices =
+                    this.state.selectedLinearElement?.selectedPointsIndices;
+                  const nextPoint = pointFrom<LocalPoint>(
+                    (this.lastPointerMoveCoords?.x ??
+                      pointerDownState.origin.x) - element.x,
+                    (this.lastPointerMoveCoords?.y ??
+                      pointerDownState.origin.y) - element.y,
+                  );
+                  if (
+                    selectedPointIndices?.length === 1 &&
+                    selectedPointIndices[0] === 0
+                  ) {
+                    this.scene.mutateElement(element, {
+                      points: [nextPoint, ...element.points.slice(1)],
+                    });
+                  } else {
+                    this.scene.mutateElement(element, {
+                      points: [...element.points.slice(0, -1), nextPoint],
+                    });
+                  }
                 }
 
                 this.bindModeHandler = null;
@@ -9599,7 +9607,11 @@ class App extends React.Component<AppProps, AppState> {
       }
 
       if (isLinearElement(newElement)) {
-        if (newElement!.points.length > 1) {
+        if (
+          newElement!.points.length > 1 &&
+          newElement.points[1][0] !== 0 &&
+          newElement.points[1][1] !== 0
+        ) {
           this.store.scheduleCapture();
         }
         const pointerCoords = viewportCoordsToSceneCoords(

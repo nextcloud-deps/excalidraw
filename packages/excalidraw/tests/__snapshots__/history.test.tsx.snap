@@ -7590,7 +7590,7 @@ exports[`history > multiplayer undo/redo > should iterate through the history wh
   "strokeWidth": 2,
   "type": "arrow",
   "updated": 1,
-  "version": 9,
+  "version": 7,
   "width": 10,
   "x": 0,
   "y": 0,
@@ -7628,59 +7628,7 @@ exports[`history > multiplayer undo/redo > should iterate through the history wh
       "removed": {},
       "updated": {},
     },
-    "id": "id13",
-  },
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
-        "deleted": {},
-        "inserted": {},
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {
-        "id0": {
-          "deleted": {
-            "height": 10,
-            "lastCommittedPoint": [
-              10,
-              10,
-            ],
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                10,
-                10,
-              ],
-            ],
-            "version": 9,
-            "width": 10,
-          },
-          "inserted": {
-            "height": 0,
-            "lastCommittedPoint": null,
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                0,
-                0,
-              ],
-            ],
-            "version": 8,
-            "width": 0,
-          },
-        },
-      },
-    },
-    "id": "id14",
+    "id": "id10",
   },
   {
     "appState": AppStateDelta {
@@ -7704,7 +7652,7 @@ exports[`history > multiplayer undo/redo > should iterate through the history wh
       "removed": {},
       "updated": {},
     },
-    "id": "id15",
+    "id": "id11",
   },
   {
     "appState": AppStateDelta {
@@ -7728,7 +7676,7 @@ exports[`history > multiplayer undo/redo > should iterate through the history wh
       "removed": {},
       "updated": {},
     },
-    "id": "id16",
+    "id": "id12",
   },
 ]
 `;
@@ -10502,11 +10450,14 @@ exports[`history > multiplayer undo/redo > should override remotely added points
   "fillStyle": "solid",
   "frameId": null,
   "groupIds": [],
-  "height": 0,
+  "height": 30,
   "id": "id0",
   "index": "a0",
   "isDeleted": false,
-  "lastCommittedPoint": null,
+  "lastCommittedPoint": [
+    30,
+    30,
+  ],
   "link": null,
   "locked": false,
   "opacity": 100,
@@ -10516,8 +10467,20 @@ exports[`history > multiplayer undo/redo > should override remotely added points
       0,
     ],
     [
-      0,
-      0,
+      5,
+      5,
+    ],
+    [
+      10,
+      10,
+    ],
+    [
+      15,
+      15,
+    ],
+    [
+      20,
+      20,
     ],
   ],
   "roughness": 1,
@@ -10531,8 +10494,8 @@ exports[`history > multiplayer undo/redo > should override remotely added points
   "strokeWidth": 2,
   "type": "arrow",
   "updated": 1,
-  "version": 10,
-  "width": 0,
+  "version": 12,
+  "width": 30,
   "x": 0,
   "y": 0,
 }
@@ -10540,131 +10503,9 @@ exports[`history > multiplayer undo/redo > should override remotely added points
 
 exports[`history > multiplayer undo/redo > should override remotely added points on undo, but restore them on redo > [end of test] number of elements 1`] = `1`;
 
-exports[`history > multiplayer undo/redo > should override remotely added points on undo, but restore them on redo > [end of test] number of renders 1`] = `10`;
+exports[`history > multiplayer undo/redo > should override remotely added points on undo, but restore them on redo > [end of test] number of renders 1`] = `12`;
 
-exports[`history > multiplayer undo/redo > should override remotely added points on undo, but restore them on redo > [end of test] redo stack 1`] = `
-[
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
-        "deleted": {},
-        "inserted": {},
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {
-        "id0": {
-          "deleted": {
-            "height": 10,
-            "lastCommittedPoint": [
-              10,
-              10,
-            ],
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                10,
-                10,
-              ],
-            ],
-            "version": 9,
-            "width": 10,
-          },
-          "inserted": {
-            "height": 30,
-            "lastCommittedPoint": [
-              30,
-              30,
-            ],
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                5,
-                5,
-              ],
-              [
-                10,
-                10,
-              ],
-              [
-                15,
-                15,
-              ],
-              [
-                20,
-                20,
-              ],
-            ],
-            "version": 8,
-            "width": 30,
-          },
-        },
-      },
-    },
-    "id": "id7",
-  },
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
-        "deleted": {},
-        "inserted": {},
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {
-        "id0": {
-          "deleted": {
-            "height": 0,
-            "lastCommittedPoint": null,
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                0,
-                0,
-              ],
-            ],
-            "version": 10,
-            "width": 0,
-          },
-          "inserted": {
-            "height": 10,
-            "lastCommittedPoint": [
-              10,
-              10,
-            ],
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                10,
-                10,
-              ],
-            ],
-            "version": 9,
-            "width": 10,
-          },
-        },
-      },
-    },
-    "id": "id8",
-  },
-]
-`;
+exports[`history > multiplayer undo/redo > should override remotely added points on undo, but restore them on redo > [end of test] redo stack 1`] = `[]`;
 
 exports[`history > multiplayer undo/redo > should override remotely added points on undo, but restore them on redo > [end of test] undo stack 1`] = `
 [
@@ -10701,10 +10542,13 @@ exports[`history > multiplayer undo/redo > should override remotely added points
             "fillStyle": "solid",
             "frameId": null,
             "groupIds": [],
-            "height": 0,
+            "height": 10,
             "index": "a0",
             "isDeleted": false,
-            "lastCommittedPoint": null,
+            "lastCommittedPoint": [
+              10,
+              10,
+            ],
             "link": null,
             "locked": false,
             "opacity": 100,
@@ -10714,8 +10558,8 @@ exports[`history > multiplayer undo/redo > should override remotely added points
                 0,
               ],
               [
-                0,
-                0,
+                10,
+                10,
               ],
             ],
             "roughness": 1,
@@ -10728,20 +10572,87 @@ exports[`history > multiplayer undo/redo > should override remotely added points
             "strokeStyle": "solid",
             "strokeWidth": 2,
             "type": "arrow",
-            "version": 3,
-            "width": 0,
+            "version": 11,
+            "width": 10,
             "x": 0,
             "y": 0,
           },
           "inserted": {
             "isDeleted": true,
-            "version": 2,
+            "version": 10,
           },
         },
       },
       "updated": {},
     },
-    "id": "id2",
+    "id": "id7",
+  },
+  {
+    "appState": AppStateDelta {
+      "delta": Delta {
+        "deleted": {},
+        "inserted": {},
+      },
+    },
+    "elements": {
+      "added": {},
+      "removed": {},
+      "updated": {
+        "id0": {
+          "deleted": {
+            "height": 30,
+            "lastCommittedPoint": [
+              30,
+              30,
+            ],
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                5,
+                5,
+              ],
+              [
+                10,
+                10,
+              ],
+              [
+                15,
+                15,
+              ],
+              [
+                20,
+                20,
+              ],
+            ],
+            "version": 12,
+            "width": 30,
+          },
+          "inserted": {
+            "height": 10,
+            "lastCommittedPoint": [
+              10,
+              10,
+            ],
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                10,
+                10,
+              ],
+            ],
+            "version": 11,
+            "width": 10,
+          },
+        },
+      },
+    },
+    "id": "id8",
   },
 ]
 `;
@@ -21112,13 +21023,13 @@ exports[`history > singleplayer undo/redo > should support linear element creati
   "fillStyle": "solid",
   "frameId": null,
   "groupIds": [],
-  "height": 10,
+  "height": 20,
   "id": "id0",
   "index": "a0",
   "isDeleted": false,
   "lastCommittedPoint": [
-    10,
-    10,
+    20,
+    0,
   ],
   "link": null,
   "locked": false,
@@ -21132,6 +21043,10 @@ exports[`history > singleplayer undo/redo > should support linear element creati
       10,
       10,
     ],
+    [
+      20,
+      20,
+    ],
   ],
   "roughness": 1,
   "roundness": {
@@ -21144,8 +21059,8 @@ exports[`history > singleplayer undo/redo > should support linear element creati
   "strokeWidth": 2,
   "type": "arrow",
   "updated": 1,
-  "version": 10,
-  "width": 10,
+  "version": 14,
+  "width": 20,
   "x": 0,
   "y": 0,
 }
@@ -21153,170 +21068,9 @@ exports[`history > singleplayer undo/redo > should support linear element creati
 
 exports[`history > singleplayer undo/redo > should support linear element creation and points manipulation through the editor > [end of test] number of elements 1`] = `1`;
 
-exports[`history > singleplayer undo/redo > should support linear element creation and points manipulation through the editor > [end of test] number of renders 1`] = `17`;
+exports[`history > singleplayer undo/redo > should support linear element creation and points manipulation through the editor > [end of test] number of renders 1`] = `23`;
 
-exports[`history > singleplayer undo/redo > should support linear element creation and points manipulation through the editor > [end of test] redo stack 1`] = `
-[
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
-        "deleted": {
-          "selectedLinearElement": {
-            "elementId": "id0",
-            "isEditing": true,
-          },
-        },
-        "inserted": {
-          "selectedLinearElement": {
-            "elementId": "id0",
-            "isEditing": false,
-          },
-        },
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {},
-    },
-    "id": "id14",
-  },
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
-        "deleted": {},
-        "inserted": {},
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {
-        "id0": {
-          "deleted": {
-            "height": 10,
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                10,
-                10,
-              ],
-              [
-                20,
-                0,
-              ],
-            ],
-            "version": 9,
-          },
-          "inserted": {
-            "height": 20,
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                10,
-                10,
-              ],
-              [
-                20,
-                20,
-              ],
-            ],
-            "version": 8,
-          },
-        },
-      },
-    },
-    "id": "id18",
-  },
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
-        "deleted": {
-          "selectedLinearElement": {
-            "elementId": "id0",
-            "isEditing": false,
-          },
-        },
-        "inserted": {
-          "selectedLinearElement": {
-            "elementId": "id0",
-            "isEditing": true,
-          },
-        },
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {},
-    },
-    "id": "id19",
-  },
-  {
-    "appState": AppStateDelta {
-      "delta": Delta {
-        "deleted": {},
-        "inserted": {},
-      },
-    },
-    "elements": {
-      "added": {},
-      "removed": {},
-      "updated": {
-        "id0": {
-          "deleted": {
-            "lastCommittedPoint": [
-              10,
-              10,
-            ],
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                10,
-                10,
-              ],
-            ],
-            "version": 10,
-            "width": 10,
-          },
-          "inserted": {
-            "lastCommittedPoint": [
-              20,
-              0,
-            ],
-            "points": [
-              [
-                0,
-                0,
-              ],
-              [
-                10,
-                10,
-              ],
-              [
-                20,
-                0,
-              ],
-            ],
-            "version": 9,
-            "width": 20,
-          },
-        },
-      },
-    },
-    "id": "id20",
-  },
-]
-`;
+exports[`history > singleplayer undo/redo > should support linear element creation and points manipulation through the editor > [end of test] redo stack 1`] = `[]`;
 
 exports[`history > singleplayer undo/redo > should support linear element creation and points manipulation through the editor > [end of test] undo stack 1`] = `
 [
@@ -21353,10 +21107,13 @@ exports[`history > singleplayer undo/redo > should support linear element creati
             "fillStyle": "solid",
             "frameId": null,
             "groupIds": [],
-            "height": 0,
+            "height": 10,
             "index": "a0",
             "isDeleted": false,
-            "lastCommittedPoint": null,
+            "lastCommittedPoint": [
+              10,
+              10,
+            ],
             "link": null,
             "locked": false,
             "opacity": 100,
@@ -21366,8 +21123,8 @@ exports[`history > singleplayer undo/redo > should support linear element creati
                 0,
               ],
               [
-                0,
-                0,
+                10,
+                10,
               ],
             ],
             "roughness": 1,
@@ -21380,20 +21137,20 @@ exports[`history > singleplayer undo/redo > should support linear element creati
             "strokeStyle": "solid",
             "strokeWidth": 2,
             "type": "arrow",
-            "version": 3,
-            "width": 0,
+            "version": 12,
+            "width": 10,
             "x": 0,
             "y": 0,
           },
           "inserted": {
             "isDeleted": true,
-            "version": 2,
+            "version": 11,
           },
         },
       },
       "updated": {},
     },
-    "id": "id2",
+    "id": "id20",
   },
   {
     "appState": AppStateDelta {
@@ -21408,7 +21165,28 @@ exports[`history > singleplayer undo/redo > should support linear element creati
       "updated": {
         "id0": {
           "deleted": {
-            "height": 10,
+            "lastCommittedPoint": [
+              20,
+              0,
+            ],
+            "points": [
+              [
+                0,
+                0,
+              ],
+              [
+                10,
+                10,
+              ],
+              [
+                20,
+                0,
+              ],
+            ],
+            "version": 13,
+            "width": 20,
+          },
+          "inserted": {
             "lastCommittedPoint": [
               10,
               10,
@@ -21423,29 +21201,114 @@ exports[`history > singleplayer undo/redo > should support linear element creati
                 10,
               ],
             ],
-            "version": 5,
+            "version": 12,
             "width": 10,
           },
-          "inserted": {
-            "height": 0,
-            "lastCommittedPoint": null,
+        },
+      },
+    },
+    "id": "id21",
+  },
+  {
+    "appState": AppStateDelta {
+      "delta": Delta {
+        "deleted": {
+          "selectedLinearElement": {
+            "elementId": "id0",
+            "isEditing": true,
+          },
+        },
+        "inserted": {
+          "selectedLinearElement": {
+            "elementId": "id0",
+            "isEditing": false,
+          },
+        },
+      },
+    },
+    "elements": {
+      "added": {},
+      "removed": {},
+      "updated": {},
+    },
+    "id": "id22",
+  },
+  {
+    "appState": AppStateDelta {
+      "delta": Delta {
+        "deleted": {},
+        "inserted": {},
+      },
+    },
+    "elements": {
+      "added": {},
+      "removed": {},
+      "updated": {
+        "id0": {
+          "deleted": {
+            "height": 20,
             "points": [
               [
                 0,
                 0,
               ],
               [
+                10,
+                10,
+              ],
+              [
+                20,
+                20,
+              ],
+            ],
+            "version": 14,
+          },
+          "inserted": {
+            "height": 10,
+            "points": [
+              [
                 0,
                 0,
               ],
+              [
+                10,
+                10,
+              ],
+              [
+                20,
+                0,
+              ],
             ],
-            "version": 3,
-            "width": 0,
+            "version": 13,
           },
         },
       },
     },
-    "id": "id4",
+    "id": "id23",
+  },
+  {
+    "appState": AppStateDelta {
+      "delta": Delta {
+        "deleted": {
+          "selectedLinearElement": {
+            "elementId": "id0",
+            "isEditing": false,
+          },
+        },
+        "inserted": {
+          "selectedLinearElement": {
+            "elementId": "id0",
+            "isEditing": true,
+          },
+        },
+      },
+    },
+    "elements": {
+      "added": {},
+      "removed": {},
+      "updated": {},
+    },
+    "id": "id24",
   },
 ]
 `;

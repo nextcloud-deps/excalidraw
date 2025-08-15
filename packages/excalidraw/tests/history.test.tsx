@@ -1070,7 +1070,7 @@ describe("history", () => {
       // leave editor
       Keyboard.keyPress(KEYS.ESCAPE);
 
-      expect(API.getUndoStack().length).toBe(6);
+      expect(API.getUndoStack().length).toBe(5);
       expect(API.getRedoStack().length).toBe(0);
       expect(assertSelectedElements(h.elements[0]));
       expect(h.state.selectedLinearElement?.isEditing ?? false).toBe(false);
@@ -1087,7 +1087,7 @@ describe("history", () => {
       ]);
 
       Keyboard.undo();
-      expect(API.getUndoStack().length).toBe(5);
+      expect(API.getUndoStack().length).toBe(4);
       expect(API.getRedoStack().length).toBe(1);
       expect(assertSelectedElements(h.elements[0]));
       expect(h.state.selectedLinearElement?.isEditing).toBe(true);
@@ -1107,11 +1107,11 @@ describe("history", () => {
       mouse.clickAt(0, 0);
       mouse.clickAt(10, 10);
       mouse.clickAt(20, 20);
-      expect(API.getUndoStack().length).toBe(5);
+      expect(API.getUndoStack().length).toBe(4);
       expect(API.getRedoStack().length).toBe(1);
 
       Keyboard.undo();
-      expect(API.getUndoStack().length).toBe(4);
+      expect(API.getUndoStack().length).toBe(3);
       expect(API.getRedoStack().length).toBe(2);
       expect(assertSelectedElements(h.elements[0]));
       expect(h.state.selectedLinearElement?.isEditing).toBe(true);
@@ -1128,7 +1128,7 @@ describe("history", () => {
       ]);
 
       Keyboard.undo();
-      expect(API.getUndoStack().length).toBe(3);
+      expect(API.getUndoStack().length).toBe(2);
       expect(API.getRedoStack().length).toBe(3);
       expect(assertSelectedElements(h.elements[0]));
       expect(h.state.selectedLinearElement?.isEditing).toBe(false); // undo `open editor`
@@ -1144,29 +1144,29 @@ describe("history", () => {
         }),
       ]);
 
-      Keyboard.undo();
-      expect(API.getUndoStack().length).toBe(2);
-      expect(API.getRedoStack().length).toBe(4);
-      expect(assertSelectedElements(h.elements[0]));
-      expect(h.state.selectedLinearElement?.isEditing).toBe(false);
-      expect(h.state.selectedLinearElement).toBeNull(); // undo `actionFinalize`
-      expect(h.elements).toEqual([
-        expect.objectContaining({
-          isDeleted: false,
-          points: [
-            [0, 0],
-            [10, 10],
-            [20, 0],
-          ],
-        }),
-      ]);
+      // Keyboard.undo();
+      // expect(API.getUndoStack().length).toBe(2);
+      // expect(API.getRedoStack().length).toBe(4);
+      // expect(assertSelectedElements(h.elements[0]));
+      // expect(h.state.selectedLinearElement?.isEditing).toBe(false);
+      // expect(h.state.selectedLinearElement).toBeNull(); // undo `actionFinalize`
+      // expect(h.elements).toEqual([
+      //   expect.objectContaining({
+      //     isDeleted: false,
+      //     points: [
+      //       [0, 0],
+      //       [10, 10],
+      //       [20, 0],
+      //     ],
+      //   }),
+      // ]);
 
       Keyboard.undo();
       expect(API.getUndoStack().length).toBe(1);
-      expect(API.getRedoStack().length).toBe(5);
+      expect(API.getRedoStack().length).toBe(4);
       expect(assertSelectedElements(h.elements[0]));
       expect(h.state.selectedLinearElement?.isEditing).toBe(false);
-      expect(h.state.selectedLinearElement).toBeNull();
+      expect(h.state.selectedLinearElement?.elementId).toBe(h.elements[0].id);
       expect(h.elements).toEqual([
         expect.objectContaining({
           isDeleted: false,
@@ -1179,9 +1179,8 @@ describe("history", () => {
 
       Keyboard.undo();
       expect(API.getUndoStack().length).toBe(0);
-      expect(API.getRedoStack().length).toBe(6);
+      expect(API.getRedoStack().length).toBe(5);
       expect(API.getSelectedElements().length).toBe(0);
-      expect(h.state.selectedLinearElement?.isEditing).toBe(false);
       expect(h.state.selectedLinearElement).toBeNull();
       expect(h.elements).toEqual([
         expect.objectContaining({
@@ -1195,39 +1194,39 @@ describe("history", () => {
 
       Keyboard.redo();
       expect(API.getUndoStack().length).toBe(1);
-      expect(API.getRedoStack().length).toBe(5);
-      expect(assertSelectedElements(h.elements[0]));
-      expect(h.state.selectedLinearElement?.isEditing).toBe(false);
-      expect(h.state.selectedLinearElement).toBeNull();
-      expect(h.elements).toEqual([
-        expect.objectContaining({
-          isDeleted: false,
-          points: [
-            [0, 0],
-            [10, 10],
-          ],
-        }),
-      ]);
-
-      Keyboard.redo();
-      expect(API.getUndoStack().length).toBe(2);
       expect(API.getRedoStack().length).toBe(4);
       expect(assertSelectedElements(h.elements[0]));
       expect(h.state.selectedLinearElement?.isEditing).toBe(false);
-      expect(h.state.selectedLinearElement).toBeNull(); // undo `actionFinalize`
+      expect(h.state.selectedLinearElement?.elementId).toBe(h.elements[0].id);
       expect(h.elements).toEqual([
         expect.objectContaining({
           isDeleted: false,
           points: [
             [0, 0],
             [10, 10],
-            [20, 0],
           ],
         }),
       ]);
 
+      // Keyboard.redo();
+      // expect(API.getUndoStack().length).toBe(2);
+      // expect(API.getRedoStack().length).toBe(3);
+      // expect(assertSelectedElements(h.elements[0]));
+      // expect(h.state.selectedLinearElement?.isEditing).toBe(false);
+      // expect(h.state.selectedLinearElement).toBeNull(); // undo `actionFinalize`
+      // expect(h.elements).toEqual([
+      //   expect.objectContaining({
+      //     isDeleted: false,
+      //     points: [
+      //       [0, 0],
+      //       [10, 10],
+      //       [20, 0],
+      //     ],
+      //   }),
+      // ]);
+
       Keyboard.redo();
-      expect(API.getUndoStack().length).toBe(3);
+      expect(API.getUndoStack().length).toBe(2);
       expect(API.getRedoStack().length).toBe(3);
       expect(assertSelectedElements(h.elements[0]));
       expect(h.state.selectedLinearElement?.isEditing ?? false).toBe(false); // undo `open editor`
@@ -1244,7 +1243,7 @@ describe("history", () => {
       ]);
 
       Keyboard.redo();
-      expect(API.getUndoStack().length).toBe(4);
+      expect(API.getUndoStack().length).toBe(3);
       expect(API.getRedoStack().length).toBe(2);
       expect(assertSelectedElements(h.elements[0]));
       expect(h.state.selectedLinearElement?.isEditing).toBe(true);
@@ -1261,7 +1260,7 @@ describe("history", () => {
       ]);
 
       Keyboard.redo();
-      expect(API.getUndoStack().length).toBe(5);
+      expect(API.getUndoStack().length).toBe(4);
       expect(API.getRedoStack().length).toBe(1);
       expect(assertSelectedElements(h.elements[0]));
       expect(h.state.selectedLinearElement?.isEditing).toBe(true);
@@ -1278,7 +1277,7 @@ describe("history", () => {
       ]);
 
       Keyboard.redo();
-      expect(API.getUndoStack().length).toBe(6);
+      expect(API.getUndoStack().length).toBe(5);
       expect(API.getRedoStack().length).toBe(0);
       expect(assertSelectedElements(h.elements[0]));
       expect(h.state.selectedLinearElement?.isEditing ?? false).toBe(false);
@@ -2495,10 +2494,9 @@ describe("history", () => {
         captureUpdate: CaptureUpdateAction.NEVER,
       });
 
-      Keyboard.undo(); // undo `actionFinalize`
       Keyboard.undo();
       expect(API.getUndoStack().length).toBe(1);
-      expect(API.getRedoStack().length).toBe(2);
+      expect(API.getRedoStack().length).toBe(1);
       expect(h.elements).toEqual([
         expect.objectContaining({
           points: [
@@ -2512,7 +2510,7 @@ describe("history", () => {
 
       Keyboard.undo();
       expect(API.getUndoStack().length).toBe(0);
-      expect(API.getRedoStack().length).toBe(3);
+      expect(API.getRedoStack().length).toBe(2);
       expect(h.elements).toEqual([
         expect.objectContaining({
           isDeleted: true,
@@ -2525,7 +2523,7 @@ describe("history", () => {
 
       Keyboard.redo();
       expect(API.getUndoStack().length).toBe(1);
-      expect(API.getRedoStack().length).toBe(2);
+      expect(API.getRedoStack().length).toBe(1);
       expect(h.elements).toEqual([
         expect.objectContaining({
           isDeleted: false,
@@ -2538,21 +2536,6 @@ describe("history", () => {
 
       Keyboard.redo();
       expect(API.getUndoStack().length).toBe(2);
-      expect(API.getRedoStack().length).toBe(1);
-      expect(h.elements).toEqual([
-        expect.objectContaining({
-          points: [
-            [0, 0],
-            [5, 5],
-            [10, 10],
-            [15, 15],
-            [20, 20],
-          ],
-        }),
-      ]);
-
-      Keyboard.redo(); // redo `actionFinalize`
-      expect(API.getUndoStack().length).toBe(3);
       expect(API.getRedoStack().length).toBe(0);
       expect(h.elements).toEqual([
         expect.objectContaining({
@@ -3052,7 +3035,7 @@ describe("history", () => {
       // leave editor
       Keyboard.keyPress(KEYS.ESCAPE);
 
-      expect(API.getUndoStack().length).toBe(4);
+      expect(API.getUndoStack().length).toBe(3);
       expect(API.getRedoStack().length).toBe(0);
       expect(h.state.selectedLinearElement).not.toBeNull();
       expect(h.state.selectedLinearElement?.isEditing).toBe(false);
@@ -3069,11 +3052,11 @@ describe("history", () => {
 
       Keyboard.undo();
       expect(API.getUndoStack().length).toBe(0);
-      expect(API.getRedoStack().length).toBe(4);
+      expect(API.getRedoStack().length).toBe(3);
       expect(h.state.selectedLinearElement).toBeNull();
 
       Keyboard.redo();
-      expect(API.getUndoStack().length).toBe(4);
+      expect(API.getUndoStack().length).toBe(3);
       expect(API.getRedoStack().length).toBe(0);
       expect(h.state.selectedLinearElement).toBeNull();
       expect(h.state.selectedLinearElement?.isEditing ?? false).toBe(false);
