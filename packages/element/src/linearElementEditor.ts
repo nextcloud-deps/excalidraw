@@ -2084,7 +2084,7 @@ const pointDraggingUpdates = (
 
           app.syncActionResult({
             elements: newElements,
-            captureUpdate: CaptureUpdateAction.IMMEDIATELY,
+            captureUpdate: CaptureUpdateAction.EVENTUALLY,
           });
         }
       }
