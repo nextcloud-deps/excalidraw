@@ -233,12 +233,18 @@ const rotateSingleElement = (
   if (isBindingElement(element)) {
     update = {
       ...update,
-      startBinding: null,
-      endBinding: null,
     } as ElementUpdate<ExcalidrawArrowElement>;
+
+    if (element.startBinding) {
+      unbindBindingElement(element, "start", scene);
+    }
+    if (element.endBinding) {
+      unbindBindingElement(element, "end", scene);
+    }
   }
 
   scene.mutateElement(element, update);
+
   if (boundTextElementId) {
     const textElement =
       scene.getElement<ExcalidrawTextElementWithContainer>(boundTextElementId);
@@ -867,8 +873,11 @@ export const resizeSingleElement = (
       if (latestElement.startBinding) {
         updates = {
           ...updates,
-          startBinding: null,
         } as ElementUpdate<ExcalidrawArrowElement>;
+
+        if (latestElement.startBinding) {
+          unbindBindingElement(latestElement, "start", scene);
+        }
       }
 
       if (latestElement.endBinding) {
