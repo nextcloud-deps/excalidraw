@@ -1,3 +1,7 @@
+**This is an unofficial, temporary fork of the @excalidraw/excalidraw package**
+
+**This fork is only intended for the usage of features that are not yet upstream**
+
 # Excalidraw
 
 **Excalidraw** is exported as a component to be directly embedded in your project.
