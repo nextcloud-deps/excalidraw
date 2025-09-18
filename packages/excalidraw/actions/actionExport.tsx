@@ -5,11 +5,9 @@ import {
   THEME,
 } from "@excalidraw/common";
 
-import { getNonDeletedElements } from "@excalidraw/element";
+import { getNonDeletedElements } from "@nextcloud/excalidraw-element";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
-
-import type { Theme } from "@excalidraw/element/types";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
 import { useDevice } from "../components/App";
 import { CheckboxItem } from "../components/CheckboxItem";
@@ -30,6 +28,8 @@ import { getExportSize } from "../scene/export";
 import "../components/ToolIcon.scss";
 
 import { register } from "./register";
+
+import type { Theme } from "@nextcloud/excalidraw-element/types";
 
 export const actionChangeProjectName = register({
   name: "changeProjectName",

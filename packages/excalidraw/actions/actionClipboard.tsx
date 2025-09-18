@@ -1,9 +1,9 @@
-import { isTextElement } from "@excalidraw/element";
-import { getTextFromElements } from "@excalidraw/element";
+import { isTextElement } from "@nextcloud/excalidraw-element";
+import { getTextFromElements } from "@nextcloud/excalidraw-element";
 
 import { CODES, KEYS, isFirefox } from "@excalidraw/common";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
 import {
   copyTextToSystemClipboard,

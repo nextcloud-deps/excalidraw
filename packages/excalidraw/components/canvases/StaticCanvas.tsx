@@ -2,13 +2,13 @@ import React, { useEffect, useRef } from "react";
 
 import { isShallowEqual } from "@excalidraw/common";
 
+import { isRenderThrottlingEnabled } from "../../reactUtils";
+import { renderStaticScene } from "../../renderer/staticScene";
+
 import type {
   NonDeletedExcalidrawElement,
   NonDeletedSceneElementsMap,
-} from "@excalidraw/element/types";
-
-import { isRenderThrottlingEnabled } from "../../reactUtils";
-import { renderStaticScene } from "../../renderer/staticScene";
+} from "@nextcloud/excalidraw-element/types";
 
 import type {
   RenderableElementsMap,

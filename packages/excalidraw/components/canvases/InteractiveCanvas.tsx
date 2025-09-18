@@ -6,14 +6,14 @@ import {
   sceneCoordsToViewportCoords,
 } from "@excalidraw/common";
 
-import type {
-  NonDeletedExcalidrawElement,
-  NonDeletedSceneElementsMap,
-} from "@excalidraw/element/types";
-
 import { t } from "../../i18n";
 import { isRenderThrottlingEnabled } from "../../reactUtils";
 import { renderInteractiveScene } from "../../renderer/interactiveScene";
+
+import type {
+  NonDeletedExcalidrawElement,
+  NonDeletedSceneElementsMap,
+} from "@nextcloud/excalidraw-element/types";
 
 import type {
   InteractiveCanvasRenderConfig,

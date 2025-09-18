@@ -23,22 +23,25 @@ import {
   reduceToCommonValue,
 } from "@excalidraw/common";
 
-import { canBecomePolygon, getNonDeletedElements } from "@excalidraw/element";
+import {
+  canBecomePolygon,
+  getNonDeletedElements,
+} from "@nextcloud/excalidraw-element";
 
 import {
   bindLinearElement,
   calculateFixedPointForElbowArrowBinding,
   updateBoundElements,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { LinearElementEditor } from "@excalidraw/element";
+import { LinearElementEditor } from "@nextcloud/excalidraw-element";
 
-import { newElementWith } from "@excalidraw/element";
+import { newElementWith } from "@nextcloud/excalidraw-element";
 
 import {
   getBoundTextElement,
   redrawTextBoundingBox,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import {
   isArrowElement,
@@ -48,33 +51,17 @@ import {
   isLineElement,
   isTextElement,
   isUsingAdaptiveRadius,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { hasStrokeColor } from "@excalidraw/element";
+import { hasStrokeColor } from "@nextcloud/excalidraw-element";
 
 import {
   updateElbowArrowPoints,
   CaptureUpdateAction,
   toggleLinePolygonState,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import type { LocalPoint } from "@excalidraw/math";
-
-import type {
-  Arrowhead,
-  ElementsMap,
-  ExcalidrawBindableElement,
-  ExcalidrawElement,
-  ExcalidrawLinearElement,
-  ExcalidrawTextElement,
-  FontFamilyValues,
-  TextAlign,
-  VerticalAlign,
-} from "@excalidraw/element/types";
-
-import type { Scene } from "@excalidraw/element";
-
-import type { CaptureUpdateActionType } from "@excalidraw/element";
 
 import { trackEvent } from "../analytics";
 import { RadioSelection } from "../components/RadioSelection";
@@ -143,6 +130,20 @@ import {
 } from "../hooks/useTextEditorFocus";
 
 import { register } from "./register";
+
+import type { Scene } from "@nextcloud/excalidraw-element";
+import type { CaptureUpdateActionType } from "@nextcloud/excalidraw-element";
+import type {
+  Arrowhead,
+  ElementsMap,
+  ExcalidrawBindableElement,
+  ExcalidrawElement,
+  ExcalidrawLinearElement,
+  ExcalidrawTextElement,
+  FontFamilyValues,
+  TextAlign,
+  VerticalAlign,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { AppClassProperties, AppState, Primitive } from "../types";
 

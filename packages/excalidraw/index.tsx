@@ -222,10 +222,10 @@ export {
   hashElementsVersion,
   hashString,
   getNonDeletedElements,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-export { getTextFromElements } from "@excalidraw/element";
-export { isInvisiblySmallElement } from "@excalidraw/element";
+export { getTextFromElements } from "@nextcloud/excalidraw-element";
+export { isInvisiblySmallElement } from "@nextcloud/excalidraw-element";
 
 export { defaultLang, useI18n, languages } from "./i18n";
 export {
@@ -251,9 +251,9 @@ export {
   loadSceneOrLibraryFromBlob,
   loadLibraryFromBlob,
 } from "./data/blob";
-export { getFreeDrawSvgPath } from "@excalidraw/element";
+export { getFreeDrawSvgPath } from "@nextcloud/excalidraw-element";
 export { mergeLibraryItems, getLibraryItemsHash } from "./data/library";
-export { isLinearElement } from "@excalidraw/element";
+export { isLinearElement } from "@nextcloud/excalidraw-element";
 
 export {
   FONT_FAMILY,
@@ -269,9 +269,9 @@ export {
   mutateElement,
   newElementWith,
   bumpVersion,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-export { CaptureUpdateAction } from "@excalidraw/element";
+export { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
 export { parseLibraryTokensFromUrl, useHandleLibrary } from "./data/library";
 
@@ -296,7 +296,10 @@ export { TTDDialogTrigger } from "./components/TTDDialog/TTDDialogTrigger";
 
 export { zoomToFitBounds } from "./actions/actionCanvas";
 export { convertToExcalidrawElements } from "./data/transform";
-export { getCommonBounds, getVisibleSceneBounds } from "@excalidraw/element";
+export {
+  getCommonBounds,
+  getVisibleSceneBounds,
+} from "@nextcloud/excalidraw-element";
 
 export {
   elementsOverlappingBBox,
@@ -306,6 +309,6 @@ export {
 
 export { DiagramToCodePlugin } from "./components/DiagramToCodePlugin/DiagramToCodePlugin";
 export { getDataURL } from "./data/blob";
-export { isElementLink } from "@excalidraw/element";
+export { isElementLink } from "@nextcloud/excalidraw-element";
 
-export { setCustomTextMetricsProvider } from "@excalidraw/element";
+export { setCustomTextMetricsProvider } from "@nextcloud/excalidraw-element";

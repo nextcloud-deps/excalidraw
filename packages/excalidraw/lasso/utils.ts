@@ -13,10 +13,14 @@ import {
   getBoundTextElement,
   getElementBounds,
   intersectElementWithLineSegment,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import type { ElementsSegmentsMap, GlobalPoint } from "@excalidraw/math/types";
-import type { ElementsMap, ExcalidrawElement } from "@excalidraw/element/types";
+
+import type {
+  ElementsMap,
+  ExcalidrawElement,
+} from "@nextcloud/excalidraw-element/types";
 
 export const getLassoSelectedElementIds = (input: {
   lassoPath: GlobalPoint[];

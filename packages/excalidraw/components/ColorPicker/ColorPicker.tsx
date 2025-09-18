@@ -10,8 +10,6 @@ import {
 
 import type { ColorTuple, ColorPaletteCustom } from "@excalidraw/common";
 
-import type { ExcalidrawElement } from "@excalidraw/element/types";
-
 import { useAtom } from "../../editor-jotai";
 import { t } from "../../i18n";
 import { useExcalidrawContainer } from "../App";
@@ -32,6 +30,8 @@ import { TopPicks } from "./TopPicks";
 import { activeColorPickerSectionAtom, isColorDark } from "./colorPickerUtils";
 
 import "./ColorPicker.scss";
+
+import type { ExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { ColorPickerType } from "./colorPickerUtils";
 

@@ -1,25 +1,23 @@
 import { KEYS, updateActiveTool } from "@excalidraw/common";
 
-import { getNonDeletedElements } from "@excalidraw/element";
-import { fixBindingsAfterDeletion } from "@excalidraw/element";
-import { LinearElementEditor } from "@excalidraw/element";
-import { newElementWith } from "@excalidraw/element";
-import { getContainerElement } from "@excalidraw/element";
+import { getNonDeletedElements } from "@nextcloud/excalidraw-element";
+import { fixBindingsAfterDeletion } from "@nextcloud/excalidraw-element";
+import { LinearElementEditor } from "@nextcloud/excalidraw-element";
+import { newElementWith } from "@nextcloud/excalidraw-element";
+import { getContainerElement } from "@nextcloud/excalidraw-element";
 import {
   isBoundToContainer,
   isElbowArrow,
   isFrameLikeElement,
-} from "@excalidraw/element";
-import { getFrameChildren } from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
+import { getFrameChildren } from "@nextcloud/excalidraw-element";
 
 import {
   getElementsInGroup,
   selectGroupsForSelectedElements,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
-
-import type { ExcalidrawElement } from "@excalidraw/element/types";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
 import { t } from "../i18n";
 import { getSelectedElements, isSomeElementSelected } from "../scene";
@@ -27,6 +25,8 @@ import { TrashIcon } from "../components/icons";
 import { ToolButton } from "../components/ToolButton";
 
 import { register } from "./register";
+
+import type { ExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { AppClassProperties, AppState } from "../types";
 

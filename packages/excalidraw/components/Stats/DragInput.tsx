@@ -3,13 +3,9 @@ import { useEffect, useRef, useState } from "react";
 
 import { EVENT, KEYS, cloneJSON } from "@excalidraw/common";
 
-import { deepCopyElement } from "@excalidraw/element";
+import { deepCopyElement } from "@nextcloud/excalidraw-element";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
-
-import type { ElementsMap, ExcalidrawElement } from "@excalidraw/element/types";
-
-import type { Scene } from "@excalidraw/element";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
 import { useApp, useExcalidrawSetAppState } from "../App";
 import { InlineIcon } from "../InlineIcon";
@@ -17,6 +13,13 @@ import { InlineIcon } from "../InlineIcon";
 import { SMALLEST_DELTA } from "./utils";
 
 import "./DragInput.scss";
+
+import type { Scene } from "@nextcloud/excalidraw-element";
+
+import type {
+  ElementsMap,
+  ExcalidrawElement,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { StatsInputProperty } from "./utils";
 import type { AppState } from "../../types";

@@ -3,10 +3,16 @@ import { vi } from "vitest";
 
 import { DEFAULT_SIDEBAR, FONT_FAMILY, ROUNDNESS } from "@excalidraw/common";
 
-import { newElementWith } from "@excalidraw/element";
-import * as sizeHelpers from "@excalidraw/element";
+import { newElementWith } from "@nextcloud/excalidraw-element";
+import * as sizeHelpers from "@nextcloud/excalidraw-element";
 
 import type { LocalPoint } from "@excalidraw/math";
+
+import type { NormalizedZoomValue } from "@excalidraw/excalidraw/types";
+
+import { API } from "../helpers/api";
+import * as restore from "../../data/restore";
+import { getDefaultAppState } from "../../appState";
 
 import type {
   ExcalidrawArrowElement,
@@ -14,12 +20,7 @@ import type {
   ExcalidrawFreeDrawElement,
   ExcalidrawLinearElement,
   ExcalidrawTextElement,
-} from "@excalidraw/element/types";
-import type { NormalizedZoomValue } from "@excalidraw/excalidraw/types";
-
-import { API } from "../helpers/api";
-import * as restore from "../../data/restore";
-import { getDefaultAppState } from "../../appState";
+} from "@nextcloud/excalidraw-element/types";
 
 import type { ImportedDataState } from "../../data/types";
 

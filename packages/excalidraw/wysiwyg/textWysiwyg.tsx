@@ -13,10 +13,10 @@ import {
 import {
   originalContainerCache,
   updateOriginalContainerCache,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { LinearElementEditor } from "@excalidraw/element";
-import { bumpVersion } from "@excalidraw/element";
+import { LinearElementEditor } from "@nextcloud/excalidraw-element";
+import { bumpVersion } from "@nextcloud/excalidraw-element";
 import {
   getBoundTextElementId,
   getContainerElement,
@@ -27,22 +27,15 @@ import {
   computeContainerDimensionForBoundText,
   computeBoundTextPosition,
   getBoundTextElement,
-} from "@excalidraw/element";
-import { getTextWidth } from "@excalidraw/element";
-import { normalizeText } from "@excalidraw/element";
-import { wrapText } from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
+import { getTextWidth } from "@nextcloud/excalidraw-element";
+import { normalizeText } from "@nextcloud/excalidraw-element";
+import { wrapText } from "@nextcloud/excalidraw-element";
 import {
   isArrowElement,
   isBoundToContainer,
   isTextElement,
-} from "@excalidraw/element";
-
-import type {
-  ExcalidrawElement,
-  ExcalidrawLinearElement,
-  ExcalidrawTextElementWithContainer,
-  ExcalidrawTextElement,
-} from "@excalidraw/element/types";
+} from "@nextcloud/excalidraw-element";
 
 import { actionSaveToActiveFile } from "../actions";
 
@@ -56,6 +49,13 @@ import {
   actionZoomIn,
   actionZoomOut,
 } from "../actions/actionCanvas";
+
+import type {
+  ExcalidrawElement,
+  ExcalidrawLinearElement,
+  ExcalidrawTextElementWithContainer,
+  ExcalidrawTextElement,
+} from "@nextcloud/excalidraw-element/types";
 
 import type App from "../components/App";
 import type { AppState } from "../types";

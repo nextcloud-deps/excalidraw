@@ -13,11 +13,6 @@ import {
   isShallowEqual,
 } from "@excalidraw/common";
 
-import type {
-  ExcalidrawElement,
-  NonDeletedExcalidrawElement,
-} from "@excalidraw/element/types";
-
 import { trackEvent } from "../analytics";
 import { useUIAppState } from "../context/ui-appState";
 import {
@@ -40,6 +35,11 @@ import LibraryMenuItems from "./LibraryMenuItems";
 import Spinner from "./Spinner";
 
 import "./LibraryMenu.scss";
+
+import type {
+  ExcalidrawElement,
+  NonDeletedExcalidrawElement,
+} from "@nextcloud/excalidraw-element/types";
 
 import type {
   LibraryItems,

@@ -5,9 +5,9 @@ import {
   WINDOWS_EMOJI_FALLBACK_FONT,
   getFontFamilyFallbacks,
 } from "@excalidraw/common";
-import { getContainerElement } from "@excalidraw/element";
-import { charWidth } from "@excalidraw/element";
-import { containsCJK } from "@excalidraw/element";
+import { getContainerElement } from "@nextcloud/excalidraw-element";
+import { charWidth } from "@nextcloud/excalidraw-element";
+import { containsCJK } from "@nextcloud/excalidraw-element";
 
 import {
   FONT_METADATA,
@@ -17,18 +17,11 @@ import {
   promiseTry,
 } from "@excalidraw/common";
 
-import { ShapeCache } from "@excalidraw/element";
+import { ShapeCache } from "@nextcloud/excalidraw-element";
 
-import { isTextElement } from "@excalidraw/element";
-
-import type {
-  ExcalidrawElement,
-  ExcalidrawTextElement,
-} from "@excalidraw/element/types";
+import { isTextElement } from "@nextcloud/excalidraw-element";
 
 import type { ValueOf } from "@excalidraw/common/utility-types";
-
-import type { Scene } from "@excalidraw/element";
 
 import { CascadiaFontFaces } from "./Cascadia";
 import { ComicShannsFontFaces } from "./ComicShanns";
@@ -41,6 +34,12 @@ import { LilitaFontFaces } from "./Lilita";
 import { NunitoFontFaces } from "./Nunito";
 import { VirgilFontFaces } from "./Virgil";
 import { XiaolaiFontFaces } from "./Xiaolai";
+
+import type { Scene } from "@nextcloud/excalidraw-element";
+import type {
+  ExcalidrawElement,
+  ExcalidrawTextElement,
+} from "@nextcloud/excalidraw-element/types";
 
 export class Fonts {
   // it's ok to track fonts across multiple instances only once, so let's use

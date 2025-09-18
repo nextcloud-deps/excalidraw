@@ -1,12 +1,13 @@
 import type { UserIdleState } from "@excalidraw/common";
+
+import type { MakeBrand } from "@excalidraw/common/utility-types";
+
 import type {
   ExcalidrawElement,
   NonDeletedElementsMap,
   NonDeletedExcalidrawElement,
   NonDeletedSceneElementsMap,
-} from "@excalidraw/element/types";
-
-import type { MakeBrand } from "@excalidraw/common/utility-types";
+} from "@nextcloud/excalidraw-element/types";
 
 import type {
   AppClassProperties,

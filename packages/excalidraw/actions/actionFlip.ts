@@ -1,21 +1,27 @@
-import { getNonDeletedElements } from "@excalidraw/element";
+import { getNonDeletedElements } from "@nextcloud/excalidraw-element";
 import {
   bindOrUnbindLinearElements,
   isBindingEnabled,
-} from "@excalidraw/element";
-import { getCommonBoundingBox } from "@excalidraw/element";
-import { newElementWith } from "@excalidraw/element";
-import { deepCopyElement } from "@excalidraw/element";
-import { resizeMultipleElements } from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
+import { getCommonBoundingBox } from "@nextcloud/excalidraw-element";
+import { newElementWith } from "@nextcloud/excalidraw-element";
+import { deepCopyElement } from "@nextcloud/excalidraw-element";
+import { resizeMultipleElements } from "@nextcloud/excalidraw-element";
 import {
   isArrowElement,
   isElbowArrow,
   isLinearElement,
-} from "@excalidraw/element";
-import { updateFrameMembershipOfSelectedElements } from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
+import { updateFrameMembershipOfSelectedElements } from "@nextcloud/excalidraw-element";
 import { CODES, KEYS, arrayToMap } from "@excalidraw/common";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
+
+import { getSelectedElements } from "../scene";
+
+import { flipHorizontal, flipVertical } from "../components/icons";
+
+import { register } from "./register";
 
 import type {
   ExcalidrawArrowElement,
@@ -23,13 +29,7 @@ import type {
   ExcalidrawElement,
   NonDeleted,
   NonDeletedSceneElementsMap,
-} from "@excalidraw/element/types";
-
-import { getSelectedElements } from "../scene";
-
-import { flipHorizontal, flipVertical } from "../components/icons";
-
-import { register } from "./register";
+} from "@nextcloud/excalidraw-element/types";
 
 import type { AppClassProperties, AppState } from "../types";
 

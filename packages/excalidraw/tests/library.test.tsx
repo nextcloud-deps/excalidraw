@@ -4,9 +4,7 @@ import { vi } from "vitest";
 
 import { MIME_TYPES, ORIG_ID } from "@excalidraw/common";
 
-import { getCommonBoundingBox } from "@excalidraw/element";
-
-import type { ExcalidrawGenericElement } from "@excalidraw/element/types";
+import { getCommonBoundingBox } from "@nextcloud/excalidraw-element";
 
 import { parseLibraryJSON } from "../data/blob";
 import { serializeLibraryAsJSON } from "../data/json";
@@ -16,6 +14,8 @@ import { Excalidraw } from "../index";
 import { API } from "./helpers/api";
 import { UI } from "./helpers/ui";
 import { fireEvent, getCloneByOrigId, render, waitFor } from "./test-utils";
+
+import type { ExcalidrawGenericElement } from "@nextcloud/excalidraw-element/types";
 
 import type { LibraryItem, LibraryItems } from "../types";
 

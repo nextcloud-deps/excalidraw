@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
 import { getClientColor } from "../clients";
 import { Avatar } from "../components/Avatar";

@@ -8,17 +8,11 @@ import {
   SVG_DOCUMENT_PREAMBLE,
 } from "@excalidraw/common";
 
-import { getNonDeletedElements } from "@excalidraw/element";
+import { getNonDeletedElements } from "@nextcloud/excalidraw-element";
 
-import { isFrameLikeElement } from "@excalidraw/element";
+import { isFrameLikeElement } from "@nextcloud/excalidraw-element";
 
-import { getElementsOverlappingFrame } from "@excalidraw/element";
-
-import type {
-  ExcalidrawElement,
-  ExcalidrawFrameLikeElement,
-  NonDeletedExcalidrawElement,
-} from "@excalidraw/element/types";
+import { getElementsOverlappingFrame } from "@nextcloud/excalidraw-element";
 
 import {
   copyBlobToClipboardAsPng,
@@ -32,6 +26,12 @@ import { exportToCanvas, exportToSvg } from "../scene/export";
 import { canvasToBlob } from "./blob";
 import { fileSave } from "./filesystem";
 import { serializeAsJSON } from "./json";
+
+import type {
+  ExcalidrawElement,
+  ExcalidrawFrameLikeElement,
+  NonDeletedExcalidrawElement,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { FileSystemHandle } from "./filesystem";
 

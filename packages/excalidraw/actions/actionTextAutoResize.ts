@@ -1,11 +1,11 @@
 import { getFontString } from "@excalidraw/common";
 
-import { newElementWith } from "@excalidraw/element";
-import { measureText } from "@excalidraw/element";
+import { newElementWith } from "@nextcloud/excalidraw-element";
+import { measureText } from "@nextcloud/excalidraw-element";
 
-import { isTextElement } from "@excalidraw/element";
+import { isTextElement } from "@nextcloud/excalidraw-element";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
 import { getSelectedElements } from "../scene";
 

@@ -6,11 +6,11 @@ import {
   orderByFractionalIndex,
   syncInvalidIndices,
   validateFractionalIndices,
-} from "@excalidraw/element";
-
-import type { OrderedExcalidrawElement } from "@excalidraw/element/types";
+} from "@nextcloud/excalidraw-element";
 
 import type { MakeBrand } from "@excalidraw/common/utility-types";
+
+import type { OrderedExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { AppState } from "../types";
 

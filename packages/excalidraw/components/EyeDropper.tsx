@@ -3,8 +3,6 @@ import { createPortal } from "react-dom";
 
 import { EVENT, KEYS, rgbToHex } from "@excalidraw/common";
 
-import type { ExcalidrawElement } from "@excalidraw/element/types";
-
 import { useUIAppState } from "../context/ui-appState";
 import { atom } from "../editor-jotai";
 import { useCreatePortalContainer } from "../hooks/useCreatePortalContainer";
@@ -15,6 +13,8 @@ import { getSelectedElements } from "../scene";
 import { useApp, useExcalidrawContainer, useExcalidrawElements } from "./App";
 
 import "./EyeDropper.scss";
+
+import type { ExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { ColorPickerType } from "./ColorPicker/colorPickerUtils";
 

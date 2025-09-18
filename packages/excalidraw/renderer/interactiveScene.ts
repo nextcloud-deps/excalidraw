@@ -16,14 +16,17 @@ import {
   throttleRAF,
 } from "@excalidraw/common";
 
-import { FIXED_BINDING_DISTANCE, maxBindingGap } from "@excalidraw/element";
-import { LinearElementEditor } from "@excalidraw/element";
+import {
+  FIXED_BINDING_DISTANCE,
+  maxBindingGap,
+} from "@nextcloud/excalidraw-element";
+import { LinearElementEditor } from "@nextcloud/excalidraw-element";
 import {
   getOmitSidesForDevice,
   getTransformHandles,
   getTransformHandlesFromCoords,
   shouldShowBoundingBox,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 import {
   isElbowArrow,
   isFrameLikeElement,
@@ -31,40 +34,21 @@ import {
   isLinearElement,
   isLineElement,
   isTextElement,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { renderSelectionElement } from "@excalidraw/element";
+import { renderSelectionElement } from "@nextcloud/excalidraw-element";
 
 import {
   getElementsInGroup,
   getSelectedGroupIds,
   isSelectedViaGroup,
   selectGroupsFromGivenElements,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { getCommonBounds, getElementAbsoluteCoords } from "@excalidraw/element";
-
-import type {
-  SuggestedBinding,
-  SuggestedPointBinding,
-} from "@excalidraw/element";
-
-import type {
-  TransformHandles,
-  TransformHandleType,
-} from "@excalidraw/element";
-
-import type {
-  ElementsMap,
-  ExcalidrawBindableElement,
-  ExcalidrawElement,
-  ExcalidrawFrameLikeElement,
-  ExcalidrawImageElement,
-  ExcalidrawLinearElement,
-  ExcalidrawTextElement,
-  GroupId,
-  NonDeleted,
-} from "@excalidraw/element/types";
+import {
+  getCommonBounds,
+  getElementAbsoluteCoords,
+} from "@nextcloud/excalidraw-element";
 
 import { renderSnaps } from "../renderer/renderSnaps";
 import { roundRect } from "../renderer/roundRect";
@@ -86,6 +70,26 @@ import {
   strokeEllipseWithRotation,
   strokeRectWithRotation,
 } from "./helpers";
+
+import type {
+  TransformHandles,
+  TransformHandleType,
+} from "@nextcloud/excalidraw-element";
+import type {
+  ElementsMap,
+  ExcalidrawBindableElement,
+  ExcalidrawElement,
+  ExcalidrawFrameLikeElement,
+  ExcalidrawImageElement,
+  ExcalidrawLinearElement,
+  ExcalidrawTextElement,
+  GroupId,
+  NonDeleted,
+} from "@nextcloud/excalidraw-element/types";
+import type {
+  SuggestedBinding,
+  SuggestedPointBinding,
+} from "@nextcloud/excalidraw-element";
 
 import type {
   InteractiveCanvasRenderConfig,

@@ -1,27 +1,21 @@
 import { FRAME_STYLE, throttleRAF } from "@excalidraw/common";
-import { isElementLink } from "@excalidraw/element";
-import { createPlaceholderEmbeddableLabel } from "@excalidraw/element";
-import { getBoundTextElement } from "@excalidraw/element";
+import { isElementLink } from "@nextcloud/excalidraw-element";
+import { createPlaceholderEmbeddableLabel } from "@nextcloud/excalidraw-element";
+import { getBoundTextElement } from "@nextcloud/excalidraw-element";
 import {
   isEmbeddableElement,
   isIframeLikeElement,
   isTextElement,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 import {
   elementOverlapsWithFrame,
   getTargetFrame,
   shouldApplyFrameClip,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { renderElement } from "@excalidraw/element";
+import { renderElement } from "@nextcloud/excalidraw-element";
 
-import { getElementAbsoluteCoords } from "@excalidraw/element";
-
-import type {
-  ElementsMap,
-  ExcalidrawFrameLikeElement,
-  NonDeletedExcalidrawElement,
-} from "@excalidraw/element/types";
+import { getElementAbsoluteCoords } from "@nextcloud/excalidraw-element";
 
 import {
   EXTERNAL_LINK_IMG,
@@ -30,6 +24,12 @@ import {
 } from "../components/hyperlink/helpers";
 
 import { bootstrapCanvas, getNormalizedCanvasDimensions } from "./helpers";
+
+import type {
+  ElementsMap,
+  ExcalidrawFrameLikeElement,
+  NonDeletedExcalidrawElement,
+} from "@nextcloud/excalidraw-element/types";
 
 import type {
   StaticCanvasRenderConfig,

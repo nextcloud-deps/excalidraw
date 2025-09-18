@@ -1,8 +1,6 @@
 import oc from "open-color";
 import React, { useLayoutEffect, useRef, useState } from "react";
 
-import type { ChartType } from "@excalidraw/element/types";
-
 import { trackEvent } from "../analytics";
 import { renderSpreadsheet } from "../charts";
 import { t } from "../i18n";
@@ -12,6 +10,8 @@ import { useApp } from "./App";
 import { Dialog } from "./Dialog";
 
 import "./PasteChartDialog.scss";
+
+import type { ChartType } from "@nextcloud/excalidraw-element/types";
 
 import type { ChartElements, Spreadsheet } from "../charts";
 import type { UIAppState } from "../types";

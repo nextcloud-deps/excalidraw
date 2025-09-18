@@ -1,17 +1,11 @@
 import React from "react";
 import { vi } from "vitest";
 
-import { bindOrUnbindLinearElement } from "@excalidraw/element";
+import { bindOrUnbindLinearElement } from "@nextcloud/excalidraw-element";
 
 import { KEYS, reseed } from "@excalidraw/common";
 
 import "@excalidraw/utils/test-utils";
-
-import type {
-  ExcalidrawLinearElement,
-  NonDeleted,
-  ExcalidrawRectangleElement,
-} from "@excalidraw/element/types";
 
 import { Excalidraw } from "../index";
 import * as InteractiveCanvas from "../renderer/interactiveScene";
@@ -19,6 +13,12 @@ import * as StaticScene from "../renderer/staticScene";
 
 import { UI, Pointer, Keyboard } from "./helpers/ui";
 import { render, fireEvent, act, unmountComponent } from "./test-utils";
+
+import type {
+  ExcalidrawLinearElement,
+  NonDeleted,
+  ExcalidrawRectangleElement,
+} from "@nextcloud/excalidraw-element/types";
 
 unmountComponent();
 

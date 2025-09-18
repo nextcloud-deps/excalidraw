@@ -12,7 +12,7 @@ import {
 import {
   shouldAllowVerticalAlign,
   suppportsHorizontalAlign,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import {
   hasBoundTextElement,
@@ -21,16 +21,9 @@ import {
   isLinearElement,
   isTextElement,
   isArrowElement,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { hasStrokeColor, toolIsArrow } from "@excalidraw/element";
-
-import type {
-  ExcalidrawElement,
-  ExcalidrawElementType,
-  NonDeletedElementsMap,
-  NonDeletedSceneElementsMap,
-} from "@excalidraw/element/types";
+import { hasStrokeColor, toolIsArrow } from "@nextcloud/excalidraw-element";
 
 import { actionToggleZenMode } from "../actions";
 
@@ -77,6 +70,13 @@ import {
   adjustmentsIcon,
   DotsHorizontalIcon,
 } from "./icons";
+
+import type {
+  ExcalidrawElement,
+  ExcalidrawElementType,
+  NonDeletedElementsMap,
+  NonDeletedSceneElementsMap,
+} from "@nextcloud/excalidraw-element/types";
 
 import type {
   AppClassProperties,

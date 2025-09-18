@@ -15,11 +15,11 @@ import {
   newTextElement,
   newLinearElement,
   newElement,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import type { Radians } from "@excalidraw/math";
 
-import type { NonDeletedExcalidrawElement } from "@excalidraw/element/types";
+import type { NonDeletedExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 export type ChartElements = readonly NonDeletedExcalidrawElement[];
 

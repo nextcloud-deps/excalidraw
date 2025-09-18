@@ -1,17 +1,17 @@
 import { pointFrom, pointRotateRads } from "@excalidraw/math";
 
-import { getBoundTextElement } from "@excalidraw/element";
-import { isFrameLikeElement } from "@excalidraw/element";
+import { getBoundTextElement } from "@nextcloud/excalidraw-element";
+import { isFrameLikeElement } from "@nextcloud/excalidraw-element";
 
 import {
   getSelectedGroupIds,
   getElementsInGroup,
   isInGroup,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { getFrameChildren } from "@excalidraw/element";
+import { getFrameChildren } from "@nextcloud/excalidraw-element";
 
-import { updateBindings } from "@excalidraw/element";
+import { updateBindings } from "@nextcloud/excalidraw-element";
 
 import type { Radians } from "@excalidraw/math";
 
@@ -19,9 +19,9 @@ import type {
   ElementsMap,
   ExcalidrawElement,
   NonDeletedExcalidrawElement,
-} from "@excalidraw/element/types";
+} from "@nextcloud/excalidraw-element/types";
 
-import type { Scene } from "@excalidraw/element";
+import type { Scene } from "@nextcloud/excalidraw-element";
 
 import type { AppState } from "../../types";
 

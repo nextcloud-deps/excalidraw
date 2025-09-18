@@ -4,19 +4,19 @@ import {
   maybeBindLinearElement,
   bindOrUnbindLinearElement,
   isBindingEnabled,
-} from "@excalidraw/element/binding";
+} from "@nextcloud/excalidraw-element/binding";
 import {
   isValidPolygon,
   LinearElementEditor,
   newElementWith,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import {
   isBindingElement,
   isFreeDrawElement,
   isLinearElement,
   isLineElement,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import {
   KEYS,
@@ -24,18 +24,13 @@ import {
   tupleToCoors,
   updateActiveTool,
 } from "@excalidraw/common";
-import { isPathALoop } from "@excalidraw/element";
+import { isPathALoop } from "@nextcloud/excalidraw-element";
 
-import { isInvisiblySmallElement } from "@excalidraw/element";
+import { isInvisiblySmallElement } from "@nextcloud/excalidraw-element";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
 import type { LocalPoint } from "@excalidraw/math";
-import type {
-  ExcalidrawElement,
-  ExcalidrawLinearElement,
-  NonDeleted,
-} from "@excalidraw/element/types";
 
 import { t } from "../i18n";
 import { resetCursor } from "../cursor";
@@ -43,6 +38,12 @@ import { done } from "../components/icons";
 import { ToolButton } from "../components/ToolButton";
 
 import { register } from "./register";
+
+import type {
+  ExcalidrawElement,
+  ExcalidrawLinearElement,
+  NonDeleted,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { AppState } from "../types";
 

@@ -1,8 +1,8 @@
-import { getNonDeletedElements } from "@excalidraw/element";
+import { getNonDeletedElements } from "@nextcloud/excalidraw-element";
 
-import { newElementWith } from "@excalidraw/element";
+import { newElementWith } from "@nextcloud/excalidraw-element";
 
-import { isBoundToContainer } from "@excalidraw/element";
+import { isBoundToContainer } from "@nextcloud/excalidraw-element";
 
 import {
   frameAndChildrenSelectedTogether,
@@ -12,7 +12,7 @@ import {
   groupByFrameLikes,
   removeElementsFromFrame,
   replaceAllElementsInFrame,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import { KEYS, randomId, arrayToMap, getShortcutKey } from "@excalidraw/common";
 
@@ -24,17 +24,11 @@ import {
   addToGroup,
   removeFromSelectedGroups,
   isElementInGroup,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { syncMovedIndices } from "@excalidraw/element";
+import { syncMovedIndices } from "@nextcloud/excalidraw-element";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
-
-import type {
-  ExcalidrawElement,
-  ExcalidrawTextElement,
-  OrderedExcalidrawElement,
-} from "@excalidraw/element/types";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
 import { ToolButton } from "../components/ToolButton";
 import { UngroupIcon, GroupIcon } from "../components/icons";
@@ -44,6 +38,12 @@ import { t } from "../i18n";
 import { isSomeElementSelected } from "../scene";
 
 import { register } from "./register";
+
+import type {
+  ExcalidrawElement,
+  ExcalidrawTextElement,
+  OrderedExcalidrawElement,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { AppClassProperties, AppState } from "../types";
 

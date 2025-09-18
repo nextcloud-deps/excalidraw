@@ -10,14 +10,14 @@ import {
   getOriginalContainerHeightFromCache,
   resetOriginalContainerCache,
   updateOriginalContainerCache,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import {
   computeBoundTextPosition,
   computeContainerDimensionForBoundText,
   getBoundTextElement,
   redrawTextBoundingBox,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import {
   hasBoundTextElement,
@@ -25,28 +25,28 @@ import {
   isTextBindableContainer,
   isTextElement,
   isUsingAdaptiveRadius,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { measureText } from "@excalidraw/element";
+import { measureText } from "@nextcloud/excalidraw-element";
 
-import { syncMovedIndices } from "@excalidraw/element";
+import { syncMovedIndices } from "@nextcloud/excalidraw-element";
 
-import { newElement } from "@excalidraw/element";
+import { newElement } from "@nextcloud/excalidraw-element";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
-
-import type {
-  ExcalidrawElement,
-  ExcalidrawLinearElement,
-  ExcalidrawTextContainer,
-  ExcalidrawTextElement,
-} from "@excalidraw/element/types";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
 import type { Mutable } from "@excalidraw/common/utility-types";
 
 import type { Radians } from "@excalidraw/math";
 
 import { register } from "./register";
+
+import type {
+  ExcalidrawElement,
+  ExcalidrawLinearElement,
+  ExcalidrawTextContainer,
+  ExcalidrawTextElement,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { AppState } from "../types";
 

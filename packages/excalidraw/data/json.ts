@@ -9,14 +9,14 @@ import {
 import {
   clearElementsForDatabase,
   clearElementsForExport,
-} from "@excalidraw/element";
-
-import type { ExcalidrawElement } from "@excalidraw/element/types";
+} from "@nextcloud/excalidraw-element";
 
 import { cleanAppStateForExport, clearAppStateForDatabase } from "../appState";
 
 import { isImageFileHandle, loadFromBlob, normalizeFile } from "./blob";
 import { fileOpen, fileSave } from "./filesystem";
+
+import type { ExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { AppState, BinaryFiles, LibraryItems } from "../types";
 import type {

@@ -16,7 +16,7 @@ import {
   getLineHeight,
 } from "@excalidraw/common";
 
-import { bindLinearElement } from "@excalidraw/element";
+import { bindLinearElement } from "@nextcloud/excalidraw-element";
 import {
   newArrowElement,
   newElement,
@@ -25,21 +25,23 @@ import {
   newLinearElement,
   newMagicFrameElement,
   newTextElement,
-} from "@excalidraw/element";
-import { measureText, normalizeText } from "@excalidraw/element";
-import { isArrowElement } from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
+import { measureText, normalizeText } from "@nextcloud/excalidraw-element";
+import { isArrowElement } from "@nextcloud/excalidraw-element";
 
-import { syncInvalidIndices } from "@excalidraw/element";
+import { syncInvalidIndices } from "@nextcloud/excalidraw-element";
 
-import { redrawTextBoundingBox } from "@excalidraw/element";
+import { redrawTextBoundingBox } from "@nextcloud/excalidraw-element";
 
-import { LinearElementEditor } from "@excalidraw/element";
+import { LinearElementEditor } from "@nextcloud/excalidraw-element";
 
-import { getCommonBounds } from "@excalidraw/element";
+import { getCommonBounds } from "@nextcloud/excalidraw-element";
 
-import { Scene } from "@excalidraw/element";
+import { Scene } from "@nextcloud/excalidraw-element";
 
-import type { ElementConstructorOpts } from "@excalidraw/element";
+import type { MarkOptional } from "@excalidraw/common/utility-types";
+
+import type { ElementConstructorOpts } from "@nextcloud/excalidraw-element";
 
 import type {
   ExcalidrawArrowElement,
@@ -59,9 +61,7 @@ import type {
   NonDeletedSceneElementsMap,
   TextAlign,
   VerticalAlign,
-} from "@excalidraw/element/types";
-
-import type { MarkOptional } from "@excalidraw/common/utility-types";
+} from "@nextcloud/excalidraw-element/types";
 
 export type ValidLinearElement = {
   type: "arrow" | "line";

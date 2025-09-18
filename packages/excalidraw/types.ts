@@ -5,11 +5,18 @@ import type {
   MIME_TYPES,
 } from "@excalidraw/common";
 
-import type { SuggestedBinding } from "@excalidraw/element";
+import type {
+  Merge,
+  MaybePromise,
+  ValueOf,
+  MakeBrand,
+} from "@excalidraw/common/utility-types";
 
-import type { LinearElementEditor } from "@excalidraw/element";
+import type { SuggestedBinding } from "@nextcloud/excalidraw-element";
 
-import type { MaybeTransformHandleType } from "@excalidraw/element";
+import type { LinearElementEditor } from "@nextcloud/excalidraw-element";
+
+import type { MaybeTransformHandleType } from "@nextcloud/excalidraw-element";
 
 import type {
   PointerType,
@@ -33,20 +40,13 @@ import type {
   ExcalidrawIframeLikeElement,
   OrderedExcalidrawElement,
   ExcalidrawNonSelectionElement,
-} from "@excalidraw/element/types";
-
-import type {
-  Merge,
-  MaybePromise,
-  ValueOf,
-  MakeBrand,
-} from "@excalidraw/common/utility-types";
+} from "@nextcloud/excalidraw-element/types";
 
 import type {
   CaptureUpdateActionType,
   DurableIncrement,
   EphemeralIncrement,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import type { Action } from "./actions/types";
 import type { Spreadsheet } from "./charts";

@@ -1,17 +1,18 @@
-import { isElementInViewport } from "@excalidraw/element";
+import { isElementInViewport } from "@nextcloud/excalidraw-element";
 
 import { memoize, toBrandedType } from "@excalidraw/common";
+
+import { renderInteractiveSceneThrottled } from "../renderer/interactiveScene";
+
+import { renderStaticSceneThrottled } from "../renderer/staticScene";
 
 import type {
   ExcalidrawElement,
   NonDeletedElementsMap,
   NonDeletedExcalidrawElement,
-} from "@excalidraw/element/types";
+} from "@nextcloud/excalidraw-element/types";
 
-import type { Scene } from "@excalidraw/element";
-
-import { renderInteractiveSceneThrottled } from "../renderer/interactiveScene";
-import { renderStaticSceneThrottled } from "../renderer/staticScene";
+import type { Scene } from "@nextcloud/excalidraw-element";
 
 import type { RenderableElementsMap } from "./types";
 

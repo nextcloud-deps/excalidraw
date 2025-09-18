@@ -1,14 +1,14 @@
 import { sceneCoordsToViewportCoords } from "@excalidraw/common";
-import { getElementAbsoluteCoords } from "@excalidraw/element";
-
-import type {
-  ElementsMap,
-  NonDeletedExcalidrawElement,
-} from "@excalidraw/element/types";
+import { getElementAbsoluteCoords } from "@nextcloud/excalidraw-element";
 
 import { useExcalidrawAppState } from "../components/App";
 
 import "./ElementCanvasButtons.scss";
+
+import type {
+  ElementsMap,
+  NonDeletedExcalidrawElement,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { AppState } from "../types";
 

@@ -7,28 +7,31 @@ import {
   isFrameLikeElement,
   replaceAllElementsInFrame,
   updateBoundElements,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 import {
   rescalePointsInElement,
   resizeSingleElement,
-} from "@excalidraw/element";
-import { getBoundTextElement, handleBindTextResize } from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
+import {
+  getBoundTextElement,
+  handleBindTextResize,
+} from "@nextcloud/excalidraw-element";
 
-import { isTextElement } from "@excalidraw/element";
+import { isTextElement } from "@nextcloud/excalidraw-element";
 
 import { getCommonBounds } from "@excalidraw/utils";
+
+import DragInput from "./DragInput";
+import { getAtomicUnits, getStepSizedValue, isPropertyEditable } from "./utils";
+import { getElementsInAtomicUnit } from "./utils";
+
+import type { Scene } from "@nextcloud/excalidraw-element";
 
 import type {
   ElementsMap,
   ExcalidrawElement,
   NonDeletedSceneElementsMap,
-} from "@excalidraw/element/types";
-
-import type { Scene } from "@excalidraw/element";
-
-import DragInput from "./DragInput";
-import { getAtomicUnits, getStepSizedValue, isPropertyEditable } from "./utils";
-import { getElementsInAtomicUnit } from "./utils";
+} from "@nextcloud/excalidraw-element/types";
 
 import type {
   DragFinishedCallbackType,

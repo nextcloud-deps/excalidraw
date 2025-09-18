@@ -112,7 +112,7 @@ const updatePackageJsons = (nextVersion) => {
       for (const dependencyName of PACKAGES) {
         // we are releasing @excalidraw/element as @nextcloud/excalidraw-element so we have to update the correct dependency
         if (dependencyName === "element") {
-          if (!pkg.dependencies[`@nextcloud/excalidraw-${dependencyName}`]){
+          if (!pkg.dependencies[`@nextcloud/excalidraw-${dependencyName}`]) {
             continue;
           }
           pkg.dependencies["@nextcloud/excalidraw-element"] = nextVersion;

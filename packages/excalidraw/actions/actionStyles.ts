@@ -7,7 +7,7 @@ import {
   getLineHeight,
 } from "@excalidraw/common";
 
-import { newElementWith } from "@excalidraw/element";
+import { newElementWith } from "@nextcloud/excalidraw-element";
 
 import {
   hasBoundTextElement,
@@ -17,16 +17,14 @@ import {
   isArrowElement,
   isExcalidrawElement,
   isTextElement,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import {
   getBoundTextElement,
   redrawTextBoundingBox,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
-
-import type { ExcalidrawTextElement } from "@excalidraw/element/types";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
 import { paintIcon } from "../components/icons";
 
@@ -34,6 +32,8 @@ import { t } from "../i18n";
 import { getSelectedElements } from "../scene";
 
 import { register } from "./register";
+
+import type { ExcalidrawTextElement } from "@nextcloud/excalidraw-element/types";
 
 // `copiedStyles` is exported only for tests.
 export let copiedStyles: string = "{}";

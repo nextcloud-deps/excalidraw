@@ -7,10 +7,9 @@ import {
   isPromiseLike,
 } from "@excalidraw/common";
 
-import { clearElementsForExport } from "@excalidraw/element";
+import { clearElementsForExport } from "@nextcloud/excalidraw-element";
 
 import type { ValueOf } from "@excalidraw/common/utility-types";
-import type { ExcalidrawElement, FileId } from "@excalidraw/element/types";
 
 import { cleanAppStateForExport } from "../appState";
 
@@ -22,6 +21,11 @@ import { base64ToString, stringToBase64, toByteString } from "./encode";
 import { nativeFileSystemSupported } from "./filesystem";
 import { isValidExcalidrawData, isValidLibrary } from "./json";
 import { restore, restoreLibraryItems } from "./restore";
+
+import type {
+  ExcalidrawElement,
+  FileId,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { AppState, DataURL, LibraryItem } from "../types";
 

@@ -4,19 +4,20 @@ import { MIN_WIDTH_OR_HEIGHT } from "@excalidraw/common";
 import {
   MINIMAL_CROP_SIZE,
   getUncroppedWidthAndHeight,
-} from "@excalidraw/element";
-import { resizeSingleElement } from "@excalidraw/element";
-import { isImageElement } from "@excalidraw/element";
-import { isFrameLikeElement } from "@excalidraw/element";
-import { getElementsInResizingFrame } from "@excalidraw/element";
-import { replaceAllElementsInFrame } from "@excalidraw/element";
-
-import type { ExcalidrawElement } from "@excalidraw/element/types";
-
-import type { Scene } from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
+import { resizeSingleElement } from "@nextcloud/excalidraw-element";
+import { isImageElement } from "@nextcloud/excalidraw-element";
+import { isFrameLikeElement } from "@nextcloud/excalidraw-element";
+import { getElementsInResizingFrame } from "@nextcloud/excalidraw-element";
+import { replaceAllElementsInFrame } from "@nextcloud/excalidraw-element";
 
 import DragInput from "./DragInput";
+
 import { getStepSizedValue, isPropertyEditable } from "./utils";
+
+import type { ExcalidrawElement } from "@nextcloud/excalidraw-element/types";
+
+import type { Scene } from "@nextcloud/excalidraw-element";
 
 import type {
   DragFinishedCallbackType,

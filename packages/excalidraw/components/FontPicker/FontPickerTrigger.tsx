@@ -1,12 +1,12 @@
 import * as Popover from "@radix-ui/react-popover";
 
-import type { FontFamilyValues } from "@excalidraw/element/types";
-
 import { t } from "../../i18n";
 import { ButtonIcon } from "../ButtonIcon";
 import { TextIcon } from "../icons";
 
 import { useExcalidrawSetAppState } from "../App";
+
+import type { FontFamilyValues } from "@nextcloud/excalidraw-element/types";
 
 interface FontPickerTriggerProps {
   selectedFontFamily: FontFamilyValues | null;

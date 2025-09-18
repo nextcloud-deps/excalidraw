@@ -7,17 +7,17 @@ import {
   KEYS,
 } from "@excalidraw/common";
 
-import type {
-  ExcalidrawFrameLikeElement,
-  ExcalidrawTextElement,
-} from "@excalidraw/element/types";
-
 import { Excalidraw } from "../index";
 
 import { API } from "./helpers/api";
 import { Keyboard } from "./helpers/ui";
 import { updateTextEditor } from "./queries/dom";
 import { act, render, waitFor } from "./test-utils";
+
+import type {
+  ExcalidrawFrameLikeElement,
+  ExcalidrawTextElement,
+} from "@nextcloud/excalidraw-element/types";
 
 const { h } = window;
 

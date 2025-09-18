@@ -8,7 +8,7 @@ import React, {
 
 import { MIME_TYPES, arrayToMap } from "@excalidraw/common";
 
-import { duplicateElements } from "@excalidraw/element";
+import { duplicateElements } from "@nextcloud/excalidraw-element";
 
 import { serializeLibraryAsJSON } from "../data/json";
 import { useLibraryCache } from "../hooks/useLibraryItemSvg";
