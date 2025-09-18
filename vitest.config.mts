@@ -22,6 +22,14 @@ export default defineConfig({
         replacement: path.resolve(__dirname, "./packages/element/src/$1"),
       },
       {
+        find: /^@nextcloud\/excalidraw-element$/,
+        replacement: path.resolve(__dirname, "./packages/element/src/index.ts"),
+      },
+      {
+        find: /^@nextcloud\/excalidraw-element\/(.*?)/,
+        replacement: path.resolve(__dirname, "./packages/element/src/$1"),
+      },
+      {
         find: /^@excalidraw\/excalidraw$/,
         replacement: path.resolve(__dirname, "./packages/excalidraw/index.tsx"),
       },
