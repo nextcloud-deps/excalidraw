@@ -1,5 +1,5 @@
 {
-  "name": "@excalidraw/element",
+  "name": "@nextcloud/excalidraw-element",
   "version": "0.18.0",
   "type": "module",
   "types": "./dist/types/element/src/index.d.ts",
@@ -57,7 +57,7 @@
     "build:esm": "rimraf dist && node ../../scripts/buildBase.js && yarn gen:types"
   },
   "dependencies": {
-    "@excalidraw/common": "0.18.0",
-    "@excalidraw/math": "0.18.0"
+    "@excalidraw/common": "0.18.0-ac0d305",
+    "@excalidraw/math": "0.18.0-ac0d305"
   }
 }

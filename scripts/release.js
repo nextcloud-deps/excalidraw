@@ -6,7 +6,7 @@ const { execSync } = require("child_process");
 const updateChangelog = require("./updateChangelog");
 
 // skipping utils for now, as it has independent release process
-const PACKAGES = ["excalidraw"];
+const PACKAGES = ["element", "excalidraw"];
 const PACKAGES_DIR = path.resolve(__dirname, "../packages");
 
 /**
@@ -110,6 +110,14 @@ const updatePackageJsons = (nextVersion) => {
 
     if (pkg.dependencies) {
       for (const dependencyName of PACKAGES) {
+        // we are releasing @excalidraw/element as @nextcloud/excalidraw-element so we have to update the correct dependency
+        if (dependencyName === "element") {
+          if (!pkg.dependencies[`@nextcloud/excalidraw-${dependencyName}`]){
+            continue;
+          }
+          pkg.dependencies["@nextcloud/excalidraw-element"] = nextVersion;
+          continue;
+        }
         if (!pkg.dependencies[`@nextcloud/${dependencyName}`]) {
           continue;
         }
