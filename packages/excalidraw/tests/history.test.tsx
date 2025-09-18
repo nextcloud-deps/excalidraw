@@ -8,7 +8,7 @@ import {
 import { vi } from "vitest";
 import { pointFrom } from "@excalidraw/math";
 
-import { newElementWith } from "@excalidraw/element";
+import { newElementWith } from "@nextcloud/excalidraw-element";
 
 import {
   EXPORT_DATA_TYPES,
@@ -25,23 +25,11 @@ import {
 
 import "@excalidraw/utils/test-utils";
 
-import { ElementsDelta, AppStateDelta } from "@excalidraw/element";
+import { ElementsDelta, AppStateDelta } from "@nextcloud/excalidraw-element";
 
-import { CaptureUpdateAction, StoreDelta } from "@excalidraw/element";
+import { CaptureUpdateAction, StoreDelta } from "@nextcloud/excalidraw-element";
 
 import type { LocalPoint, Radians } from "@excalidraw/math";
-
-import type {
-  ExcalidrawElbowArrowElement,
-  ExcalidrawFrameElement,
-  ExcalidrawGenericElement,
-  ExcalidrawLinearElement,
-  ExcalidrawTextElement,
-  FileId,
-  FixedPointBinding,
-  FractionalIndex,
-  SceneElementsMap,
-} from "@excalidraw/element/types";
 
 import "../global.d.ts";
 
@@ -77,6 +65,18 @@ import {
   unmountComponent,
 } from "./test-utils";
 import { setupImageTest as _setupImageTest } from "./image.test";
+
+import type {
+  ExcalidrawElbowArrowElement,
+  ExcalidrawFrameElement,
+  ExcalidrawGenericElement,
+  ExcalidrawLinearElement,
+  ExcalidrawTextElement,
+  FileId,
+  FixedPointBinding,
+  FractionalIndex,
+  SceneElementsMap,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { AppState } from "../types";
 

@@ -1,8 +1,11 @@
 import { THEME, THEME_FILTER } from "@excalidraw/common";
 
-import { FIXED_BINDING_DISTANCE } from "@excalidraw/element";
-import { getDiamondPoints } from "@excalidraw/element";
-import { elementCenterPoint, getCornerRadius } from "@excalidraw/element";
+import { FIXED_BINDING_DISTANCE } from "@nextcloud/excalidraw-element";
+import { getDiamondPoints } from "@nextcloud/excalidraw-element";
+import {
+  elementCenterPoint,
+  getCornerRadius,
+} from "@nextcloud/excalidraw-element";
 
 import {
   curve,
@@ -19,7 +22,7 @@ import type {
   ElementsMap,
   ExcalidrawDiamondElement,
   ExcalidrawRectanguloidElement,
-} from "@excalidraw/element/types";
+} from "@nextcloud/excalidraw-element/types";
 
 import type { StaticCanvasRenderConfig } from "../scene/types";
 import type { AppState, StaticCanvasAppState } from "../types";

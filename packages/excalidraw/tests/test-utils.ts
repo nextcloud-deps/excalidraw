@@ -11,9 +11,7 @@ import ansi from "ansicolor";
 
 import { ORIG_ID, arrayToMap } from "@excalidraw/common";
 
-import { getSelectedElements } from "@excalidraw/element";
-
-import type { ExcalidrawElement } from "@excalidraw/element/types";
+import { getSelectedElements } from "@nextcloud/excalidraw-element";
 
 import type { AllPossibleKeys } from "@excalidraw/common/utility-types";
 
@@ -21,6 +19,8 @@ import { STORAGE_KEYS } from "../../../excalidraw-app/app_constants";
 
 import { Pointer, UI } from "./helpers/ui";
 import * as toolQueries from "./queries/toolQueries";
+
+import type { ExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { History } from "../history";
 

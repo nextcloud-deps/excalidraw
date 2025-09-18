@@ -22,9 +22,7 @@ import {
   type ElementsSegmentsMap,
 } from "@excalidraw/math";
 
-import { getElementLineSegments } from "@excalidraw/element";
-
-import type { ExcalidrawElement } from "@excalidraw/element/types";
+import { getElementLineSegments } from "@nextcloud/excalidraw-element";
 
 import { Excalidraw } from "../index";
 
@@ -33,6 +31,8 @@ import { getSelectedElements } from "../scene";
 import { getLassoSelectedElementIds } from "../lasso/utils";
 
 import { act, render } from "./test-utils";
+
+import type { ExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 const { h } = window;
 

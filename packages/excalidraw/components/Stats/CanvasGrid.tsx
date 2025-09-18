@@ -1,9 +1,9 @@
-import type { Scene } from "@excalidraw/element";
-
 import { getNormalizedGridStep } from "../../scene";
 
 import StatsDragInput from "./DragInput";
 import { getStepSizedValue } from "./utils";
+
+import type { Scene } from "@nextcloud/excalidraw-element";
 
 import type { AppState } from "../../types";
 

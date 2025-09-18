@@ -11,9 +11,9 @@ import {
   getLineHeight,
 } from "@excalidraw/common";
 
-import { isElementCompletelyInViewport } from "@excalidraw/element";
+import { isElementCompletelyInViewport } from "@nextcloud/excalidraw-element";
 
-import { measureText } from "@excalidraw/element";
+import { measureText } from "@nextcloud/excalidraw-element";
 
 import {
   KEYS,
@@ -22,15 +22,13 @@ import {
   getFontString,
 } from "@excalidraw/common";
 
-import { newTextElement } from "@excalidraw/element";
-import { isTextElement, isFrameLikeElement } from "@excalidraw/element";
+import { newTextElement } from "@nextcloud/excalidraw-element";
+import {
+  isTextElement,
+  isFrameLikeElement,
+} from "@nextcloud/excalidraw-element";
 
-import { getDefaultFrameName } from "@excalidraw/element/frame";
-
-import type {
-  ExcalidrawFrameLikeElement,
-  ExcalidrawTextElement,
-} from "@excalidraw/element/types";
+import { getDefaultFrameName } from "@nextcloud/excalidraw-element/frame";
 
 import { atom, useAtom } from "../editor-jotai";
 
@@ -49,6 +47,11 @@ import {
 } from "./icons";
 
 import "./SearchMenu.scss";
+
+import type {
+  ExcalidrawFrameLikeElement,
+  ExcalidrawTextElement,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { AppClassProperties, SearchMatch } from "../types";
 

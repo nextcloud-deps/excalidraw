@@ -13,7 +13,7 @@ import {
   isFreeDrawElement,
   isLineElement,
   isPointInElement,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 import {
   lineSegment,
   lineSegmentsDistance,
@@ -22,18 +22,25 @@ import {
   polygonIncludesPointNonZero,
 } from "@excalidraw/math";
 
-import { getElementsInGroup } from "@excalidraw/element";
+import { getElementsInGroup } from "@nextcloud/excalidraw-element";
 
-import { shouldTestInside } from "@excalidraw/element";
-import { hasBoundTextElement, isBoundToContainer } from "@excalidraw/element";
-import { getBoundTextElementId } from "@excalidraw/element";
-
-import type { Bounds } from "@excalidraw/element";
+import { shouldTestInside } from "@nextcloud/excalidraw-element";
+import {
+  hasBoundTextElement,
+  isBoundToContainer,
+} from "@nextcloud/excalidraw-element";
+import { getBoundTextElementId } from "@nextcloud/excalidraw-element";
 
 import type { GlobalPoint, LineSegment } from "@excalidraw/math/types";
-import type { ElementsMap, ExcalidrawElement } from "@excalidraw/element/types";
 
 import { AnimatedTrail } from "../animated-trail";
+
+import type { Bounds } from "@nextcloud/excalidraw-element";
+
+import type {
+  ElementsMap,
+  ExcalidrawElement,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { AnimationFrameHandler } from "../animation-frame-handler";
 

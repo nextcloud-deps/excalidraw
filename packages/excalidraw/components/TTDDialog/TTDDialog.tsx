@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from "react";
 
 import { isFiniteNumber } from "@excalidraw/math";
 
-import type { NonDeletedExcalidrawElement } from "@excalidraw/element/types";
-
 import { trackEvent } from "../../analytics";
 import { useUIAppState } from "../../context/ui-appState";
 import { atom, useAtom } from "../../editor-jotai";
@@ -32,6 +30,8 @@ import {
 import { TTDDialogSubmitShortcut } from "./TTDDialogSubmitShortcut";
 
 import "./TTDDialog.scss";
+
+import type { NonDeletedExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { ChangeEventHandler } from "react";
 import type { MermaidToExcalidrawLibProps } from "./common";

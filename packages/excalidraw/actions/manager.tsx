@@ -2,12 +2,12 @@ import React from "react";
 
 import { isPromiseLike } from "@excalidraw/common";
 
+import { trackEvent } from "../analytics";
+
 import type {
   ExcalidrawElement,
   OrderedExcalidrawElement,
-} from "@excalidraw/element/types";
-
-import { trackEvent } from "../analytics";
+} from "@nextcloud/excalidraw-element/types";
 
 import type { AppClassProperties, AppState } from "../types";
 import type {

@@ -1,9 +1,9 @@
 import { pointFrom } from "@excalidraw/math";
 import { vi } from "vitest";
 
-import type { ExcalidrawArrowElement } from "@excalidraw/element/types";
-
 import { convertToExcalidrawElements } from "./transform";
+
+import type { ExcalidrawArrowElement } from "@nextcloud/excalidraw-element/types";
 
 import type { ExcalidrawElementSkeleton } from "./transform";
 

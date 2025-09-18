@@ -4,32 +4,32 @@ import {
   pointFrom,
 } from "@excalidraw/math";
 
-import { getElementLineSegments } from "@excalidraw/element";
-import { LinearElementEditor } from "@excalidraw/element";
+import { getElementLineSegments } from "@nextcloud/excalidraw-element";
+import { LinearElementEditor } from "@nextcloud/excalidraw-element";
 import {
   isFrameLikeElement,
   isLinearElement,
   isTextElement,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { getFrameChildren } from "@excalidraw/element";
-import { selectGroupsForSelectedElements } from "@excalidraw/element";
+import { getFrameChildren } from "@nextcloud/excalidraw-element";
+import { selectGroupsForSelectedElements } from "@nextcloud/excalidraw-element";
 
-import { getContainerElement } from "@excalidraw/element";
+import { getContainerElement } from "@nextcloud/excalidraw-element";
 
 import { arrayToMap, easeOut, isShallowEqual } from "@excalidraw/common";
-
-import type {
-  ExcalidrawElement,
-  ExcalidrawLinearElement,
-  NonDeleted,
-} from "@excalidraw/element/types";
 
 import { type AnimationFrameHandler } from "../animation-frame-handler";
 
 import { AnimatedTrail } from "../animated-trail";
 
 import { getLassoSelectedElementIds } from "./utils";
+
+import type {
+  ExcalidrawElement,
+  ExcalidrawLinearElement,
+  NonDeleted,
+} from "@nextcloud/excalidraw-element/types";
 
 import type App from "../components/App";
 

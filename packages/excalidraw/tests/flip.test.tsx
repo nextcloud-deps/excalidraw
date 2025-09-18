@@ -4,19 +4,11 @@ import { ROUNDNESS, KEYS, arrayToMap, cloneJSON } from "@excalidraw/common";
 
 import { pointFrom, type Radians } from "@excalidraw/math";
 
-import { getBoundTextElementPosition } from "@excalidraw/element";
-import { getElementAbsoluteCoords } from "@excalidraw/element";
-import { newLinearElement } from "@excalidraw/element";
+import { getBoundTextElementPosition } from "@nextcloud/excalidraw-element";
+import { getElementAbsoluteCoords } from "@nextcloud/excalidraw-element";
+import { newLinearElement } from "@nextcloud/excalidraw-element";
 
 import type { LocalPoint } from "@excalidraw/math";
-
-import type {
-  ExcalidrawElement,
-  ExcalidrawImageElement,
-  ExcalidrawLinearElement,
-  ExcalidrawTextElementWithContainer,
-  FileId,
-} from "@excalidraw/element/types";
 
 import { actionFlipHorizontal, actionFlipVertical } from "../actions";
 import { createPasteEvent } from "../clipboard";
@@ -40,6 +32,14 @@ import {
 import { getTextEditor } from "./queries/dom";
 
 import { mockHTMLImageElement } from "./helpers/mocks";
+
+import type {
+  ExcalidrawElement,
+  ExcalidrawImageElement,
+  ExcalidrawLinearElement,
+  ExcalidrawTextElementWithContainer,
+  FileId,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { NormalizedZoomValue } from "../types";
 

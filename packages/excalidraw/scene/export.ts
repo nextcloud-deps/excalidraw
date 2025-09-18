@@ -15,39 +15,32 @@ import {
   toBrandedType,
 } from "@excalidraw/common";
 
-import { getCommonBounds, getElementAbsoluteCoords } from "@excalidraw/element";
+import {
+  getCommonBounds,
+  getElementAbsoluteCoords,
+} from "@nextcloud/excalidraw-element";
 
 import {
   getInitializedImageElements,
   updateImageCache,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { newElementWith } from "@excalidraw/element";
+import { newElementWith } from "@nextcloud/excalidraw-element";
 
-import { isFrameLikeElement } from "@excalidraw/element";
+import { isFrameLikeElement } from "@nextcloud/excalidraw-element";
 
 import {
   getElementsOverlappingFrame,
   getFrameLikeElements,
   getFrameLikeTitle,
   getRootElements,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { syncInvalidIndices } from "@excalidraw/element";
+import { syncInvalidIndices } from "@nextcloud/excalidraw-element";
 
 import { type Mutable } from "@excalidraw/common/utility-types";
 
-import { newTextElement } from "@excalidraw/element";
-
-import type { Bounds } from "@excalidraw/element";
-
-import type {
-  ExcalidrawElement,
-  ExcalidrawFrameLikeElement,
-  ExcalidrawTextElement,
-  NonDeletedExcalidrawElement,
-  NonDeletedSceneElementsMap,
-} from "@excalidraw/element/types";
+import { newTextElement } from "@nextcloud/excalidraw-element";
 
 import { getDefaultAppState } from "../appState";
 import { base64ToString, decode, encode, stringToBase64 } from "../data/encode";
@@ -57,6 +50,16 @@ import { Fonts } from "../fonts";
 
 import { renderStaticScene } from "../renderer/staticScene";
 import { renderSceneToSvg } from "../renderer/staticSvgScene";
+
+import type {
+  ExcalidrawElement,
+  ExcalidrawFrameLikeElement,
+  ExcalidrawTextElement,
+  NonDeletedExcalidrawElement,
+  NonDeletedSceneElementsMap,
+} from "@nextcloud/excalidraw-element/types";
+
+import type { Bounds } from "@nextcloud/excalidraw-element";
 
 import type { RenderableElementsMap } from "./types";
 

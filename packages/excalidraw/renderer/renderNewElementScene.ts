@@ -5,7 +5,7 @@ import {
   isInvisiblySmallElement,
   renderElement,
   shouldApplyFrameClip,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import { bootstrapCanvas, getNormalizedCanvasDimensions } from "./helpers";
 

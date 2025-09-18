@@ -1,13 +1,9 @@
 import { pointFrom, pointRotateRads } from "@excalidraw/math";
 import { useMemo } from "react";
 
-import { isTextElement } from "@excalidraw/element";
+import { isTextElement } from "@nextcloud/excalidraw-element";
 
-import { getCommonBounds } from "@excalidraw/element";
-
-import type { ElementsMap, ExcalidrawElement } from "@excalidraw/element/types";
-
-import type { Scene } from "@excalidraw/element";
+import { getCommonBounds } from "@nextcloud/excalidraw-element";
 
 import StatsDragInput from "./DragInput";
 import {
@@ -17,6 +13,13 @@ import {
   STEP_SIZE,
 } from "./utils";
 import { getElementsInAtomicUnit, moveElement } from "./utils";
+
+import type { Scene } from "@nextcloud/excalidraw-element";
+
+import type {
+  ElementsMap,
+  ExcalidrawElement,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { DragInputCallbackType } from "./DragInput";
 import type { AtomicUnit } from "./utils";

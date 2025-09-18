@@ -1,20 +1,23 @@
 import {
   getBoundTextElement,
   redrawTextBoundingBox,
-} from "@excalidraw/element";
-import { hasBoundTextElement, isTextElement } from "@excalidraw/element";
-
-import type {
-  ExcalidrawElement,
-  ExcalidrawTextElement,
-} from "@excalidraw/element/types";
-
-import type { Scene } from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
+import {
+  hasBoundTextElement,
+  isTextElement,
+} from "@nextcloud/excalidraw-element";
 
 import { fontSizeIcon } from "../icons";
 
 import StatsDragInput from "./DragInput";
 import { getStepSizedValue } from "./utils";
+
+import type { Scene } from "@nextcloud/excalidraw-element";
+
+import type {
+  ExcalidrawElement,
+  ExcalidrawTextElement,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { DragInputCallbackType } from "./DragInput";
 import type { AppState } from "../../types";

@@ -7,11 +7,11 @@ import {
   isLineElement,
   isTextBindableContainer,
   isTextElement,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import { getShortcutKey } from "@excalidraw/common";
 
-import { isNodeInFlowchart } from "@excalidraw/element";
+import { isNodeInFlowchart } from "@nextcloud/excalidraw-element";
 
 import { t } from "../i18n";
 import { isEraserActive } from "../appState";

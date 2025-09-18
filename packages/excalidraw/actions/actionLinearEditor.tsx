@@ -2,18 +2,13 @@ import {
   isElbowArrow,
   isLinearElement,
   isLineElement,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 import { arrayToMap, invariant } from "@excalidraw/common";
 
 import {
   toggleLinePolygonState,
   CaptureUpdateAction,
-} from "@excalidraw/element";
-
-import type {
-  ExcalidrawLinearElement,
-  ExcalidrawLineElement,
-} from "@excalidraw/element/types";
+} from "@nextcloud/excalidraw-element";
 
 import { DEFAULT_CATEGORIES } from "../components/CommandPalette/CommandPalette";
 import { ToolButton } from "../components/ToolButton";
@@ -25,6 +20,11 @@ import { ButtonIcon } from "../components/ButtonIcon";
 import { newElementWith } from "../../element/src/mutateElement";
 
 import { register } from "./register";
+
+import type {
+  ExcalidrawLinearElement,
+  ExcalidrawLineElement,
+} from "@nextcloud/excalidraw-element/types";
 
 export const actionToggleLinearEditor = register({
   name: "toggleLinearEditor",

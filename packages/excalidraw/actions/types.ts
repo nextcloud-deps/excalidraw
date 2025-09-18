@@ -1,9 +1,9 @@
 import type {
   ExcalidrawElement,
   OrderedExcalidrawElement,
-} from "@excalidraw/element/types";
+} from "@nextcloud/excalidraw-element/types";
 
-import type { CaptureUpdateActionType } from "@excalidraw/element";
+import type { CaptureUpdateActionType } from "@nextcloud/excalidraw-element";
 
 import type {
   AppClassProperties,

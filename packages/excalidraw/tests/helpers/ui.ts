@@ -4,8 +4,8 @@ import {
   elementCenterPoint,
   getCommonBounds,
   getElementPointsCoords,
-} from "@excalidraw/element";
-import { cropElement } from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
+import { cropElement } from "@nextcloud/excalidraw-element";
 import {
   getTransformHandles,
   getTransformHandlesFromCoords,
@@ -13,18 +13,23 @@ import {
   OMIT_SIDES_FOR_MULTIPLE_ELEMENTS,
   type TransformHandle,
   type TransformHandleDirection,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 import {
   isLinearElement,
   isFreeDrawElement,
   isTextElement,
   isFrameLikeElement,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 import { KEYS, arrayToMap } from "@excalidraw/common";
 
 import type { GlobalPoint, LocalPoint, Radians } from "@excalidraw/math";
 
-import type { TransformHandleType } from "@excalidraw/element";
+import { createTestHook } from "../../components/App";
+import { getTextEditor, TEXT_EDITOR_SELECTOR } from "../queries/dom";
+import { act, fireEvent, GlobalTestState, screen } from "../test-utils";
+
+import { API } from "./api";
+
 import type {
   ExcalidrawElement,
   ExcalidrawLinearElement,
@@ -37,13 +42,8 @@ import type {
   ExcalidrawTextElementWithContainer,
   ExcalidrawImageElement,
   ElementsMap,
-} from "@excalidraw/element/types";
-
-import { createTestHook } from "../../components/App";
-import { getTextEditor, TEXT_EDITOR_SELECTOR } from "../queries/dom";
-import { act, fireEvent, GlobalTestState, screen } from "../test-utils";
-
-import { API } from "./api";
+} from "@nextcloud/excalidraw-element/types";
+import type { TransformHandleType } from "@nextcloud/excalidraw-element";
 
 import type { ToolType } from "../../types";
 

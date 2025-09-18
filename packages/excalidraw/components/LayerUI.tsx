@@ -11,13 +11,11 @@ import {
   isShallowEqual,
 } from "@excalidraw/common";
 
-import { mutateElement } from "@excalidraw/element";
+import { mutateElement } from "@nextcloud/excalidraw-element";
 
-import { showSelectedShapeActions } from "@excalidraw/element";
+import { showSelectedShapeActions } from "@nextcloud/excalidraw-element";
 
-import { ShapeCache } from "@excalidraw/element";
-
-import type { NonDeletedExcalidrawElement } from "@excalidraw/element/types";
+import { ShapeCache } from "@nextcloud/excalidraw-element";
 
 import { actionToggleStats } from "../actions";
 import { trackEvent } from "../analytics";
@@ -66,6 +64,8 @@ import { LaserPointerButton } from "./LaserPointerButton";
 
 import "./LayerUI.scss";
 import "./Toolbar.scss";
+
+import type { NonDeletedExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { ActionManager } from "../actions/manager";
 

@@ -5,17 +5,11 @@ import { vi } from "vitest";
 
 import { setDateTimeForTests, reseed } from "@excalidraw/common";
 
-import { isInGroup } from "@excalidraw/element";
+import { isInGroup } from "@nextcloud/excalidraw-element";
 
-import { isTextElement } from "@excalidraw/element";
+import { isTextElement } from "@nextcloud/excalidraw-element";
 
 import type { Degrees } from "@excalidraw/math";
-
-import type {
-  ExcalidrawElement,
-  ExcalidrawLinearElement,
-  ExcalidrawTextElement,
-} from "@excalidraw/element/types";
 
 import { Excalidraw, getCommonBounds } from "../..";
 import { actionGroup } from "../../actions";
@@ -32,6 +26,12 @@ import {
 } from "../../tests/test-utils";
 
 import { getStepSizedValue } from "./utils";
+
+import type {
+  ExcalidrawElement,
+  ExcalidrawLinearElement,
+  ExcalidrawTextElement,
+} from "@nextcloud/excalidraw-element/types";
 
 const { h } = window;
 const mouse = new Pointer("mouse");

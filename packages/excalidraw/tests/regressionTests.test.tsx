@@ -5,8 +5,6 @@ import { FONT_FAMILY, CODES, KEYS, reseed } from "@excalidraw/common";
 
 import { setDateTimeForTests } from "@excalidraw/common";
 
-import type { ExcalidrawElement } from "@excalidraw/element/types";
-
 import { Excalidraw } from "../index";
 import * as StaticScene from "../renderer/staticScene";
 
@@ -21,6 +19,8 @@ import {
   togglePopover,
   unmountComponent,
 } from "./test-utils";
+
+import type { ExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 const { h } = window;
 

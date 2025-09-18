@@ -2,7 +2,7 @@ import {
   getCommonBounds,
   getElementsInGroup,
   selectGroupsFromGivenElements,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 import { sceneCoordsToViewportCoords } from "@excalidraw/common";
 
 import { flushSync } from "react-dom";

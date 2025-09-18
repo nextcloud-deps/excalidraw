@@ -2,8 +2,6 @@ import { useState, useRef, useEffect, useDeferredValue } from "react";
 
 import { EDITOR_LS_KEYS, debounce, isDevEnv } from "@excalidraw/common";
 
-import type { NonDeletedExcalidrawElement } from "@excalidraw/element/types";
-
 import { useApp } from "../App";
 import { ArrowRightIcon } from "../icons";
 import { EditorLocalStorage } from "../../data/EditorLocalStorage";
@@ -22,6 +20,8 @@ import {
 } from "./common";
 
 import "./MermaidToExcalidraw.scss";
+
+import type { NonDeletedExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { BinaryFiles } from "../../types";
 import type { MermaidToExcalidrawLibProps } from "./common";

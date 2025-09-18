@@ -5,11 +5,7 @@ import { normalizeLink, KEYS } from "@excalidraw/common";
 import {
   defaultGetElementLinkFromSelection,
   getLinkIdAndTypeFromSelection,
-} from "@excalidraw/element";
-
-import type { ExcalidrawElement } from "@excalidraw/element/types";
-
-import type { Scene } from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import { t } from "../i18n";
 import { getSelectedElements } from "../scene";
@@ -20,6 +16,10 @@ import { ToolButton } from "./ToolButton";
 import { TrashIcon } from "./icons";
 
 import "./ElementLinkDialog.scss";
+
+import type { Scene } from "@nextcloud/excalidraw-element";
+
+import type { ExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { AppProps, AppState, UIAppState } from "../types";
 const ElementLinkDialog = ({

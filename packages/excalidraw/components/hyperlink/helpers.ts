@@ -1,16 +1,16 @@
 import { pointFrom, pointRotateRads } from "@excalidraw/math";
 
 import { MIME_TYPES } from "@excalidraw/common";
-import { getElementAbsoluteCoords } from "@excalidraw/element";
-import { hitElementBoundingBox } from "@excalidraw/element";
+import { getElementAbsoluteCoords } from "@nextcloud/excalidraw-element";
+import { hitElementBoundingBox } from "@nextcloud/excalidraw-element";
 
 import type { GlobalPoint, Radians } from "@excalidraw/math";
 
-import type { Bounds } from "@excalidraw/element";
+import type { Bounds } from "@nextcloud/excalidraw-element";
 import type {
   ElementsMap,
   NonDeletedExcalidrawElement,
-} from "@excalidraw/element/types";
+} from "@nextcloud/excalidraw-element/types";
 
 import type { AppState, UIAppState } from "../../types";
 

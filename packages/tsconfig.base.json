@@ -15,6 +15,8 @@
       "@excalidraw/common/*": ["./common/src/*"],
       "@excalidraw/element": ["./element/src/index.ts"],
       "@excalidraw/element/*": ["./element/src/*"],
+      "@nextcloud/excalidraw-element": ["./element/src/index.ts"],
+      "@nextcloud/excalidraw-element/*": ["./element/src/*"],
       "@excalidraw/excalidraw": ["./excalidraw/index.tsx"],
       "@excalidraw/excalidraw/*": ["./excalidraw/*"],
       "@excalidraw/math": ["./math/src/index.ts"],

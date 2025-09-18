@@ -17,11 +17,9 @@ import {
   Emitter,
 } from "@excalidraw/common";
 
-import { hashElementsVersion, hashString } from "@excalidraw/element";
+import { hashElementsVersion, hashString } from "@nextcloud/excalidraw-element";
 
-import { getCommonBoundingBox } from "@excalidraw/element";
-
-import type { ExcalidrawElement } from "@excalidraw/element/types";
+import { getCommonBoundingBox } from "@nextcloud/excalidraw-element";
 
 import type { MaybePromise } from "@excalidraw/common/utility-types";
 
@@ -33,6 +31,8 @@ import { t } from "../i18n";
 
 import { loadLibraryFromBlob } from "./blob";
 import { restoreLibraryItems } from "./restore";
+
+import type { ExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type App from "../components/App";
 

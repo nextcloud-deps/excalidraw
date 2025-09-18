@@ -1,20 +1,16 @@
-import { getNonDeletedElements } from "@excalidraw/element";
+import { getNonDeletedElements } from "@nextcloud/excalidraw-element";
 
-import { isFrameLikeElement } from "@excalidraw/element";
+import { isFrameLikeElement } from "@nextcloud/excalidraw-element";
 
-import { updateFrameMembershipOfSelectedElements } from "@excalidraw/element";
+import { updateFrameMembershipOfSelectedElements } from "@nextcloud/excalidraw-element";
 
 import { KEYS, arrayToMap, getShortcutKey } from "@excalidraw/common";
 
-import { alignElements } from "@excalidraw/element";
+import { alignElements } from "@nextcloud/excalidraw-element";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
-import { getSelectedElementsByGroup } from "@excalidraw/element";
-
-import type { ExcalidrawElement } from "@excalidraw/element/types";
-
-import type { Alignment } from "@excalidraw/element";
+import { getSelectedElementsByGroup } from "@nextcloud/excalidraw-element";
 
 import { ToolButton } from "../components/ToolButton";
 import {
@@ -31,6 +27,10 @@ import { t } from "../i18n";
 import { isSomeElementSelected } from "../scene";
 
 import { register } from "./register";
+
+import type { Alignment } from "@nextcloud/excalidraw-element";
+
+import type { ExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { AppClassProperties, AppState, UIAppState } from "../types";
 

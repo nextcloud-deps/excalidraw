@@ -8,22 +8,18 @@ import {
   EVENT,
 } from "@excalidraw/common";
 
-import { mutateElement } from "@excalidraw/element";
-import { deepCopyElement } from "@excalidraw/element";
+import { mutateElement } from "@nextcloud/excalidraw-element";
+import { deepCopyElement } from "@nextcloud/excalidraw-element";
 import {
   isFrameLikeElement,
   isInitializedImageElement,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { getContainingFrame } from "@excalidraw/element";
+import { getContainingFrame } from "@nextcloud/excalidraw-element";
 
 import type { ValueOf } from "@excalidraw/common/utility-types";
 
 import type { IMAGE_MIME_TYPES, STRING_MIME_TYPES } from "@excalidraw/common";
-import type {
-  ExcalidrawElement,
-  NonDeletedExcalidrawElement,
-} from "@excalidraw/element/types";
 
 import { ExcalidrawError } from "./errors";
 import {
@@ -34,6 +30,11 @@ import {
 } from "./data/blob";
 
 import { tryParseSpreadsheet, VALID_SPREADSHEET } from "./charts";
+
+import type {
+  ExcalidrawElement,
+  NonDeletedExcalidrawElement,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { FileSystemHandle } from "./data/filesystem";
 

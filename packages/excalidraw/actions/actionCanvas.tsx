@@ -13,13 +13,14 @@ import {
   KEYS,
 } from "@excalidraw/common";
 
-import { getNonDeletedElements } from "@excalidraw/element";
-import { newElementWith } from "@excalidraw/element";
-import { getCommonBounds, type SceneBounds } from "@excalidraw/element";
+import { getNonDeletedElements } from "@nextcloud/excalidraw-element";
+import { newElementWith } from "@nextcloud/excalidraw-element";
+import {
+  getCommonBounds,
+  type SceneBounds,
+} from "@nextcloud/excalidraw-element";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
-
-import type { ExcalidrawElement } from "@excalidraw/element/types";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
 import {
   getDefaultAppState,
@@ -48,6 +49,8 @@ import { centerScrollOn } from "../scene/scroll";
 import { getStateForZoom } from "../scene/zoom";
 
 import { register } from "./register";
+
+import type { ExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { AppState, Offsets } from "../types";
 

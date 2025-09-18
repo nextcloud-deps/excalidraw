@@ -1,16 +1,16 @@
 import { isWindows, KEYS, matchKey, arrayToMap } from "@excalidraw/common";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
-import { orderByFractionalIndex } from "@excalidraw/element";
-
-import type { SceneElementsMap } from "@excalidraw/element/types";
+import { orderByFractionalIndex } from "@nextcloud/excalidraw-element";
 
 import { ToolButton } from "../components/ToolButton";
 import { UndoIcon, RedoIcon } from "../components/icons";
 import { HistoryChangedEvent } from "../history";
 import { useEmitter } from "../hooks/useEmitter";
 import { t } from "../i18n";
+
+import type { SceneElementsMap } from "@nextcloud/excalidraw-element/types";
 
 import type { History } from "../history";
 import type { AppClassProperties, AppState } from "../types";

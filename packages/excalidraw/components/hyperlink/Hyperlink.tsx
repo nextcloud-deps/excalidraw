@@ -10,13 +10,16 @@ import {
 
 import { EVENT, HYPERLINK_TOOLTIP_DELAY, KEYS } from "@excalidraw/common";
 
-import { getElementAbsoluteCoords } from "@excalidraw/element";
+import { getElementAbsoluteCoords } from "@nextcloud/excalidraw-element";
 
-import { hitElementBoundingBox } from "@excalidraw/element";
+import { hitElementBoundingBox } from "@nextcloud/excalidraw-element";
 
-import { isElementLink } from "@excalidraw/element";
+import { isElementLink } from "@nextcloud/excalidraw-element";
 
-import { getEmbedLink, embeddableURLValidator } from "@excalidraw/element";
+import {
+  getEmbedLink,
+  embeddableURLValidator,
+} from "@nextcloud/excalidraw-element";
 
 import {
   sceneCoordsToViewportCoords,
@@ -26,15 +29,7 @@ import {
   normalizeLink,
 } from "@excalidraw/common";
 
-import { isEmbeddableElement } from "@excalidraw/element";
-
-import type { Scene } from "@excalidraw/element";
-
-import type {
-  ElementsMap,
-  ExcalidrawEmbeddableElement,
-  NonDeletedExcalidrawElement,
-} from "@excalidraw/element/types";
+import { isEmbeddableElement } from "@nextcloud/excalidraw-element";
 
 import { trackEvent } from "../../analytics";
 import { getTooltipDiv, updateTooltipPosition } from "../../components/Tooltip";
@@ -49,6 +44,14 @@ import { getSelectedElements } from "../../scene";
 import { getLinkHandleFromCoords } from "./helpers";
 
 import "./Hyperlink.scss";
+
+import type { Scene } from "@nextcloud/excalidraw-element";
+
+import type {
+  ElementsMap,
+  ExcalidrawEmbeddableElement,
+  NonDeletedExcalidrawElement,
+} from "@nextcloud/excalidraw-element/types";
 
 import type { AppState, ExcalidrawProps, UIAppState } from "../../types";
 

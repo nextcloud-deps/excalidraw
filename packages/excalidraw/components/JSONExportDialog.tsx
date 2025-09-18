@@ -2,8 +2,6 @@ import React from "react";
 
 import { getFrame } from "@excalidraw/common";
 
-import type { NonDeletedExcalidrawElement } from "@excalidraw/element/types";
-
 import { actionSaveFileToDisk } from "../actions/actionExport";
 
 import { trackEvent } from "../analytics";
@@ -16,6 +14,8 @@ import { ToolButton } from "./ToolButton";
 import { exportToFileIcon, LinkIcon } from "./icons";
 
 import "./ExportDialog.scss";
+
+import type { NonDeletedExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { ActionManager } from "../actions/manager";
 

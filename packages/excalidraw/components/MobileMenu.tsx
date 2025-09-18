@@ -1,8 +1,6 @@
 import React from "react";
 
-import { showSelectedShapeActions } from "@excalidraw/element";
-
-import type { NonDeletedExcalidrawElement } from "@excalidraw/element/types";
+import { showSelectedShapeActions } from "@nextcloud/excalidraw-element";
 
 import { isHandToolActive } from "../appState";
 import { useTunnels } from "../context/tunnels";
@@ -19,6 +17,8 @@ import { LockButton } from "./LockButton";
 import { PenModeButton } from "./PenModeButton";
 import { Section } from "./Section";
 import Stack from "./Stack";
+
+import type { NonDeletedExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { ActionManager } from "../actions/manager";
 import type {

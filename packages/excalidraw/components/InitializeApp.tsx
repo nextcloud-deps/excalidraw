@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import type { Theme } from "@excalidraw/element/types";
-
 import { defaultLang, languages, setLanguage } from "../i18n";
 
 import { LoadingMessage } from "./LoadingMessage";
+
+import type { Theme } from "@nextcloud/excalidraw-element/types";
 
 import type { Language } from "../i18n";
 

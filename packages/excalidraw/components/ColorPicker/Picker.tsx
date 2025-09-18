@@ -8,8 +8,6 @@ import {
   KEYS,
 } from "@excalidraw/common";
 
-import type { ExcalidrawElement } from "@excalidraw/element/types";
-
 import type { ColorPaletteCustom } from "@excalidraw/common";
 
 import { useAtom } from "../../editor-jotai";
@@ -26,6 +24,8 @@ import {
   isCustomColor,
 } from "./colorPickerUtils";
 import { colorPickerKeyNavHandler } from "./keyboardNavHandlers";
+
+import type { ExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { ColorPickerType } from "./colorPickerUtils";
 

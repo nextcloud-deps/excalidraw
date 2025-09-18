@@ -7,7 +7,7 @@ import React, {
   type KeyboardEventHandler,
 } from "react";
 
-import { type FontFamilyValues } from "@excalidraw/element/types";
+import { type FontFamilyValues } from "@nextcloud/excalidraw-element/types";
 
 import {
   arrayToList,

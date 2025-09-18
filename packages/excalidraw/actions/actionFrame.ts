@@ -1,28 +1,28 @@
-import { getNonDeletedElements } from "@excalidraw/element";
-import { mutateElement } from "@excalidraw/element";
-import { newFrameElement } from "@excalidraw/element";
-import { isFrameLikeElement } from "@excalidraw/element";
+import { getNonDeletedElements } from "@nextcloud/excalidraw-element";
+import { mutateElement } from "@nextcloud/excalidraw-element";
+import { newFrameElement } from "@nextcloud/excalidraw-element";
+import { isFrameLikeElement } from "@nextcloud/excalidraw-element";
 import {
   addElementsToFrame,
   removeAllElementsFromFrame,
-} from "@excalidraw/element";
-import { getFrameChildren } from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
+import { getFrameChildren } from "@nextcloud/excalidraw-element";
 
 import { KEYS, updateActiveTool } from "@excalidraw/common";
 
-import { getElementsInGroup } from "@excalidraw/element";
+import { getElementsInGroup } from "@nextcloud/excalidraw-element";
 
-import { getCommonBounds } from "@excalidraw/element";
+import { getCommonBounds } from "@nextcloud/excalidraw-element";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
-
-import type { ExcalidrawElement } from "@excalidraw/element/types";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
 import { setCursorForShape } from "../cursor";
 import { frameToolIcon } from "../components/icons";
 import { getSelectedElements } from "../scene";
 
 import { register } from "./register";
+
+import type { ExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { AppClassProperties, AppState, UIAppState } from "../types";
 

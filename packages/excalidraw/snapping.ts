@@ -12,25 +12,25 @@ import {
   getCommonBounds,
   getDraggedElementsBounds,
   getElementAbsoluteCoords,
-} from "@excalidraw/element";
-import { isBoundToContainer } from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
+import { isBoundToContainer } from "@nextcloud/excalidraw-element";
 
-import { getMaximumGroups } from "@excalidraw/element";
+import { getMaximumGroups } from "@nextcloud/excalidraw-element";
 
 import {
   getSelectedElements,
   getVisibleAndNonSelectedElements,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
 import type { InclusiveRange } from "@excalidraw/math";
 
-import type { Bounds } from "@excalidraw/element";
-import type { MaybeTransformHandleType } from "@excalidraw/element";
+import type { Bounds } from "@nextcloud/excalidraw-element";
+import type { MaybeTransformHandleType } from "@nextcloud/excalidraw-element";
 import type {
   ElementsMap,
   ExcalidrawElement,
   NonDeletedExcalidrawElement,
-} from "@excalidraw/element/types";
+} from "@nextcloud/excalidraw-element/types";
 
 import type {
   AppClassProperties,

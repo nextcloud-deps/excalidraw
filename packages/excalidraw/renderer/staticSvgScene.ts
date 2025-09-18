@@ -9,37 +9,43 @@ import {
   getVerticalOffset,
 } from "@excalidraw/common";
 import { normalizeLink, toValidURL } from "@excalidraw/common";
-import { hashString } from "@excalidraw/element";
-import { getUncroppedWidthAndHeight } from "@excalidraw/element";
+import { hashString } from "@nextcloud/excalidraw-element";
+import { getUncroppedWidthAndHeight } from "@nextcloud/excalidraw-element";
 import {
   createPlaceholderEmbeddableLabel,
   getEmbedLink,
-} from "@excalidraw/element";
-import { LinearElementEditor } from "@excalidraw/element";
-import { getBoundTextElement, getContainerElement } from "@excalidraw/element";
-import { getLineHeightInPx } from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
+import { LinearElementEditor } from "@nextcloud/excalidraw-element";
+import {
+  getBoundTextElement,
+  getContainerElement,
+} from "@nextcloud/excalidraw-element";
+import { getLineHeightInPx } from "@nextcloud/excalidraw-element";
 import {
   isArrowElement,
   isIframeLikeElement,
   isInitializedImageElement,
   isTextElement,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { getContainingFrame } from "@excalidraw/element";
+import { getContainingFrame } from "@nextcloud/excalidraw-element";
 
-import { getCornerRadius, isPathALoop } from "@excalidraw/element";
+import { getCornerRadius, isPathALoop } from "@nextcloud/excalidraw-element";
 
-import { ShapeCache } from "@excalidraw/element";
+import { ShapeCache } from "@nextcloud/excalidraw-element";
 
-import { getFreeDrawSvgPath, IMAGE_INVERT_FILTER } from "@excalidraw/element";
+import {
+  getFreeDrawSvgPath,
+  IMAGE_INVERT_FILTER,
+} from "@nextcloud/excalidraw-element";
 
-import { getElementAbsoluteCoords } from "@excalidraw/element";
+import { getElementAbsoluteCoords } from "@nextcloud/excalidraw-element";
 
 import type {
   ExcalidrawElement,
   ExcalidrawTextElementWithContainer,
   NonDeletedExcalidrawElement,
-} from "@excalidraw/element/types";
+} from "@nextcloud/excalidraw-element/types";
 
 import type { RenderableElementsMap, SVGRenderConfig } from "../scene/types";
 import type { AppState, BinaryFiles } from "../types";

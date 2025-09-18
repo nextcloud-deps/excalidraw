@@ -18,16 +18,19 @@ import {
   normalizeLink,
   getLineHeight,
 } from "@excalidraw/common";
-import { getNonDeletedElements, isValidPolygon } from "@excalidraw/element";
-import { normalizeFixedPoint } from "@excalidraw/element";
+import {
+  getNonDeletedElements,
+  isValidPolygon,
+} from "@nextcloud/excalidraw-element";
+import { normalizeFixedPoint } from "@nextcloud/excalidraw-element";
 import {
   updateElbowArrowPoints,
   validateElbowPoints,
-} from "@excalidraw/element";
-import { LinearElementEditor } from "@excalidraw/element";
-import { bumpVersion } from "@excalidraw/element";
-import { getContainerElement } from "@excalidraw/element";
-import { detectLineHeight } from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
+import { LinearElementEditor } from "@nextcloud/excalidraw-element";
+import { bumpVersion } from "@nextcloud/excalidraw-element";
+import { getContainerElement } from "@nextcloud/excalidraw-element";
+import { detectLineHeight } from "@nextcloud/excalidraw-element";
 import {
   isArrowBoundToElement,
   isArrowElement,
@@ -37,17 +40,27 @@ import {
   isLineElement,
   isTextElement,
   isUsingAdaptiveRadius,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { syncInvalidIndices } from "@excalidraw/element";
+import { syncInvalidIndices } from "@nextcloud/excalidraw-element";
 
-import { refreshTextDimensions } from "@excalidraw/element";
+import { refreshTextDimensions } from "@nextcloud/excalidraw-element";
 
-import { getNormalizedDimensions } from "@excalidraw/element";
+import { getNormalizedDimensions } from "@nextcloud/excalidraw-element";
 
-import { isInvisiblySmallElement } from "@excalidraw/element";
+import { isInvisiblySmallElement } from "@nextcloud/excalidraw-element";
 
 import type { LocalPoint, Radians } from "@excalidraw/math";
+
+import type { MarkOptional, Mutable } from "@excalidraw/common/utility-types";
+
+import { getDefaultAppState } from "../appState";
+
+import {
+  getNormalizedGridSize,
+  getNormalizedGridStep,
+  getNormalizedZoom,
+} from "../scene";
 
 import type {
   ExcalidrawArrowElement,
@@ -63,17 +76,7 @@ import type {
   OrderedExcalidrawElement,
   PointBinding,
   StrokeRoundness,
-} from "@excalidraw/element/types";
-
-import type { MarkOptional, Mutable } from "@excalidraw/common/utility-types";
-
-import { getDefaultAppState } from "../appState";
-
-import {
-  getNormalizedGridSize,
-  getNormalizedGridStep,
-  getNormalizedZoom,
-} from "../scene";
+} from "@nextcloud/excalidraw-element/types";
 
 import type { AppState, BinaryFiles, LibraryItem } from "../types";
 import type { ImportedDataState, LegacyAppState } from "./types";

@@ -9,8 +9,6 @@ import {
   cloneJSON,
 } from "@excalidraw/common";
 
-import type { NonDeletedExcalidrawElement } from "@excalidraw/element/types";
-
 import {
   actionExportWithDarkMode,
   actionChangeExportBackground,
@@ -35,6 +33,8 @@ import { Tooltip } from "./Tooltip";
 import { FilledButton } from "./FilledButton";
 
 import "./ImageExportDialog.scss";
+
+import type { NonDeletedExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type { ActionManager } from "../actions/manager";
 

@@ -2,8 +2,6 @@ import clsx from "clsx";
 
 import { THEME } from "@excalidraw/common";
 
-import type { Theme } from "@excalidraw/element/types";
-
 import {
   actionClearCanvas,
   actionLoadScene,
@@ -46,6 +44,8 @@ import {
 } from "../icons";
 
 import "./DefaultItems.scss";
+
+import type { Theme } from "@nextcloud/excalidraw-element/types";
 
 export const LoadScene = () => {
   const { t } = useI18n();

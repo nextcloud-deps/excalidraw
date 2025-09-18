@@ -1,6 +1,6 @@
 import { CODES, KEYS } from "@excalidraw/common";
 
-import { CaptureUpdateAction } from "@excalidraw/element";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
 import { coffeeIcon } from "../components/icons";
 

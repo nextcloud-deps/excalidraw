@@ -2,8 +2,6 @@ import React from "react";
 
 import { SVG_NS } from "@excalidraw/common";
 
-import type { FileId } from "@excalidraw/element/types";
-
 import { getDefaultAppState } from "../appState";
 import { getDataURL } from "../data/blob";
 import { encodePngMetadata } from "../data/image";
@@ -17,6 +15,8 @@ import {
 
 import { API } from "./helpers/api";
 import { render, waitFor } from "./test-utils";
+
+import type { FileId } from "@nextcloud/excalidraw-element/types";
 
 const { h } = window;
 

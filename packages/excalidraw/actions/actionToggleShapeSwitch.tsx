@@ -1,6 +1,4 @@
-import { CaptureUpdateAction } from "@excalidraw/element";
-
-import type { ExcalidrawElement } from "@excalidraw/element/types";
+import { CaptureUpdateAction } from "@nextcloud/excalidraw-element";
 
 import {
   getConversionTypeFromElements,
@@ -9,6 +7,8 @@ import {
 import { editorJotaiStore } from "../editor-jotai";
 
 import { register } from "./register";
+
+import type { ExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 export const actionToggleShapeSwitch = register({
   name: "toggleShapeSwitch",

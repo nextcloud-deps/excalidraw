@@ -4,15 +4,13 @@ import throttle from "lodash.throttle";
 import { useEffect, useMemo, useState, memo } from "react";
 
 import { STATS_PANELS } from "@excalidraw/common";
-import { getCommonBounds } from "@excalidraw/element";
-import { getUncroppedWidthAndHeight } from "@excalidraw/element";
-import { isElbowArrow, isImageElement } from "@excalidraw/element";
+import { getCommonBounds } from "@nextcloud/excalidraw-element";
+import { getUncroppedWidthAndHeight } from "@nextcloud/excalidraw-element";
+import { isElbowArrow, isImageElement } from "@nextcloud/excalidraw-element";
 
-import { frameAndChildrenSelectedTogether } from "@excalidraw/element";
+import { frameAndChildrenSelectedTogether } from "@nextcloud/excalidraw-element";
 
-import { elementsAreInSameGroup } from "@excalidraw/element";
-
-import type { NonDeletedExcalidrawElement } from "@excalidraw/element/types";
+import { elementsAreInSameGroup } from "@nextcloud/excalidraw-element";
 
 import { t } from "../../i18n";
 import { isGridModeEnabled } from "../../snapping";
@@ -33,6 +31,8 @@ import Position from "./Position";
 import { getAtomicUnits } from "./utils";
 
 import "./Stats.scss";
+
+import type { NonDeletedExcalidrawElement } from "@nextcloud/excalidraw-element/types";
 
 import type {
   AppClassProperties,

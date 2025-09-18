@@ -17,11 +17,19 @@ import {
   newLinearElement,
   newMagicFrameElement,
   newTextElement,
-} from "@excalidraw/element";
+} from "@nextcloud/excalidraw-element";
 
-import { isLinearElementType } from "@excalidraw/element";
-import { getSelectedElements } from "@excalidraw/element";
-import { selectGroupsForSelectedElements } from "@excalidraw/element";
+import { isLinearElementType } from "@nextcloud/excalidraw-element";
+import { getSelectedElements } from "@nextcloud/excalidraw-element";
+import { selectGroupsForSelectedElements } from "@nextcloud/excalidraw-element";
+
+
+import type { Mutable } from "@excalidraw/common/utility-types";
+
+import { getMimeType } from "../../data/blob";
+import { createTestHook } from "../../components/App";
+import { getDefaultAppState } from "../../appState";
+import { GlobalTestState, createEvent, fireEvent, act } from "../test-utils";
 
 import type {
   ExcalidrawElement,
@@ -37,14 +45,7 @@ import type {
   ExcalidrawElbowArrowElement,
   ExcalidrawArrowElement,
   FixedSegment,
-} from "@excalidraw/element/types";
-
-import type { Mutable } from "@excalidraw/common/utility-types";
-
-import { getMimeType } from "../../data/blob";
-import { createTestHook } from "../../components/App";
-import { getDefaultAppState } from "../../appState";
-import { GlobalTestState, createEvent, fireEvent, act } from "../test-utils";
+} from "@nextcloud/excalidraw-element/types";
 
 import type { Action } from "../../actions/types";
 import type App from "../../components/App";
