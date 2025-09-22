@@ -11,9 +11,9 @@ import {
   isWritableElement,
 } from "@excalidraw/common";
 
-import { actionToggleShapeSwitch } from "@excalidraw/excalidraw/actions/actionToggleShapeSwitch";
-
 import type { MarkRequired } from "@excalidraw/common/utility-types";
+
+import { actionToggleShapeSwitch } from "../../actions/actionToggleShapeSwitch";
 
 import {
   actionClearCanvas,

@@ -19,7 +19,7 @@ import {
 
 import { isTextElement } from "@nextcloud/excalidraw-element";
 
-import { getCommonBounds } from "@excalidraw/utils";
+import { getCommonBounds } from "@nextcloud/excalidraw-element";
 
 import DragInput from "./DragInput";
 import { getAtomicUnits, getStepSizedValue, isPropertyEditable } from "./utils";

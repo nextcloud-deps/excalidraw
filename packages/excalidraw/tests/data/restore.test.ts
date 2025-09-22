@@ -8,11 +8,11 @@ import * as sizeHelpers from "@nextcloud/excalidraw-element";
 
 import type { LocalPoint } from "@excalidraw/math";
 
-import type { NormalizedZoomValue } from "@excalidraw/excalidraw/types";
-
 import { API } from "../helpers/api";
 import * as restore from "../../data/restore";
 import { getDefaultAppState } from "../../appState";
+
+import type { NormalizedZoomValue } from "@nextcloud/excalidraw/types";
 
 import type {
   ExcalidrawArrowElement,
