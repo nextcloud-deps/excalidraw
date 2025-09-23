@@ -2475,6 +2475,9 @@ class App extends React.Component<AppProps, AppState> {
     });
 
     this.scene.onUpdate(this.triggerRender);
+    if (this.props.beforeElementCreated) {
+      this.scene.beforeElementCreated(this.props.beforeElementCreated);
+    }
     this.addEventListeners();
 
     if (this.props.autoFocus && this.excalidrawContainerRef.current) {

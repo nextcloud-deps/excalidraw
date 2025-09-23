@@ -22,6 +22,7 @@ polyfill();
 const ExcalidrawBase = (props: ExcalidrawProps) => {
   const {
     onChange,
+    beforeElementCreated,
     initialData,
     excalidrawAPI,
     isCollaborating = false,
@@ -112,6 +113,7 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
       <InitializeApp langCode={langCode} theme={theme}>
         <App
           onChange={onChange}
+          beforeElementCreated={beforeElementCreated}
           initialData={initialData}
           excalidrawAPI={excalidrawAPI}
           isCollaborating={isCollaborating}

@@ -32,6 +32,10 @@ type ElementKey = ExcalidrawElement | ElementIdKey;
 
 type SceneStateCallback = () => void;
 type SceneStateCallbackRemover = () => void;
+type BeforeElementCreatedCallback = (
+  el: ExcalidrawElement,
+) => ExcalidrawElement;
+type BeforeElementCreatedCallbackRemover = () => void;
 
 type SelectionHash = string & { __brand: "selectionHash" };
 
@@ -140,6 +144,8 @@ class Scene {
   // ---------------------------------------------------------------------------
 
   private callbacks: Set<SceneStateCallback> = new Set();
+  private beforeElementCreatedCallbacks: Set<BeforeElementCreatedCallback> =
+    new Set();
 
   private nonDeletedElements: readonly Ordered<NonDeletedExcalidrawElement>[] =
     [];
@@ -323,6 +329,21 @@ class Scene {
     }
   }
 
+  beforeElementCreated(
+    cb: BeforeElementCreatedCallback,
+  ): BeforeElementCreatedCallbackRemover {
+    if (this.beforeElementCreatedCallbacks.has(cb)) {
+      throw new Error();
+    }
+    this.beforeElementCreatedCallbacks.add(cb);
+    return () => {
+      if (!this.beforeElementCreatedCallbacks.has(cb)) {
+        throw new Error();
+      }
+      this.beforeElementCreatedCallbacks.delete(cb);
+    };
+  }
+
   onUpdate(cb: SceneStateCallback): SceneStateCallbackRemover {
     if (this.callbacks.has(cb)) {
       throw new Error();
@@ -360,6 +381,9 @@ class Scene {
   }
 
   insertElementAtIndex(element: ExcalidrawElement, index: number) {
+    for (const callback of Array.from(this.beforeElementCreatedCallbacks)) {
+      element = callback(element);
+    }
     if (!Number.isFinite(index) || index < 0) {
       throw new Error(
         "insertElementAtIndex can only be called with index >= 0",

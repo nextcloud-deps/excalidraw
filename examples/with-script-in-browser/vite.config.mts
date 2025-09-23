@@ -8,6 +8,18 @@ export default defineConfig({
     open: true,
   },
   publicDir: "public",
+  resolve: {
+    alias: [
+      {
+        find: /^@excalidraw\/element(.*)$/,
+        replacement: "@nextcloud/excalidraw-element$1",
+      },
+      {
+        find: /^@excalidraw\/excalidraw(.*)$/,
+        replacement: "@nextcloud/excalidraw$1",
+      },
+    ],
+  },
   optimizeDeps: {
     esbuildOptions: {
       // Bumping to 2022 due to "Arbitrary module namespace identifier names" not being

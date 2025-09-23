@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import ExampleSidebar from "./sidebar/ExampleSidebar";
 
-import type * as TExcalidraw from "@excalidraw/excalidraw";
+import type * as TExcalidraw from "@nextcloud/excalidraw";
 
 import { nanoid } from "nanoid";
 
@@ -35,6 +35,7 @@ import type {
   PointerDownState as ExcalidrawPointerDownState,
 } from "@excalidraw/excalidraw/types";
 import type {
+  ExcalidrawElement,
   NonDeletedExcalidrawElement,
   Theme,
 } from "@excalidraw/excalidraw/element/types";
@@ -185,6 +186,20 @@ export default function ExampleApp({
           state: AppState,
         ) => {
           console.info("Elements :", elements, "State : ", state);
+        },
+        beforeElementCreated: (el: ExcalidrawElement) => {
+          const newel = {
+            ...el,
+          };
+
+          if (el.customData) {
+            el.customData.createdBy = "test";
+          } else {
+            el.customData = { createdBy: "test" };
+          }
+          console.log("DONE");
+          console.log(el);
+          return el;
         },
         onPointerUpdate: (payload: {
           pointer: { x: number; y: number };
