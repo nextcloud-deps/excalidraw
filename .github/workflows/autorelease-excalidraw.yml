@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - release
+      - release-base-0.18.0
 
 jobs:
   Auto-release-excalidraw-next:
