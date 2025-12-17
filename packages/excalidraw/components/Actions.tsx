@@ -392,7 +392,7 @@ export const ShapesSwitcher = ({
           <DropdownMenu.Item
             onSelect={() => app.setOpenDialog({ name: "ttd", tab: "mermaid" })}
             icon={mermaidLogoIcon}
-            data-testid="toolbar-embeddable"
+            data-testid="toolbar-mermaid"
           >
             {t("toolBar.mermaidToExcalidraw")}
           </DropdownMenu.Item>
