@@ -1,5 +1,5 @@
 import { coffeeIcon } from "../components/icons";
-import { CODES, KEYS } from "../keys";
+import { KEYS, matchKey } from "../keys";
 import { CaptureUpdateAction } from "../store";
 import { register } from "./register";
 
@@ -27,5 +27,5 @@ export const actionToggleZenMode = register({
     return typeof appProps.zenModeEnabled === "undefined";
   },
   keyTest: (event) =>
-    !event[KEYS.CTRL_OR_CMD] && event.altKey && event.code === CODES.Z,
+    !event[KEYS.CTRL_OR_CMD] && event.altKey && matchKey(event, KEYS.Z),
 });

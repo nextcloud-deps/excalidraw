@@ -9,6 +9,7 @@ import { ExternalLinkIcon, GithubIcon, youtubeIcon } from "./icons";
 import { probablySupportsClipboardBlob } from "../clipboard";
 import { isDarwin, isFirefox, isWindows } from "../constants";
 import { getShortcutFromShortcutName } from "../actions/shortcuts";
+import { useAppProps } from "./App";
 
 const Header = () => (
   <div className="HelpDialog__header">
@@ -123,6 +124,10 @@ export const HelpDialog = ({ onClose }: { onClose?: () => void }) => {
       onClose();
     }
   }, [onClose]);
+  const appProps = useAppProps();
+  const toggleThemeEnabled = Boolean(
+    appProps.UIOptions?.canvasActions?.toggleTheme,
+  );
 
   return (
     <>
@@ -291,10 +296,12 @@ export const HelpDialog = ({ onClose }: { onClose?: () => void }) => {
               label={t("labels.viewMode")}
               shortcuts={[getShortcutKey("Alt+R")]}
             />
-            <Shortcut
-              label={t("labels.toggleTheme")}
-              shortcuts={[getShortcutKey("Alt+Shift+D")]}
-            />
+            {toggleThemeEnabled && (
+              <Shortcut
+                label={t("labels.toggleTheme")}
+                shortcuts={[getShortcutKey("Alt+Shift+D")]}
+              />
+            )}
             <Shortcut
               label={t("stats.fullTitle")}
               shortcuts={[getShortcutKey("Alt+/")]}
@@ -307,7 +314,7 @@ export const HelpDialog = ({ onClose }: { onClose?: () => void }) => {
               label={t("commandPalette.title")}
               shortcuts={
                 isFirefox
-                  ? [getShortcutFromShortcutName("commandPalette")]
+                  ? [getShortcutFromShortcutName("commandPalette", 1)]
                   : [
                       getShortcutFromShortcutName("commandPalette"),
                       getShortcutFromShortcutName("commandPalette", 1),
