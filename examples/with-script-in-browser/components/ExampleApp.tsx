@@ -188,17 +188,11 @@ export default function ExampleApp({
           console.info("Elements :", elements, "State : ", state);
         },
         beforeElementCreated: (el: ExcalidrawElement) => {
-          const newel = {
-            ...el,
-          };
-
           if (el.customData) {
             el.customData.createdBy = "test";
           } else {
             el.customData = { createdBy: "test" };
           }
-          console.log("DONE");
-          console.log(el);
           return el;
         },
         onPointerUpdate: (payload: {
