@@ -21,6 +21,8 @@ export const actionToggleStats = register({
     };
   },
   checked: (appState) => appState.stats.open,
-  keyTest: (event) =>
-    !event[KEYS.CTRL_OR_CMD] && event.altKey && event.code === CODES.SLASH,
+  keyTest: (event) => {
+    const isSlashKey = event.key === KEYS.SLASH || event.code === CODES.SLASH;
+    return !event[KEYS.CTRL_OR_CMD] && event.altKey && isSlashKey;
+  },
 });
