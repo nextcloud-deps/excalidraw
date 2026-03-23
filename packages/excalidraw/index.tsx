@@ -48,6 +48,8 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
     onPointerUp,
     onScrollChange,
     onDuplicate,
+    customCommandPaletteItems,
+    mountCommandPalette,
     children,
     validateEmbeddable,
     renderEmbeddable,
@@ -140,6 +142,8 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
           onPointerUp={onPointerUp}
           onScrollChange={onScrollChange}
           onDuplicate={onDuplicate}
+          customCommandPaletteItems={customCommandPaletteItems}
+          mountCommandPalette={mountCommandPalette}
           validateEmbeddable={validateEmbeddable}
           renderEmbeddable={renderEmbeddable}
           aiEnabled={aiEnabled !== false}

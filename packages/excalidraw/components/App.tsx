@@ -1606,6 +1606,10 @@ class App extends React.Component<AppProps, AppState> {
                           generateLinkForSelection={
                             this.props.generateLinkForSelection
                           }
+                          customCommandPaletteItems={
+                            this.props.customCommandPaletteItems
+                          }
+                          mountCommandPalette={this.props.mountCommandPalette}
                         >
                           {this.props.children}
                         </LayerUI>
@@ -4220,7 +4224,7 @@ class App extends React.Component<AppProps, AppState> {
       ) {
         this.setToast({
           message: t("commandPalette.shortcutHint", {
-            shortcut: getShortcutFromShortcutName("commandPalette"),
+            shortcut: getShortcutFromShortcutName("commandPalette", 1),
           }),
         });
         event.preventDefault();

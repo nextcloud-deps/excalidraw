@@ -75,25 +75,25 @@ const shortcutMap: Record<ShortcutName, string[]> = {
     getShortcutKey("CtrlOrCmd+D"),
     getShortcutKey(`Alt+${t("helpDialog.drag")}`),
   ],
-  sendBackward: [getShortcutKey("CtrlOrCmd+[")],
-  bringForward: [getShortcutKey("CtrlOrCmd+]")],
+  sendBackward: [getShortcutKey("CtrlOrCmd+Left bracket")],
+  bringForward: [getShortcutKey("CtrlOrCmd+Right bracket")],
   sendToBack: [
     isDarwin
-      ? getShortcutKey("CtrlOrCmd+Alt+[")
-      : getShortcutKey("CtrlOrCmd+Shift+["),
+      ? getShortcutKey("CtrlOrCmd+Alt+Left bracket")
+      : getShortcutKey("CtrlOrCmd+Shift+Left bracket"),
   ],
   bringToFront: [
     isDarwin
-      ? getShortcutKey("CtrlOrCmd+Alt+]")
-      : getShortcutKey("CtrlOrCmd+Shift+]"),
+      ? getShortcutKey("CtrlOrCmd+Alt+Right bracket")
+      : getShortcutKey("CtrlOrCmd+Shift+Right bracket"),
   ],
   copyAsPng: [getShortcutKey("Shift+Alt+C")],
   group: [getShortcutKey("CtrlOrCmd+G")],
   ungroup: [getShortcutKey("CtrlOrCmd+Shift+G")],
-  gridMode: [getShortcutKey("CtrlOrCmd+'")],
+  gridMode: [getShortcutKey("CtrlOrCmd+Quote")],
   zenMode: [getShortcutKey("Alt+Z")],
   objectsSnapMode: [getShortcutKey("Alt+S")],
-  stats: [getShortcutKey("Alt+/")],
+  stats: [getShortcutKey("Alt+Slash")],
   addToLibrary: [],
   flipHorizontal: [getShortcutKey("Shift+H")],
   flipVertical: [getShortcutKey("Shift+V")],

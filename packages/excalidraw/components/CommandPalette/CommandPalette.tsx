@@ -589,6 +589,17 @@ function CommandPaletteInner({
     Record<string, CommandPaletteItem[]>
   >({});
 
+  useEffect(() => {
+    if (uiAppState.openDialog?.name !== "commandPalette") {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      inputRef.current?.focus();
+      inputRef.current?.select();
+    });
+  }, [uiAppState.openDialog?.name]);
+
   const closeCommandPalette = (cb?: () => void) => {
     setAppState(
       {
@@ -636,10 +647,22 @@ function CommandPaletteInner({
   );
 
   const handleKeyDown = useStableCallback((event: KeyboardEvent) => {
+    const isWritingTarget = isWritableElement(event.target);
+    const isPrintableKey =
+      event.key.length === 1 &&
+      !event.altKey &&
+      !event.ctrlKey &&
+      !event.metaKey;
+
+    if (event.key === KEYS.ESCAPE) {
+      event.preventDefault();
+      event.stopPropagation();
+      closeCommandPalette();
+      return;
+    }
+
     const ignoreAlphanumerics =
-      isWritableElement(event.target) ||
-      isCommandPaletteToggleShortcut(event) ||
-      event.key === KEYS.ESCAPE;
+      isWritingTarget || isCommandPaletteToggleShortcut(event);
 
     if (
       ignoreAlphanumerics &&
@@ -739,9 +762,26 @@ function CommandPaletteInner({
     // prevent regular editor shortcuts
     event.stopPropagation();
 
-    // if alphanumeric keypress and we're not inside the input, focus it
-    if (/^[a-zA-Z0-9]$/.test(event.key)) {
-      inputRef?.current?.focus();
+    if (
+      !event.altKey &&
+      !event.ctrlKey &&
+      !event.metaKey &&
+      (event.key === KEYS.BACKSPACE || event.key === KEYS.DELETE)
+    ) {
+      event.preventDefault();
+      inputRef.current?.focus();
+      setCommandSearch((value) =>
+        value ? value.slice(0, value.length - 1) : value,
+      );
+      return;
+    }
+
+    // If a printable key is pressed while focus is outside the input,
+    // move focus into the search field and keep the typed character.
+    if (isPrintableKey) {
+      event.preventDefault();
+      inputRef.current?.focus();
+      setCommandSearch((value) => value + event.key);
       return;
     }
 
@@ -817,7 +857,7 @@ function CommandPaletteInner({
       closeOnClickOutside
       title={false}
       size={720}
-      autofocus
+      autofocus={false}
       className="command-palette-dialog"
     >
       <TextField

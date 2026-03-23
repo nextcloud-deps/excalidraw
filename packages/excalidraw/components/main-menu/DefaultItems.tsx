@@ -135,7 +135,7 @@ export const CommandPalette = (opts?: { className?: string }) => {
         trackEvent("command_palette", "open", "menu");
         setAppState({ openDialog: { name: "commandPalette" } });
       }}
-      shortcut={getShortcutFromShortcutName("commandPalette")}
+      shortcut={getShortcutFromShortcutName("commandPalette", 1)}
       aria-label={t("commandPalette.title")}
       className={opts?.className}
     >

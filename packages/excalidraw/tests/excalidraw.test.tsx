@@ -1,5 +1,12 @@
 import React from "react";
-import { fireEvent, GlobalTestState, toggleMenu, render } from "./test-utils";
+import {
+  cleanup,
+  fireEvent,
+  GlobalTestState,
+  toggleMenu,
+  render,
+  waitFor,
+} from "./test-utils";
 import { Excalidraw, Footer, MainMenu } from "../index";
 import { queryByText, queryByTestId } from "@testing-library/react";
 import { THEME } from "../constants";
@@ -14,6 +21,7 @@ describe("<Excalidraw/>", () => {
     if (menu) {
       toggleMenu(document.querySelector(".excalidraw")!);
     }
+    cleanup();
   });
 
   describe("Test zenModeEnabled prop", () => {
@@ -252,6 +260,156 @@ describe("<Excalidraw/>", () => {
         // load button shouldn't be rendered since `UIActions.canvasActions.loadScene` is `false`
         expect(queryByTestId(container, "load-button")).toBeNull();
       });
+    });
+  });
+
+  describe("Test command palette mounting", () => {
+    it("should open the command palette shortcut by default", async () => {
+      await render(<Excalidraw />);
+
+      fireEvent.keyDown(window, {
+        key: "/",
+        ctrlKey: true,
+      });
+
+      expect(document.querySelector(".command-palette-dialog")).not.toBeNull();
+    });
+
+    it("should focus the search input when the command palette opens", async () => {
+      await render(<Excalidraw />);
+
+      fireEvent.keyDown(window, {
+        key: "/",
+        ctrlKey: true,
+      });
+
+      await waitFor(() => {
+        const input = document.querySelector<HTMLInputElement>(
+          ".command-palette-dialog input",
+        );
+        expect(input).not.toBeNull();
+        expect(document.activeElement).toBe(input);
+      });
+    });
+
+    it("should close the command palette on escape", async () => {
+      await render(<Excalidraw />);
+
+      fireEvent.keyDown(window, {
+        key: "/",
+        ctrlKey: true,
+      });
+
+      expect(document.querySelector(".command-palette-dialog")).not.toBeNull();
+
+      fireEvent.keyDown(window, {
+        key: "Escape",
+      });
+
+      expect(document.querySelector(".command-palette-dialog")).toBeNull();
+    });
+
+    it("should search even if typing starts before the input is focused", async () => {
+      await render(<Excalidraw />);
+
+      fireEvent.keyDown(window, {
+        key: "/",
+        ctrlKey: true,
+      });
+
+      (
+        document.querySelector(".excalidraw") as HTMLElement | null
+      )?.focus();
+
+      fireEvent.keyDown(window, { key: "z" });
+      fireEvent.keyDown(window, { key: "e" });
+      fireEvent.keyDown(window, { key: "n" });
+
+      await waitFor(() => {
+        const searchInput = document.querySelector<HTMLInputElement>(
+          ".command-palette-dialog input",
+        );
+        const dialog = document.querySelector(
+          ".command-palette-dialog",
+        ) as HTMLElement | null;
+
+        expect(searchInput?.value).toBe("zen");
+        expect(dialog).not.toBeNull();
+        expect(queryByText(dialog!, "Zen mode")).not.toBeNull();
+        expect(queryByText(dialog!, "Library")).toBeNull();
+      });
+    });
+
+    it("should delete search text even if backspace is pressed before the input regains focus", async () => {
+      await render(<Excalidraw />);
+
+      fireEvent.keyDown(window, {
+        key: "/",
+        ctrlKey: true,
+      });
+
+      (
+        document.querySelector(".excalidraw") as HTMLElement | null
+      )?.focus();
+
+      fireEvent.keyDown(window, { key: "z" });
+      fireEvent.keyDown(window, { key: "e" });
+      fireEvent.keyDown(window, { key: "n" });
+      fireEvent.keyDown(window, { key: "Backspace" });
+
+      await waitFor(() => {
+        const searchInput = document.querySelector<HTMLInputElement>(
+          ".command-palette-dialog input",
+        );
+        const dialog = document.querySelector(
+          ".command-palette-dialog",
+        ) as HTMLElement | null;
+
+        expect(searchInput?.value).toBe("ze");
+        expect(dialog).not.toBeNull();
+        expect(queryByText(dialog!, "Zen mode")).not.toBeNull();
+      });
+    });
+
+    it("should filter commands when typing in the search input", async () => {
+      await render(<Excalidraw />);
+
+      fireEvent.keyDown(window, {
+        key: "/",
+        ctrlKey: true,
+      });
+
+      const input = document.querySelector<HTMLInputElement>(
+        ".command-palette-dialog input",
+      );
+      expect(input).not.toBeNull();
+
+      fireEvent.change(input!, {
+        target: {
+          value: "zen",
+        },
+      });
+
+      await waitFor(() => {
+        const dialog = document.querySelector(
+          ".command-palette-dialog",
+        ) as HTMLElement | null;
+
+        expect(dialog).not.toBeNull();
+        expect(queryByText(dialog!, "Zen mode")).not.toBeNull();
+        expect(queryByText(dialog!, "Library")).toBeNull();
+      });
+    });
+
+    it("should not mount the command palette when disabled", async () => {
+      await render(<Excalidraw mountCommandPalette={false} />);
+
+      fireEvent.keyDown(window, {
+        key: "/",
+        ctrlKey: true,
+      });
+
+      expect(document.querySelector(".command-palette-dialog")).toBeNull();
     });
   });
 
