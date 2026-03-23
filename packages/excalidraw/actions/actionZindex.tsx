@@ -40,7 +40,9 @@ export const actionSendBackward = register({
       type="button"
       className="zIndexButton"
       onClick={() => updateData(null)}
-      title={`${t("labels.sendBackward")} — ${getShortcutFromShortcutName("sendBackward")}`}
+      title={`${t("labels.sendBackward")} — ${getShortcutFromShortcutName(
+        "sendBackward",
+      )}`}
     >
       {SendBackwardIcon}
     </button>
@@ -70,7 +72,9 @@ export const actionBringForward = register({
       type="button"
       className="zIndexButton"
       onClick={() => updateData(null)}
-      title={`${t("labels.bringForward")} — ${getShortcutFromShortcutName("bringForward")}`}
+      title={`${t("labels.bringForward")} — ${getShortcutFromShortcutName(
+        "bringForward",
+      )}`}
     >
       {BringForwardIcon}
     </button>
@@ -103,7 +107,9 @@ export const actionSendToBack = register({
       type="button"
       className="zIndexButton"
       onClick={() => updateData(null)}
-      title={`${t("labels.sendToBack")} — ${getShortcutFromShortcutName("sendToBack")}`}
+      title={`${t("labels.sendToBack")} — ${getShortcutFromShortcutName(
+        "sendToBack",
+      )}`}
     >
       {SendToBackIcon}
     </button>
@@ -137,7 +143,9 @@ export const actionBringToFront = register({
       type="button"
       className="zIndexButton"
       onClick={(event) => updateData(null)}
-      title={`${t("labels.bringToFront")} — ${getShortcutFromShortcutName("bringToFront")}`}
+      title={`${t("labels.bringToFront")} — ${getShortcutFromShortcutName(
+        "bringToFront",
+      )}`}
     >
       {BringToFrontIcon}
     </button>
