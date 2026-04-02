@@ -6,7 +6,6 @@ import {
 } from "../zindex";
 import { KEYS, CODES } from "../keys";
 import { t } from "../i18n";
-import { getShortcutKey } from "../utils";
 import { register } from "./register";
 import {
   BringForwardIcon,
@@ -15,6 +14,7 @@ import {
   SendToBackIcon,
 } from "../components/icons";
 import { isDarwin } from "../constants";
+import { getShortcutFromShortcutName } from "./shortcuts";
 import { CaptureUpdateAction } from "../store";
 
 export const actionSendBackward = register({
@@ -40,7 +40,9 @@ export const actionSendBackward = register({
       type="button"
       className="zIndexButton"
       onClick={() => updateData(null)}
-      title={`${t("labels.sendBackward")} — ${getShortcutKey("CtrlOrCmd+[")}`}
+      title={`${t("labels.sendBackward")} — ${getShortcutFromShortcutName(
+        "sendBackward",
+      )}`}
     >
       {SendBackwardIcon}
     </button>
@@ -70,7 +72,9 @@ export const actionBringForward = register({
       type="button"
       className="zIndexButton"
       onClick={() => updateData(null)}
-      title={`${t("labels.bringForward")} — ${getShortcutKey("CtrlOrCmd+]")}`}
+      title={`${t("labels.bringForward")} — ${getShortcutFromShortcutName(
+        "bringForward",
+      )}`}
     >
       {BringForwardIcon}
     </button>
@@ -103,11 +107,9 @@ export const actionSendToBack = register({
       type="button"
       className="zIndexButton"
       onClick={() => updateData(null)}
-      title={`${t("labels.sendToBack")} — ${
-        isDarwin
-          ? getShortcutKey("CtrlOrCmd+Alt+[")
-          : getShortcutKey("CtrlOrCmd+Shift+[")
-      }`}
+      title={`${t("labels.sendToBack")} — ${getShortcutFromShortcutName(
+        "sendToBack",
+      )}`}
     >
       {SendToBackIcon}
     </button>
@@ -141,11 +143,9 @@ export const actionBringToFront = register({
       type="button"
       className="zIndexButton"
       onClick={(event) => updateData(null)}
-      title={`${t("labels.bringToFront")} — ${
-        isDarwin
-          ? getShortcutKey("CtrlOrCmd+Alt+]")
-          : getShortcutKey("CtrlOrCmd+Shift+]")
-      }`}
+      title={`${t("labels.bringToFront")} — ${getShortcutFromShortcutName(
+        "bringToFront",
+      )}`}
     >
       {BringToFrontIcon}
     </button>

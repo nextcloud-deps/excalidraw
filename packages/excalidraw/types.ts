@@ -39,6 +39,7 @@ import type Library from "./data/library";
 import type { FileSystemHandle } from "./data/filesystem";
 import type { IMAGE_MIME_TYPES, MIME_TYPES } from "./constants";
 import type { ContextMenuItems } from "./components/ContextMenu";
+import type { CommandPaletteItem } from "./components/CommandPalette/types";
 import type { SnapLine } from "./snapping";
 import type { Merge, MaybePromise, ValueOf, MakeBrand } from "./utility-types";
 import type { CaptureUpdateActionType } from "./store";
@@ -553,6 +554,7 @@ export interface ExcalidrawProps {
   handleKeyboardGlobally?: boolean;
   onLibraryChange?: (libraryItems: LibraryItems) => void | Promise<any>;
   autoFocus?: boolean;
+  mountCommandPalette?: boolean;
   generateIdForFile?: (file: File) => string | Promise<string>;
   /**
    * Max allowed image file size in bytes. Defaults to MAX_ALLOWED_FILE_BYTES.
@@ -575,6 +577,7 @@ export interface ExcalidrawProps {
   ) => void;
   onScrollChange?: (scrollX: number, scrollY: number, zoom: Zoom) => void;
   onUserFollow?: (payload: OnUserFollowedPayload) => void;
+  customCommandPaletteItems?: CommandPaletteItem[];
   children?: React.ReactNode;
   validateEmbeddable?:
     | boolean

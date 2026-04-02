@@ -28,6 +28,7 @@ import { MobileMenu } from "./MobileMenu";
 import { PasteChartDialog } from "./PasteChartDialog";
 import { Section } from "./Section";
 import { HelpDialog } from "./HelpDialog";
+import { CommandPalette } from "./CommandPalette/CommandPalette";
 import Stack from "./Stack";
 import { UserList } from "./UserList";
 import { JSONExportDialog } from "./JSONExportDialog";
@@ -80,6 +81,8 @@ interface LayerUIProps {
   app: AppClassProperties;
   isCollaborating: boolean;
   generateLinkForSelection?: AppProps["generateLinkForSelection"];
+  customCommandPaletteItems?: AppProps["customCommandPaletteItems"];
+  mountCommandPalette?: AppProps["mountCommandPalette"];
 }
 
 const DefaultMainMenu: React.FC<{
@@ -138,6 +141,8 @@ const LayerUI = ({
   app,
   isCollaborating,
   generateLinkForSelection,
+  customCommandPaletteItems,
+  mountCommandPalette,
 }: LayerUIProps) => {
   const device = useDevice();
   const tunnels = useInitializeTunnels();
@@ -469,6 +474,9 @@ const LayerUI = ({
             setAppState({ openDialog: null });
           }}
         />
+      )}
+      {mountCommandPalette !== false && (
+        <CommandPalette customCommandPaletteItems={customCommandPaletteItems} />
       )}
       <ActiveConfirmDialog />
       {appState.openDialog?.name === "elementLinkSelector" && (

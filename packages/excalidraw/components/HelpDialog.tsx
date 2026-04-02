@@ -7,7 +7,7 @@ import { getShortcutKey } from "../utils";
 import "./HelpDialog.scss";
 import { ExternalLinkIcon, GithubIcon, youtubeIcon } from "./icons";
 import { probablySupportsClipboardBlob } from "../clipboard";
-import { isDarwin, isFirefox, isWindows } from "../constants";
+import { isFirefox, isWindows } from "../constants";
 import { getShortcutFromShortcutName } from "../actions/shortcuts";
 import { useAppProps } from "./App";
 
@@ -290,7 +290,7 @@ export const HelpDialog = ({ onClose }: { onClose?: () => void }) => {
             />
             <Shortcut
               label={t("labels.toggleGrid")}
-              shortcuts={[getShortcutKey("CtrlOrCmd+'")]}
+              shortcuts={[getShortcutFromShortcutName("gridMode")]}
             />
             <Shortcut
               label={t("labels.viewMode")}
@@ -304,7 +304,7 @@ export const HelpDialog = ({ onClose }: { onClose?: () => void }) => {
             )}
             <Shortcut
               label={t("stats.fullTitle")}
-              shortcuts={[getShortcutKey("Alt+/")]}
+              shortcuts={[getShortcutFromShortcutName("stats")]}
             />
             <Shortcut
               label={t("search.title")}
@@ -316,8 +316,8 @@ export const HelpDialog = ({ onClose }: { onClose?: () => void }) => {
                 isFirefox
                   ? [getShortcutFromShortcutName("commandPalette", 1)]
                   : [
-                      getShortcutFromShortcutName("commandPalette"),
                       getShortcutFromShortcutName("commandPalette", 1),
+                      getShortcutFromShortcutName("commandPalette"),
                     ]
               }
             />
@@ -402,27 +402,19 @@ export const HelpDialog = ({ onClose }: { onClose?: () => void }) => {
             />
             <Shortcut
               label={t("labels.sendToBack")}
-              shortcuts={[
-                isDarwin
-                  ? getShortcutKey("CtrlOrCmd+Alt+[")
-                  : getShortcutKey("CtrlOrCmd+Shift+["),
-              ]}
+              shortcuts={[getShortcutFromShortcutName("sendToBack")]}
             />
             <Shortcut
               label={t("labels.bringToFront")}
-              shortcuts={[
-                isDarwin
-                  ? getShortcutKey("CtrlOrCmd+Alt+]")
-                  : getShortcutKey("CtrlOrCmd+Shift+]"),
-              ]}
+              shortcuts={[getShortcutFromShortcutName("bringToFront")]}
             />
             <Shortcut
               label={t("labels.sendBackward")}
-              shortcuts={[getShortcutKey("CtrlOrCmd+[")]}
+              shortcuts={[getShortcutFromShortcutName("sendBackward")]}
             />
             <Shortcut
               label={t("labels.bringForward")}
-              shortcuts={[getShortcutKey("CtrlOrCmd+]")]}
+              shortcuts={[getShortcutFromShortcutName("bringForward")]}
             />
             <Shortcut
               label={t("labels.alignTop")}
