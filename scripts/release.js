@@ -207,10 +207,13 @@ const askToPublish = (tag, version) => {
 
 const publishPackages = (tag, version) => {
   for (const packageName of PACKAGES) {
-    execSync(`yarn publish --tag ${tag}`, {
-      cwd: path.resolve(PACKAGES_DIR, packageName),
-      stdio: "inherit",
-    });
+    execSync(
+      `yarn publish --tag ${tag} --registry https://registry.npmjs.org/`,
+      {
+        cwd: path.resolve(PACKAGES_DIR, packageName),
+        stdio: "inherit",
+      },
+    );
 
     console.info(
       `Published "@excalidraw/${packageName}@${tag}" with version "${version}"! 🎉`,
