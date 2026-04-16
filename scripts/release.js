@@ -5,8 +5,17 @@ const { execSync } = require("child_process");
 
 const updateChangelog = require("./updateChangelog");
 
+// used for getting the package.json files while building
 // skipping utils for now, as it has independent release process
 const PACKAGES = ["common", "math", "element", "excalidraw"];
+
+// used for rewriting versions in package.json
+const PACKAGES_RENAMED = [
+  "excalidraw-common",
+  "excalidraw-math",
+  "excalidraw-element",
+  "excalidraw",
+];
 const PACKAGES_DIR = path.resolve(__dirname, "../packages");
 
 /**
@@ -109,12 +118,12 @@ const updatePackageJsons = (nextVersion) => {
     pkg.version = nextVersion;
 
     if (pkg.dependencies) {
-      for (const dependencyName of PACKAGES) {
-        if (!pkg.dependencies[`@excalidraw/${dependencyName}`]) {
+      for (const dependencyName of PACKAGES_RENAMED) {
+        if (!pkg.dependencies[`@nextcloud/${dependencyName}`]) {
           continue;
         }
 
-        pkg.dependencies[`@excalidraw/${dependencyName}`] = nextVersion;
+        pkg.dependencies[`@nextcloud/${dependencyName}`] = nextVersion;
       }
     }
 
@@ -173,7 +182,7 @@ const buildPackages = () => {
   execSync(`yarn rm:build`, { stdio: "inherit" });
 
   for (const packageName of PACKAGES) {
-    console.info(`Building "@excalidraw/${packageName}"...`);
+    console.info(`Building "@nextcloud/${packageName}"...`);
     execSync(`yarn run build:esm`, {
       cwd: path.resolve(PACKAGES_DIR, packageName),
       stdio: "inherit",
@@ -216,7 +225,7 @@ const publishPackages = (tag, version) => {
     );
 
     console.info(
-      `Published "@excalidraw/${packageName}@${tag}" with version "${version}"! 🎉`,
+      `Published "@nextcloud/${packageName}@${tag}" with version "${version}"! 🎉`,
     );
   }
 };
