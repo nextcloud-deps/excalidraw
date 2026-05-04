@@ -530,6 +530,10 @@ export type LibraryItem = {
 };
 export type LibraryItems = readonly LibraryItem[];
 export type LibraryItems_anyVersion = LibraryItems | LibraryItems_v1;
+export type LibrarySaveAsTemplateContext = {
+  selectedItemIds: LibraryItem["id"][];
+  source: "selection" | "library";
+};
 
 export type LibraryItemsSource =
   | ((
@@ -638,6 +642,10 @@ export interface ExcalidrawProps {
   detectScroll?: boolean;
   handleKeyboardGlobally?: boolean;
   onLibraryChange?: (libraryItems: LibraryItems) => void | Promise<any>;
+  onLibrarySaveAsTemplate?: (
+    libraryItems: LibraryItems,
+    context: LibrarySaveAsTemplateContext,
+  ) => void | Promise<void>;
   autoFocus?: boolean;
   generateIdForFile?: (file: File) => string | Promise<string>;
   generateLinkForSelection?: (id: string, type: "element" | "group") => string;

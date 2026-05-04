@@ -18,6 +18,10 @@ const ENV_VARS = {
   },
 };
 
+const COMMON_DEFINES = {
+  global: "globalThis",
+};
+
 // Resolve a relative path from the source file's directory
 const resolveRelativePath = (importPath, sourceFile) => {
   const sourceDir = path.dirname(sourceFile);
@@ -85,6 +89,7 @@ function buildDev(config) {
     ...config,
     sourcemap: true,
     define: {
+      ...COMMON_DEFINES,
       "import.meta.env": JSON.stringify(ENV_VARS.development),
     },
   });
@@ -95,6 +100,7 @@ function buildProd(config) {
     ...config,
     minify: true,
     define: {
+      ...COMMON_DEFINES,
       "import.meta.env": JSON.stringify(ENV_VARS.production),
     },
   });

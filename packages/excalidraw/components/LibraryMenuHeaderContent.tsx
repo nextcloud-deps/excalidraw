@@ -11,7 +11,7 @@ import { useAtom } from "../editor-jotai";
 import { useLibraryCache } from "../hooks/useLibraryItemSvg";
 import { t } from "../i18n";
 
-import { useApp, useExcalidrawSetAppState } from "./App";
+import { useApp, useAppProps, useExcalidrawSetAppState } from "./App";
 import ConfirmDialog from "./ConfirmDialog";
 import { Dialog } from "./Dialog";
 import { isLibraryMenuOpenAtom } from "./LibraryMenu";
@@ -22,13 +22,19 @@ import DropdownMenu from "./dropdownMenu/DropdownMenu";
 import {
   DotsIcon,
   ExportIcon,
+  LibraryIcon,
   LoadIcon,
   publishIcon,
   TrashIcon,
 } from "./icons";
 
 import type Library from "../data/library";
-import type { LibraryItem, LibraryItems, UIAppState } from "../types";
+import type {
+  ExcalidrawProps,
+  LibraryItem,
+  LibraryItems,
+  UIAppState,
+} from "../types";
 
 const getSelectedItems = (
   libraryItems: LibraryItems,
@@ -42,6 +48,7 @@ export const LibraryDropdownMenuButton: React.FC<{
   onRemoveFromLibrary: () => void;
   resetLibrary: () => void;
   onSelectItems: (items: LibraryItem["id"][]) => void;
+  onSaveAsTemplate?: ExcalidrawProps["onLibrarySaveAsTemplate"];
   appState: UIAppState;
   className?: string;
 }> = ({
@@ -51,6 +58,7 @@ export const LibraryDropdownMenuButton: React.FC<{
   onRemoveFromLibrary,
   resetLibrary,
   onSelectItems,
+  onSaveAsTemplate,
   appState,
   className,
 }) => {
@@ -189,6 +197,23 @@ export const LibraryDropdownMenuButton: React.FC<{
       });
   };
 
+  const onLibrarySaveAsTemplate = async () => {
+    if (!onSaveAsTemplate) {
+      return;
+    }
+    const libraryItems = itemsSelected
+      ? items
+      : await library.getLatestLibrary();
+    try {
+      await onSaveAsTemplate(libraryItems, {
+        selectedItemIds: selectedItems,
+        source: itemsSelected ? "selection" : "library",
+      });
+    } catch (error: any) {
+      setAppState({ errorMessage: error.message });
+    }
+  };
+
   const renderLibraryMenu = () => {
     return (
       <DropdownMenu open={isLibraryMenuOpen}>
@@ -218,6 +243,17 @@ export const LibraryDropdownMenuButton: React.FC<{
               data-testid="lib-dropdown--export"
             >
               {t("buttons.export")}
+            </DropdownMenu.Item>
+          )}
+          {onSaveAsTemplate && (
+            <DropdownMenu.Item
+              onSelect={onLibrarySaveAsTemplate}
+              icon={LibraryIcon}
+              data-testid="lib-dropdown--save-as-template"
+            >
+              {itemsSelected
+                ? t("buttons.saveSelectedAsTemplate")
+                : t("buttons.saveAsTemplate")}
             </DropdownMenu.Item>
           )}
           {itemsSelected && (
@@ -284,6 +320,7 @@ export const LibraryDropdownMenu = ({
   className?: string;
 }) => {
   const { library } = useApp();
+  const appProps = useAppProps();
   const { clearLibraryCache, deleteItemsFromLibraryCache } = useLibraryCache();
   const appState = useUIAppState();
   const setAppState = useExcalidrawSetAppState();
@@ -318,6 +355,7 @@ export const LibraryDropdownMenu = ({
       onRemoveFromLibrary={() =>
         removeFromLibrary(libraryItemsData.libraryItems)
       }
+      onSaveAsTemplate={appProps.onLibrarySaveAsTemplate}
       resetLibrary={resetLibrary}
       className={className}
     />
