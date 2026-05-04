@@ -11,7 +11,7 @@ import { useAtom } from "../editor-jotai";
 import { useLibraryCache } from "../hooks/useLibraryItemSvg";
 import { t } from "../i18n";
 
-import { useApp, useExcalidrawSetAppState } from "./App";
+import { useApp, useAppProps, useExcalidrawSetAppState } from "./App";
 import ConfirmDialog from "./ConfirmDialog";
 import { Dialog } from "./Dialog";
 import { isLibraryMenuOpenAtom } from "./LibraryMenu";
@@ -22,18 +22,30 @@ import DropdownMenu from "./dropdownMenu/DropdownMenu";
 import {
   DotsIcon,
   ExportIcon,
+  LibraryIcon,
   LoadIcon,
   publishIcon,
   TrashIcon,
 } from "./icons";
 
 import type Library from "../data/library";
-import type { LibraryItem, LibraryItems, UIAppState } from "../types";
+import type {
+  ExcalidrawProps,
+  LibraryItem,
+  LibraryItems,
+  TaggedLibraryItem,
+  UIAppState,
+} from "../types";
 
 const getSelectedItems = (
   libraryItems: LibraryItems,
   selectedItems: LibraryItem["id"][],
 ) => libraryItems.filter((item) => selectedItems.includes(item.id));
+
+// Items from a read-only source (a saved or organization library) carry a
+// `libraryName`; only untagged "My library" items are writable.
+const getWritableItems = (libraryItems: LibraryItems) =>
+  libraryItems.filter((item) => !(item as TaggedLibraryItem).libraryName);
 
 export const LibraryDropdownMenuButton: React.FC<{
   setAppState: React.Component<any, UIAppState>["setState"];
@@ -42,6 +54,8 @@ export const LibraryDropdownMenuButton: React.FC<{
   onRemoveFromLibrary: () => void;
   resetLibrary: () => void;
   onSelectItems: (items: LibraryItem["id"][]) => void;
+  onSaveAs?: ExcalidrawProps["onLibrarySaveAs"];
+  onSaveAsCanvasTemplate?: ExcalidrawProps["onSaveAsCanvasTemplate"];
   appState: UIAppState;
   className?: string;
 }> = ({
@@ -51,6 +65,8 @@ export const LibraryDropdownMenuButton: React.FC<{
   onRemoveFromLibrary,
   resetLibrary,
   onSelectItems,
+  onSaveAs,
+  onSaveAsCanvasTemplate,
   appState,
   className,
 }) => {
@@ -94,6 +110,7 @@ export const LibraryDropdownMenuButton: React.FC<{
         selectedItems.includes(item.id),
       )
     : libraryItemsData.libraryItems;
+  const writableItemsCount = getWritableItems(items).length;
   const resetLabel = itemsSelected
     ? t("buttons.remove")
     : t("buttons.resetLibrary");
@@ -189,6 +206,36 @@ export const LibraryDropdownMenuButton: React.FC<{
       });
   };
 
+  const onLibrarySaveAs = async () => {
+    if (!onSaveAs) {
+      return;
+    }
+    // Never save read-only source items into a new library — that would
+    // snapshot another library's content instead of referencing it live.
+    const libraryItems = getWritableItems(
+      itemsSelected ? items : await library.getLatestLibrary(),
+    );
+    if (!libraryItems.length) {
+      return;
+    }
+    try {
+      await onSaveAs(libraryItems);
+    } catch (error: any) {
+      setAppState({ errorMessage: error.message });
+    }
+  };
+
+  const onCanvasSaveAsTemplate = async () => {
+    if (!onSaveAsCanvasTemplate) {
+      return;
+    }
+    try {
+      await onSaveAsCanvasTemplate();
+    } catch (error: any) {
+      setAppState({ errorMessage: error.message });
+    }
+  };
+
   const renderLibraryMenu = () => {
     return (
       <DropdownMenu open={isLibraryMenuOpen}>
@@ -208,7 +255,7 @@ export const LibraryDropdownMenuButton: React.FC<{
               icon={LoadIcon}
               data-testid="lib-dropdown--load"
             >
-              {t("buttons.load")}
+              {t("buttons.loadLibraryFile")}
             </DropdownMenu.Item>
           )}
           {!!items.length && (
@@ -220,6 +267,24 @@ export const LibraryDropdownMenuButton: React.FC<{
               {t("buttons.export")}
             </DropdownMenu.Item>
           )}
+          {onSaveAs && !!writableItemsCount && (
+            <DropdownMenu.Item
+              onSelect={onLibrarySaveAs}
+              icon={LibraryIcon}
+              data-testid="lib-dropdown--save-as-library"
+            >
+              {t("buttons.saveAsLibrary")}
+            </DropdownMenu.Item>
+          )}
+          {onSaveAsCanvasTemplate && !itemsSelected && (
+            <DropdownMenu.Item
+              onSelect={onCanvasSaveAsTemplate}
+              icon={LibraryIcon}
+              data-testid="lib-dropdown--save-as-canvas-template"
+            >
+              {t("buttons.saveAsCanvasTemplate")}
+            </DropdownMenu.Item>
+          )}
           {itemsSelected && (
             <DropdownMenu.Item
               icon={publishIcon}
@@ -229,7 +294,7 @@ export const LibraryDropdownMenuButton: React.FC<{
               {t("buttons.publishLibrary")}
             </DropdownMenu.Item>
           )}
-          {!!items.length && (
+          {!!writableItemsCount && (
             <DropdownMenu.Item
               onSelect={() => setShowRemoveLibAlert(true)}
               icon={TrashIcon}
@@ -284,6 +349,7 @@ export const LibraryDropdownMenu = ({
   className?: string;
 }) => {
   const { library } = useApp();
+  const appProps = useAppProps();
   const { clearLibraryCache, deleteItemsFromLibraryCache } = useLibraryCache();
   const appState = useUIAppState();
   const setAppState = useExcalidrawSetAppState();
@@ -304,7 +370,12 @@ export const LibraryDropdownMenu = ({
   };
 
   const resetLibrary = () => {
-    library.resetLibrary();
+    // Reset only clears the writable "My library" — items from read-only
+    // sources (saved/org libraries) stay, they are resolved per board.
+    const readonlyItems = libraryItemsData.libraryItems.filter(
+      (item) => !!(item as TaggedLibraryItem).libraryName,
+    );
+    library.setLibrary(readonlyItems);
     clearLibraryCache();
   };
 
@@ -318,6 +389,8 @@ export const LibraryDropdownMenu = ({
       onRemoveFromLibrary={() =>
         removeFromLibrary(libraryItemsData.libraryItems)
       }
+      onSaveAs={appProps.onLibrarySaveAs}
+      onSaveAsCanvasTemplate={appProps.onSaveAsCanvasTemplate}
       resetLibrary={resetLibrary}
       className={className}
     />

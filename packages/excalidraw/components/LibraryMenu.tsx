@@ -73,6 +73,8 @@ const LibraryMenuContent = memo(
     theme,
     selectedItems,
     onSelectItems,
+    libraryMenuTitle,
+    libraryMenuDescription,
   }: {
     pendingElements: LibraryItem["elements"];
     onInsertLibraryItems: (libraryItems: LibraryItems) => void;
@@ -84,6 +86,8 @@ const LibraryMenuContent = memo(
     theme: UIAppState["theme"];
     selectedItems: LibraryItem["id"][];
     onSelectItems: (id: LibraryItem["id"][]) => void;
+    libraryMenuTitle: ExcalidrawProps["libraryMenuTitle"];
+    libraryMenuDescription: ExcalidrawProps["libraryMenuDescription"];
   }) => {
     const [libraryItemsData] = useAtom(libraryItemsAtom);
 
@@ -157,6 +161,8 @@ const LibraryMenuContent = memo(
           theme={theme}
           onSelectItems={onSelectItems}
           selectedItems={selectedItems}
+          libraryMenuTitle={libraryMenuTitle}
+          libraryMenuDescription={libraryMenuDescription}
         />
         {showBtn && (
           <LibraryMenuControlButtons
@@ -339,6 +345,8 @@ export const LibraryMenu = memo(() => {
       theme={appState.theme}
       selectedItems={selectedItems}
       onSelectItems={setSelectedItems}
+      libraryMenuTitle={appProps.libraryMenuTitle}
+      libraryMenuDescription={appProps.libraryMenuDescription}
     />
   );
 });

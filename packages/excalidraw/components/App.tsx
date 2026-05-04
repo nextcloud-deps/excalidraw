@@ -1910,7 +1910,7 @@ class App extends React.Component<AppProps, AppState> {
           isFrameLikeElement(
             this.scene.getElement(this.state.searchMatches.focusedId),
           )
-          ? this.state.searchMatches.matches.find((sm) => sm.focus)
+          ? this.state.searchMatches.matches?.find((sm) => sm.focus)
           : null
         : null;
 
@@ -7497,15 +7497,16 @@ class App extends React.Component<AppProps, AppState> {
     this.maybeCleanupAfterMissingPointerUp(event.nativeEvent);
     this.maybeUnfollowRemoteUser();
 
-    if (this.state.searchMatches) {
+    if (this.state.searchMatches?.matches) {
       this.setState((state) => {
         return {
           searchMatches: state.searchMatches && {
             focusedId: null,
-            matches: state.searchMatches.matches.map((searchMatch) => ({
-              ...searchMatch,
-              focus: false,
-            })),
+            matches:
+              state.searchMatches.matches?.map((searchMatch) => ({
+                ...searchMatch,
+                focus: false,
+              })) || [],
           },
         };
       });
