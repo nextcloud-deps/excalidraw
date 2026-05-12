@@ -42,7 +42,9 @@ exec(`git diff --name-only HEAD^ HEAD`, async (error, stdout, stderr) => {
   const excalidrawPackageFiles = changedFiles.filter((file) => {
     return (
       file.indexOf("packages/excalidraw") >= 0 ||
-      file.indexOf("buildPackage.js") > 0
+      file.indexOf("buildPackage.js") > 0 ||
+      file === "package.json" ||
+      file === "scripts/autorelease.js"
     );
   });
   if (!excalidrawPackageFiles.length) {
