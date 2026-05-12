@@ -44,7 +44,8 @@ exec(`git diff --name-only HEAD^ HEAD`, async (error, stdout, stderr) => {
       file.indexOf("packages/excalidraw") >= 0 ||
       file.indexOf("buildPackage.js") > 0 ||
       file === "package.json" ||
-      file === "scripts/autorelease.js"
+      file === "scripts/autorelease.js" ||
+      file === ".github/workflows/autorelease-excalidraw.yml"
     );
   });
   if (!excalidrawPackageFiles.length) {
