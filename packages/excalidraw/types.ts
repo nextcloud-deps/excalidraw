@@ -474,6 +474,13 @@ export type LibraryItem = {
   error?: string;
 };
 export type LibraryItems = readonly LibraryItem[];
+/**
+ * A library item the host app may have tagged with the name of the read-only
+ * source library it was resolved from (rendered as a separate, non-editable
+ * section). Untagged items belong to the writable personal library and are
+ * the only ones persisted back. See `onLibrarySaveAs`.
+ */
+export type TaggedLibraryItem = LibraryItem & { libraryName?: string };
 export type LibraryItems_anyVersion = LibraryItems | LibraryItems_v1;
 
 export type LibraryItemsSource =
@@ -553,6 +560,10 @@ export interface ExcalidrawProps {
   detectScroll?: boolean;
   handleKeyboardGlobally?: boolean;
   onLibraryChange?: (libraryItems: LibraryItems) => void | Promise<any>;
+  libraryMenuTitle?: string;
+  libraryMenuDescription?: string;
+  onLibrarySaveAs?: (libraryItems: LibraryItems) => void | Promise<void>;
+  onSaveAsCanvasTemplate?: () => void | Promise<void>;
   autoFocus?: boolean;
   mountCommandPalette?: boolean;
   generateIdForFile?: (file: File) => string | Promise<string>;

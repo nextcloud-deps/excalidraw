@@ -40,6 +40,10 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
     detectScroll = true,
     handleKeyboardGlobally = false,
     onLibraryChange,
+    libraryMenuTitle,
+    libraryMenuDescription,
+    onLibrarySaveAs,
+    onSaveAsCanvasTemplate,
     autoFocus = false,
     generateIdForFile,
     onLinkOpen,
@@ -134,6 +138,10 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
           detectScroll={detectScroll}
           handleKeyboardGlobally={handleKeyboardGlobally}
           onLibraryChange={onLibraryChange}
+          libraryMenuTitle={libraryMenuTitle}
+          libraryMenuDescription={libraryMenuDescription}
+          onLibrarySaveAs={onLibrarySaveAs}
+          onSaveAsCanvasTemplate={onSaveAsCanvasTemplate}
           autoFocus={autoFocus}
           generateIdForFile={generateIdForFile}
           onLinkOpen={onLinkOpen}
