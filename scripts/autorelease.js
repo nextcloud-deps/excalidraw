@@ -21,7 +21,12 @@ const publish = () => {
   try {
     run(`yarn  --frozen-lockfile`);
     run(`yarn run build:esm`, { cwd: excalidrawDir });
-    run(`npm publish --tag ${tag} --access public`, { cwd: excalidrawDir });
+    run(
+      `npm publish --tag ${tag} --access public --registry https://registry.npmjs.org/`,
+      {
+        cwd: excalidrawDir,
+      },
+    );
     console.info(`Published ${pkg.name}@${tag}🎉`);
     core.setOutput(
       "result",
