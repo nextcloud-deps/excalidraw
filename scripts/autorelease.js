@@ -11,13 +11,17 @@ const getShortCommitHash = () => {
   return execSync("git rev-parse --short HEAD").toString().trim();
 };
 
+const run = (command, options = {}) => {
+  execSync(command, { stdio: "inherit", ...options });
+};
+
 const publish = () => {
   const tag = isPreview ? "preview" : "next";
 
   try {
-    execSync(`yarn  --frozen-lockfile`);
-    execSync(`yarn run build:esm`, { cwd: excalidrawDir });
-    execSync(`yarn --cwd ${excalidrawDir} publish --tag ${tag}`);
+    run(`yarn  --frozen-lockfile`);
+    run(`yarn run build:esm`, { cwd: excalidrawDir });
+    run(`yarn --cwd ${excalidrawDir} publish --tag ${tag}`);
     console.info(`Published ${pkg.name}@${tag}🎉`);
     core.setOutput(
       "result",
