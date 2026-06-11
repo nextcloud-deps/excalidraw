@@ -743,7 +743,7 @@ export const isDevEnv = () => import.meta.env.MODE === ENV.DEVELOPMENT;
 export const isProdEnv = () => import.meta.env.MODE === ENV.PRODUCTION;
 
 export const isServerEnv = () =>
-  typeof process !== "undefined" && !!process?.env?.NODE_ENV;
+  typeof window === "undefined" && typeof self === "undefined";
 
 export const wrapEvent = <T extends Event>(name: EVENT, nativeEvent: T) => {
   return new CustomEvent(name, {

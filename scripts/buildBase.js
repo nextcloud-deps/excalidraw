@@ -2,6 +2,10 @@ const path = require("path");
 
 const { build } = require("esbuild");
 
+const COMMON_DEFINES = {
+  global: "globalThis",
+};
+
 // contains all dependencies bundled inside
 const getConfig = (outdir) => ({
   outdir,
@@ -21,6 +25,7 @@ function buildDev(config) {
     ...config,
     sourcemap: true,
     define: {
+      ...COMMON_DEFINES,
       "import.meta.env": JSON.stringify({ DEV: true }),
     },
   });
@@ -31,6 +36,7 @@ function buildProd(config) {
     ...config,
     minify: true,
     define: {
+      ...COMMON_DEFINES,
       "import.meta.env": JSON.stringify({ PROD: true }),
     },
   });
