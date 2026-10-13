@@ -1,16 +1,26 @@
 const fs = require("fs");
 const path = require("path");
 
-const { execSync } = require("child_process");
+const { execFileSync, execSync } = require("child_process");
 
 const updateChangelog = require("./updateChangelog");
 
+// used for getting the package.json files while building
 // skipping utils for now, as it has independent release process
 const PACKAGES = [
   "common",
   "fractional-indexing",
   "math",
   "element",
+  "excalidraw",
+];
+
+// used for rewriting versions in package.json
+const PACKAGES_RENAMED = [
+  "excalidraw-common",
+  "excalidraw-fractional-indexing",
+  "excalidraw-math",
+  "excalidraw-element",
   "excalidraw",
 ];
 const PACKAGES_DIR = path.resolve(__dirname, "../packages");
@@ -25,20 +35,24 @@ const PACKAGES_DIR = path.resolve(__dirname, "../packages");
  * - yarn release --tag=next                      -> publishes `@excalidraw` packages with "next" tag and version "-[hash]" suffix
  * - yarn release --tag=next --non-interactive    -> skips interactive prompts (runs on CI/CD), otherwise same as above
  * - yarn release --tag=latest --version=0.19.0   -> publishes `@excalidraw` packages with "latest" tag and version "0.19.0" & prepares changelog for the release
+ * - yarn release --tag=whiteboard-3              -> publishes `@nextcloud` packages with "whiteboard-3" tag and the version from packages/excalidraw/package.json
+ * - yarn release --tag=whiteboard-3 --pack=<dir> -> builds and packs the packages into <dir>, without prompts and without publishing
  *
- * @returns [tag, version, nonInteractive]
+ * @returns [tag, version, nonInteractive, packDir]
  */
 const getArguments = () => {
   let tag = "test";
   let version = "";
   let nonInteractive = false;
+  let packDir = "";
 
   for (const argument of process.argv.slice(2)) {
     if (/--help/.test(argument)) {
       console.info(`Available arguments:
   --tag=<tag>                                    -> (optional) "test" (default), "next" for auto release, "latest" for stable release
   --version=<version>                            -> (optional) for "next" and "test", (required) for "latest" i.e. "0.19.0"
-  --non-interactive                              -> (optional) disables interactive prompts`);
+  --non-interactive                              -> (optional) disables interactive prompts
+  --pack=<dir>                                   -> (optional) packs the packages into <dir> instead of publishing`);
 
       console.info(`\nUsage examples:
   - yarn release                                 -> publishes \`@excalidraw\` packages with "test" tag and "-[hash]" version suffix
@@ -61,16 +75,31 @@ const getArguments = () => {
     if (/--non-interactive/.test(argument)) {
       nonInteractive = true;
     }
+
+    if (/--pack=/.test(argument)) {
+      packDir = path.resolve(argument.split("=")[1]);
+    }
   }
 
-  if (tag !== "latest" && tag !== "next" && tag !== "test") {
-    console.error(`Unsupported tag "${tag}", use "latest", "next" or "test".`);
+  if (
+    tag !== "latest" &&
+    tag !== "next" &&
+    tag !== "test" &&
+    tag !== "whiteboard-3"
+  ) {
+    console.error(
+      `Unsupported tag "${tag}", use "latest", "next", "test" or "whiteboard-3".`,
+    );
     process.exit(1);
   }
 
   if (tag === "latest" && !version) {
     console.error("Pass the version to make the latest stable release!");
     process.exit(1);
+  }
+
+  if (!version && tag === "whiteboard-3") {
+    version = require(getPackageJsonPath("excalidraw")).version;
   }
 
   if (!version) {
@@ -91,7 +120,7 @@ const getArguments = () => {
 
   console.info(`Running with tag "${tag}" and version "${version}"...`);
 
-  return [tag, version, nonInteractive];
+  return [tag, version, nonInteractive, packDir];
 };
 
 const validatePackageName = (packageName) => {
@@ -115,12 +144,12 @@ const updatePackageJsons = (nextVersion) => {
     pkg.version = nextVersion;
 
     if (pkg.dependencies) {
-      for (const dependencyName of PACKAGES) {
-        if (!pkg.dependencies[`@excalidraw/${dependencyName}`]) {
+      for (const dependencyName of PACKAGES_RENAMED) {
+        if (!pkg.dependencies[`@nextcloud/${dependencyName}`]) {
           continue;
         }
 
-        pkg.dependencies[`@excalidraw/${dependencyName}`] = nextVersion;
+        pkg.dependencies[`@nextcloud/${dependencyName}`] = nextVersion;
       }
     }
 
@@ -179,7 +208,7 @@ const buildPackages = () => {
   execSync(`yarn rm:build`, { stdio: "inherit" });
 
   for (const packageName of PACKAGES) {
-    console.info(`Building "@excalidraw/${packageName}"...`);
+    console.info(`Building "${packageName}"...`);
     execSync(`yarn run build:esm`, {
       cwd: path.resolve(PACKAGES_DIR, packageName),
       stdio: "inherit",
@@ -211,22 +240,56 @@ const askToPublish = (tag, version) => {
   });
 };
 
+const isPublished = (name, version) => {
+  try {
+    return (
+      execSync(
+        `npm view ${name}@${version} version --registry https://registry.npmjs.org/`,
+      )
+        .toString()
+        .trim() === version
+    );
+  } catch {
+    return false;
+  }
+};
+
 const publishPackages = (tag, version) => {
   for (const packageName of PACKAGES) {
-    execSync(`yarn publish --tag ${tag}`, {
+    const { name } = require(getPackageJsonPath(packageName));
+
+    // versions are fixed per commit, so a push without a version bump is a no-op
+    if (isPublished(name, version)) {
+      console.info(`Skipping "${name}@${version}", already published.`);
+      continue;
+    }
+
+    execSync(
+      `npm publish --tag ${tag} --access public --registry https://registry.npmjs.org/`,
+      {
+        cwd: path.resolve(PACKAGES_DIR, packageName),
+        stdio: "inherit",
+      },
+    );
+
+    console.info(`Published "${name}@${tag}" with version "${version}"! 🎉`);
+  }
+};
+
+const packPackages = (packDir) => {
+  fs.mkdirSync(packDir, { recursive: true });
+
+  for (const packageName of PACKAGES) {
+    execFileSync("npm", ["pack", "--pack-destination", packDir], {
       cwd: path.resolve(PACKAGES_DIR, packageName),
       stdio: "inherit",
     });
-
-    console.info(
-      `Published "@excalidraw/${packageName}@${tag}" with version "${version}"! 🎉`,
-    );
   }
 };
 
 /** main */
 (async () => {
-  const [tag, version, nonInteractive] = getArguments();
+  const [tag, version, nonInteractive, packDir] = getArguments();
 
   buildPackages();
 
@@ -236,7 +299,9 @@ const publishPackages = (tag, version) => {
 
   updatePackageJsons(version);
 
-  if (nonInteractive) {
+  if (packDir) {
+    packPackages(packDir);
+  } else if (nonInteractive) {
     publishPackages(tag, version);
   } else {
     await askToCommit(tag, version);
