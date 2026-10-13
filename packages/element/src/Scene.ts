@@ -44,6 +44,10 @@ import type { AppState } from "../../excalidraw/types";
 
 type SceneStateCallback = () => void;
 type SceneStateCallbackRemover = () => void;
+type BeforeElementCreatedCallback = (
+  element: ExcalidrawElement,
+) => ExcalidrawElement;
+type BeforeElementCreatedCallbackRemover = () => void;
 
 type SelectionHash = string & { __brand: "selectionHash" };
 
@@ -111,6 +115,8 @@ export class Scene {
   // ---------------------------------------------------------------------------
 
   private callbacks: Set<SceneStateCallback> = new Set();
+  private beforeElementCreatedCallbacks: Set<BeforeElementCreatedCallback> =
+    new Set();
 
   private nonDeletedElements: readonly Ordered<NonDeletedExcalidrawElement>[] =
     [];
@@ -323,6 +329,28 @@ export class Scene {
     };
   }
 
+  /**
+   * Registers a callback that receives every element `insertElementsAtIndex`
+   * adds, before it is added. Elements that enter the scene through
+   * `replaceAllElements` (restore, collaboration, duplicates) do not.
+   */
+  beforeElementCreated(
+    cb: BeforeElementCreatedCallback,
+  ): BeforeElementCreatedCallbackRemover {
+    if (this.beforeElementCreatedCallbacks.has(cb)) {
+      throw new Error();
+    }
+
+    this.beforeElementCreatedCallbacks.add(cb);
+
+    return () => {
+      if (!this.beforeElementCreatedCallbacks.has(cb)) {
+        throw new Error();
+      }
+      this.beforeElementCreatedCallbacks.delete(cb);
+    };
+  }
+
   destroy() {
     this.elements = [];
     this.nonDeletedElements = [];
@@ -336,6 +364,7 @@ export class Scene {
     // done not for memory leaks, but to guard against possible late fires
     // (I guess?)
     this.callbacks.clear();
+    this.beforeElementCreatedCallbacks.clear();
   }
 
   /** low-level - generally use app.insertNewElements() */
@@ -346,6 +375,17 @@ export class Scene {
   ) {
     if (!elements.length) {
       return;
+    }
+
+    // callers keep references to the elements (e.g. `appState.newElement`),
+    // so a returned copy is merged into the original
+    for (const callback of Array.from(this.beforeElementCreatedCallbacks)) {
+      for (const element of elements) {
+        const result = callback(element);
+        if (result !== element) {
+          Object.assign(element, result);
+        }
+      }
     }
 
     if (index === null) {
