@@ -1,11 +1,11 @@
-name: Auto release excalidraw next
+name: Auto release @nextcloud/excalidraw for Whiteboard 3
 on:
   push:
     branches:
-      - release
+      - release-base-2026-10
 
 jobs:
-  Auto-release-excalidraw-next:
+  Auto-release-excalidraw-whiteboard-3:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,4 +24,4 @@ jobs:
       - name: Auto release
         run: |
           yarn add @actions/core -W
-          yarn release --tag=next --non-interactive
+          yarn release --tag=whiteboard-3 --non-interactive
