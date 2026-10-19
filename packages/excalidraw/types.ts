@@ -662,13 +662,6 @@ export type LibraryItem = {
   error?: string;
 };
 export type LibraryItems = readonly LibraryItem[];
-/**
- * A library item the host app may have tagged with the name of the read-only
- * source library it was resolved from (rendered as a separate, non-editable
- * section). Untagged items belong to the writable personal library and are
- * the only ones persisted back. See `onLibrarySaveAs`.
- */
-export type TaggedLibraryItem = LibraryItem & { libraryName?: string };
 export type LibraryItems_anyVersion = LibraryItems | LibraryItems_v1;
 
 export type LibraryItemsSource =
@@ -865,13 +858,6 @@ export interface ExcalidrawProps {
   ) => void;
   onThemeChange?: (theme: Theme | "system") => void;
   /**
-   * Called with each element the user creates (shapes, text, bound text,
-   * bucket fill, images...) before it is added to the scene, and returns it.
-   * Not called for restored elements, collaboration updates, or duplicates
-   * (pasted elements, library items, duplication; see `onDuplicate`).
-   */
-  beforeElementCreated?: (element: ExcalidrawElement) => ExcalidrawElement;
-  /**
    * note: only subscribes if the props.onIncrement is defined on initial render
    */
   onIncrement?: (event: DurableIncrement | EphemeralIncrement) => void;
@@ -1028,10 +1014,6 @@ export interface ExcalidrawProps {
   detectScroll?: boolean;
   handleKeyboardGlobally?: boolean;
   onLibraryChange?: (libraryItems: LibraryItems) => void | Promise<any>;
-  libraryMenuTitle?: string;
-  libraryMenuDescription?: string;
-  onLibrarySaveAs?: (libraryItems: LibraryItems) => void | Promise<void>;
-  onSaveAsCanvasTemplate?: () => void | Promise<void>;
   autoFocus?: boolean;
   generateIdForFile?: (file: File) => string | Promise<string>;
   generateLinkForSelection?: (id: string, type: "element" | "group") => string;

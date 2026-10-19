@@ -47,7 +47,6 @@ import type {
   ExcalidrawProps,
   LibraryItem,
   LibraryItems,
-  TaggedLibraryItem,
   UIAppState,
 } from "../types";
 
@@ -57,11 +56,6 @@ const ITEMS_RENDERED_PER_BATCH = 17;
 // when render outputs cached we can render many more items per batch to
 // speed it up
 const CACHED_ITEMS_RENDERED_PER_BATCH = 64;
-
-// Items belonging to a read-only source (a saved or organization library)
-// carry a `libraryName`. Items without one belong to the writable "My library".
-const getLibraryName = (item: LibraryItem): string | undefined =>
-  (item as TaggedLibraryItem).libraryName || undefined;
 
 export default function LibraryMenuItems({
   isLoading,
@@ -74,8 +68,6 @@ export default function LibraryMenuItems({
   libraryReturnUrl,
   onSelectItems,
   selectedItems,
-  libraryMenuTitle,
-  libraryMenuDescription,
 }: {
   isLoading: boolean;
   libraryItems: LibraryItems;
@@ -87,8 +79,6 @@ export default function LibraryMenuItems({
   id: string;
   selectedItems: LibraryItem["id"][];
   onSelectItems: (id: LibraryItem["id"][]) => void;
-  libraryMenuTitle: ExcalidrawProps["libraryMenuTitle"];
-  libraryMenuDescription: ExcalidrawProps["libraryMenuDescription"];
 }) {
   const editorInterface = useEditorInterface();
   const libraryContainerRef = useRef<HTMLDivElement>(null);
@@ -111,9 +101,6 @@ export default function LibraryMenuItems({
   const IS_LIBRARY_EMPTY = !libraryItems.length && !pendingElements.length;
 
   const IS_SEARCHING = !IS_LIBRARY_EMPTY && !!searchInputValue.trim();
-  const hasCustomLibraryMenuHeader = !!(
-    libraryMenuTitle || libraryMenuDescription
-  );
 
   const filteredItems = useMemo(() => {
     const searchQuery = deburr(searchInputValue.trim().toLowerCase());
@@ -129,51 +116,20 @@ export default function LibraryMenuItems({
     });
   }, [libraryItems, searchInputValue]);
 
-  // Writable "My library" items (no source tag).
-  const personalItems = useMemo(
-    () => libraryItems.filter((item) => !getLibraryName(item)),
+  const unpublishedItems = useMemo(
+    () => libraryItems.filter((item) => item.status !== "published"),
     [libraryItems],
   );
 
-  // Search results split by source: only writable items may be selected.
-  const filteredPersonalItems = useMemo(
-    () => filteredItems.filter((item) => !getLibraryName(item)),
-    [filteredItems],
+  const publishedItems = useMemo(
+    () => libraryItems.filter((item) => item.status === "published"),
+    [libraryItems],
   );
-  const filteredReadonlyItems = useMemo(
-    () => filteredItems.filter((item) => getLibraryName(item)),
-    [filteredItems],
-  );
-
-  // Read-only sources (saved libraries, organization libraries), grouped by name.
-  const readonlySections = useMemo(() => {
-    const byName = new Map<string, LibraryItem[]>();
-    for (const item of libraryItems) {
-      const name = getLibraryName(item);
-      if (!name) {
-        continue;
-      }
-      const bucket = byName.get(name);
-      if (bucket) {
-        bucket.push(item);
-      } else {
-        byName.set(name, [item]);
-      }
-    }
-    return [...byName.entries()]
-      .sort((a, b) => a[0].localeCompare(b[0]))
-      .map(([name, items]) => ({ name, items }));
-  }, [libraryItems]);
-
-  const hasPrivateLibraryItems =
-    pendingElements.length > 0 || personalItems.length > 0;
 
   const onItemSelectToggle = useCallback(
     (id: LibraryItem["id"], event: React.MouseEvent) => {
       const shouldSelect = !selectedItems.includes(id);
-      // selection (and thus deletion / publishing) only applies to the writable
-      // "My library" items.
-      const orderedItems = personalItems;
+      const orderedItems = [...unpublishedItems, ...publishedItems];
       if (shouldSelect) {
         if (event.shiftKey && lastSelectedItem) {
           const rangeStart = orderedItems.findIndex(
@@ -212,18 +168,14 @@ export default function LibraryMenuItems({
         onSelectItems(selectedItems.filter((_id) => _id !== id));
       }
     },
-    [lastSelectedItem, onSelectItems, personalItems, selectedItems],
+    [
+      lastSelectedItem,
+      onSelectItems,
+      publishedItems,
+      selectedItems,
+      unpublishedItems,
+    ],
   );
-
-  useEffect(() => {
-    // only writable items can be selected, also once an item turns read-only
-    const selectable = selectedItems.filter((id) =>
-      personalItems.some((item) => item.id === id),
-    );
-    if (selectable.length !== selectedItems.length) {
-      onSelectItems(selectable);
-    }
-  }, [personalItems, selectedItems, onSelectItems]);
 
   useEffect(() => {
     // if selection is removed (e.g. via esc), reset last selected item
@@ -285,11 +237,6 @@ export default function LibraryMenuItems({
     [selectedItems],
   );
 
-  // Read-only sections can be inserted and dragged, but never selected (and so
-  // never deleted or published).
-  const noSelectToggle = useCallback(() => {}, []);
-  const neverSelected = useCallback(() => false, []);
-
   const onAddToLibraryClick = useCallback(() => {
     onAddToLibrary(pendingElements);
   }, [pendingElements, onAddToLibrary]);
@@ -319,28 +266,22 @@ export default function LibraryMenuItems({
 
   const JSX_whenNotSearching = !IS_SEARCHING && (
     <>
-      {(!IS_LIBRARY_EMPTY || hasCustomLibraryMenuHeader) && (
-        <div
-          className={clsx("library-menu-items-container__header", {
-            "library-menu-items-container__header--stacked":
-              !!libraryMenuDescription,
-          })}
-        >
-          <span>{libraryMenuTitle || t("labels.personalLib")}</span>
-          {libraryMenuDescription && (
-            <span className="library-menu-items-container__header__description">
-              {libraryMenuDescription}
-            </span>
-          )}
+      {!IS_LIBRARY_EMPTY && (
+        <div className="library-menu-items-container__header">
+          {t("labels.personalLib")}
         </div>
       )}
-      {!hasPrivateLibraryItems && !readonlySections.length ? (
+      {!pendingElements.length && !unpublishedItems.length ? (
         <div className="library-menu-items__no-items">
-          <div className="library-menu-items__no-items__label">
-            {t("library.noItems")}
-          </div>
+          {!publishedItems.length && (
+            <div className="library-menu-items__no-items__label">
+              {t("library.noItems")}
+            </div>
+          )}
           <div className="library-menu-items__no-items__hint">
-            {t("library.hint_emptyLibrary")}
+            {publishedItems.length > 0
+              ? t("library.hint_emptyPrivateLibrary")
+              : t("library.hint_emptyLibrary")}
           </div>
         </div>
       ) : (
@@ -358,7 +299,7 @@ export default function LibraryMenuItems({
           )}
           <LibraryMenuSection
             itemsRenderedPerBatch={itemsRenderedPerBatch}
-            items={personalItems}
+            items={unpublishedItems}
             onItemSelectToggle={onItemSelectToggle}
             onItemDrag={onItemDrag}
             onClick={onItemClick}
@@ -368,27 +309,27 @@ export default function LibraryMenuItems({
         </LibraryMenuSectionGrid>
       )}
 
-      {readonlySections.map((section) => (
-        <React.Fragment key={section.name}>
-          <div
-            className="library-menu-items-container__header"
-            style={{ marginTop: "0.75rem" }}
-          >
-            {section.name}
-          </div>
-          <LibraryMenuSectionGrid>
-            <LibraryMenuSection
-              itemsRenderedPerBatch={itemsRenderedPerBatch}
-              items={section.items}
-              onItemSelectToggle={noSelectToggle}
-              onItemDrag={onItemDrag}
-              onClick={onItemClick}
-              isItemSelected={neverSelected}
-              svgCache={svgCache}
-            />
-          </LibraryMenuSectionGrid>
-        </React.Fragment>
-      ))}
+      {publishedItems.length > 0 && (
+        <div
+          className="library-menu-items-container__header"
+          style={{ marginTop: "0.75rem" }}
+        >
+          {t("labels.excalidrawLib")}
+        </div>
+      )}
+      {publishedItems.length > 0 && (
+        <LibraryMenuSectionGrid>
+          <LibraryMenuSection
+            itemsRenderedPerBatch={itemsRenderedPerBatch}
+            items={publishedItems}
+            onItemSelectToggle={onItemSelectToggle}
+            onItemDrag={onItemDrag}
+            onClick={onItemClick}
+            isItemSelected={isItemSelected}
+            svgCache={svgCache}
+          />
+        </LibraryMenuSectionGrid>
+      )}
     </>
   );
 
@@ -411,30 +352,16 @@ export default function LibraryMenuItems({
       </div>
       {filteredItems.length > 0 ? (
         <LibraryMenuSectionGrid showNames>
-          {filteredPersonalItems.length > 0 && (
-            <LibraryMenuSection
-              itemsRenderedPerBatch={itemsRenderedPerBatch}
-              items={filteredPersonalItems}
-              onItemSelectToggle={onItemSelectToggle}
-              onItemDrag={onItemDrag}
-              onClick={onItemClick}
-              isItemSelected={isItemSelected}
-              svgCache={svgCache}
-              showNames
-            />
-          )}
-          {filteredReadonlyItems.length > 0 && (
-            <LibraryMenuSection
-              itemsRenderedPerBatch={itemsRenderedPerBatch}
-              items={filteredReadonlyItems}
-              onItemSelectToggle={noSelectToggle}
-              onItemDrag={onItemDrag}
-              onClick={onItemClick}
-              isItemSelected={neverSelected}
-              svgCache={svgCache}
-              showNames
-            />
-          )}
+          <LibraryMenuSection
+            itemsRenderedPerBatch={itemsRenderedPerBatch}
+            items={filteredItems}
+            onItemSelectToggle={onItemSelectToggle}
+            onItemDrag={onItemDrag}
+            onClick={onItemClick}
+            isItemSelected={isItemSelected}
+            svgCache={svgCache}
+            showNames
+          />
         </LibraryMenuSectionGrid>
       ) : (
         <div className="library-menu-items__no-items">
@@ -459,7 +386,9 @@ export default function LibraryMenuItems({
     <div
       className="library-menu-items-container"
       style={
-        pendingElements.length || libraryItems.length
+        pendingElements.length ||
+        unpublishedItems.length ||
+        publishedItems.length
           ? { justifyContent: "flex-start" }
           : { borderBottom: 0 }
       }
@@ -497,8 +426,8 @@ export default function LibraryMenuItems({
         align="start"
         gap={1}
         style={{
-          flex: readonlySections.length > 0 ? 1 : "0 1 auto",
-          margin: IS_LIBRARY_EMPTY && !hasCustomLibraryMenuHeader ? "auto" : 0,
+          flex: publishedItems.length > 0 ? 1 : "0 1 auto",
+          margin: IS_LIBRARY_EMPTY ? "auto" : 0,
         }}
         ref={libraryContainerRef}
       >

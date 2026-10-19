@@ -12,7 +12,7 @@ import type {
 } from "@excalidraw/element/types";
 
 import { parseLibraryJSON } from "../data/blob";
-import { saveLibraryAsJSON, serializeLibraryAsJSON } from "../data/json";
+import { serializeLibraryAsJSON } from "../data/json";
 import { distributeLibraryItemsOnSquareGrid } from "../data/library";
 import { Excalidraw } from "../index";
 
@@ -20,7 +20,7 @@ import { API } from "./helpers/api";
 import { UI } from "./helpers/ui";
 import { fireEvent, render, waitFor } from "./test-utils";
 
-import type { ExcalidrawProps, LibraryItem, LibraryItems } from "../types";
+import type { LibraryItem, LibraryItems } from "../types";
 
 const { h } = window;
 
@@ -37,16 +37,6 @@ const mockLibraryFilePromise = new Promise<Blob>(async (resolve, reject) => {
   } catch (error) {
     reject(error);
   }
-});
-
-vi.mock("../data/json.ts", async (importOriginal) => {
-  const module = await importOriginal();
-  return {
-    __esmodule: true,
-    //@ts-ignore
-    ...module,
-    saveLibraryAsJSON: vi.fn(() => Promise.resolve()),
-  };
 });
 
 vi.mock("../data/filesystem.ts", async (importOriginal) => {
@@ -449,170 +439,5 @@ describe("distributeLibraryItemsOnSquareGrid()", () => {
         }),
       ]),
     );
-  });
-});
-
-describe("library menu host hooks", () => {
-  const personal = ["wall", "door"].map((name) => ({
-    id: name,
-    name,
-    status: "unpublished" as const,
-    created: 1,
-    elements: [API.createElement({ type: "rectangle", id: name })],
-  }));
-  const readonly = {
-    id: "tree",
-    name: "tree",
-    status: "unpublished" as const,
-    created: 1,
-    elements: [API.createElement({ type: "ellipse", id: "tree" })],
-    libraryName: "Team shapes",
-  };
-
-  const openLibrary = async (props: Partial<ExcalidrawProps> = {}) => {
-    const { container } = await render(
-      <Excalidraw libraryMenuTitle="My boards library" {...props} />,
-    );
-    await act(() =>
-      h.app.library.updateLibrary({
-        libraryItems: [...personal, readonly],
-        openLibraryMenu: true,
-      }),
-    );
-    const sidebar = await waitFor(() => {
-      const element =
-        container.querySelector<HTMLElement>(".layer-ui__library");
-      expect(element).not.toBeNull();
-      return element!;
-    });
-    await waitFor(() =>
-      expect(sidebar.querySelectorAll(".library-unit__dragger")).toHaveLength(
-        3,
-      ),
-    );
-    return { container, sidebar };
-  };
-
-  // the menu's open state is kept across renders
-  const openDropdown = (sidebar: HTMLElement) => {
-    if (!queryByTestId(sidebar, "lib-dropdown--load")) {
-      fireEvent.click(queryByTestId(sidebar, "dropdown-menu-button")!);
-    }
-  };
-
-  it("shows the title and a read-only section per source library", async () => {
-    const { sidebar } = await openLibrary();
-
-    const headers = Array.from(
-      sidebar.querySelectorAll(".library-menu-items-container__header"),
-    ).map((header) => header.textContent);
-    expect(headers).toEqual(["My boards library", "Team shapes"]);
-  });
-
-  it("offers save as library and canvas, saving only writable items", async () => {
-    const onLibrarySaveAs = vi.fn();
-    const onSaveAsCanvasTemplate = vi.fn();
-    const { container, sidebar } = await openLibrary({
-      onLibrarySaveAs,
-      onSaveAsCanvasTemplate,
-    });
-
-    openDropdown(sidebar);
-    expect(queryByTestId(container, "lib-dropdown--load")?.textContent).toBe(
-      "Import .excalidrawlib file...",
-    );
-    fireEvent.click(queryByTestId(container, "lib-dropdown--save-as-library")!);
-    await waitFor(() => expect(onLibrarySaveAs).toHaveBeenCalledTimes(1));
-    expect(
-      onLibrarySaveAs.mock.calls[0][0].map((item: LibraryItem) => item.id),
-    ).toEqual(["wall", "door"]);
-
-    openDropdown(sidebar);
-    fireEvent.click(
-      queryByTestId(container, "lib-dropdown--save-as-canvas-template")!,
-    );
-    await waitFor(() =>
-      expect(onSaveAsCanvasTemplate).toHaveBeenCalledTimes(1),
-    );
-  });
-
-  it("hides the save items without the hooks", async () => {
-    const { container, sidebar } = await openLibrary();
-
-    openDropdown(sidebar);
-    expect(queryByTestId(container, "lib-dropdown--load")).not.toBeNull();
-    expect(
-      queryByTestId(container, "lib-dropdown--save-as-library"),
-    ).toBeNull();
-    expect(
-      queryByTestId(container, "lib-dropdown--save-as-canvas-template"),
-    ).toBeNull();
-  });
-
-  it("exports read-only items without their source tag", async () => {
-    const { container, sidebar } = await openLibrary();
-
-    openDropdown(sidebar);
-    fireEvent.click(queryByTestId(container, "lib-dropdown--export")!);
-
-    await waitFor(() => expect(saveLibraryAsJSON).toHaveBeenCalled());
-    const exported = vi.mocked(saveLibraryAsJSON).mock.lastCall![0];
-    expect(exported.map((item) => item.id)).toEqual(["wall", "door", "tree"]);
-    expect(exported.some((item) => "libraryName" in item)).toBe(false);
-  });
-
-  it("drops an item from the selection when it turns read-only", async () => {
-    const { container, sidebar } = await openLibrary();
-
-    fireEvent.click(sidebar.querySelectorAll(".library-unit__dragger")[0], {
-      shiftKey: true,
-    });
-    await waitFor(() =>
-      expect(sidebar.querySelector(".library-unit--selected")).not.toBeNull(),
-    );
-
-    await act(() =>
-      h.app.library.updateLibrary({
-        libraryItems: [
-          { ...personal[0], libraryName: "Team shapes" },
-          personal[1],
-          readonly,
-        ],
-      }),
-    );
-
-    openDropdown(sidebar);
-    await waitFor(() =>
-      expect(
-        Array.from(container.querySelectorAll(".dropdown-menu-item__text")).map(
-          (item) => item.textContent,
-        ),
-      ).toContain("Reset library"),
-    );
-  });
-
-  it("does not select read-only items and keeps them on reset", async () => {
-    const { container, sidebar } = await openLibrary();
-    const draggers = sidebar.querySelectorAll(".library-unit__dragger");
-
-    fireEvent.click(draggers[2], { shiftKey: true });
-    expect(sidebar.querySelector(".library-unit--selected")).toBeNull();
-
-    openDropdown(sidebar);
-    fireEvent.click(
-      Array.from(container.querySelectorAll(".dropdown-menu-item__text")).find(
-        (item) => item.textContent === "Reset library",
-      )!,
-    );
-    fireEvent.click(
-      Array.from(document.querySelectorAll("button")).find(
-        (button) => button.textContent === "Confirm",
-      )!,
-    );
-
-    await waitFor(async () => {
-      const latestLibrary = await h.app.library.getLatestLibrary();
-      expect(latestLibrary.map((item) => item.id)).toEqual(["tree"]);
-    });
   });
 });

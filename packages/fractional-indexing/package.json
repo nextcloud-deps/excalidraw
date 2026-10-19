@@ -1,6 +1,6 @@
 {
-  "name": "@nextcloud/excalidraw-fractional-indexing",
-  "version": "0.18.0-nc.1",
+  "name": "@excalidraw/fractional-indexing",
+  "version": "3.3.0",
   "description": "Provides functions for generating ordering strings",
   "type": "module",
   "types": "./dist/types/fractional-indexing/src/index.d.ts",
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "gen:types": "rimraf types && tsc",
-    "build:esm": "rimraf dist && node ../../scripts/buildBase.js && yarn gen:types && node ../../scripts/rewriteInternalPackageImports.js dist"
+    "build:esm": "rimraf dist && node ../../scripts/buildBase.js && yarn gen:types"
   },
   "keywords": [
     "fractional",

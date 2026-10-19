@@ -71,7 +71,6 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
     ownerDocument = document,
     onChange,
     onThemeChange,
-    beforeElementCreated,
     onIncrement,
     initialData,
     initialState,
@@ -98,10 +97,6 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
     detectScroll = true,
     handleKeyboardGlobally = false,
     onLibraryChange,
-    libraryMenuTitle,
-    libraryMenuDescription,
-    onLibrarySaveAs,
-    onSaveAsCanvasTemplate,
     autoFocus = false,
     generateIdForFile,
     onLinkOpen,
@@ -218,7 +213,6 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
           ownerDocument={ownerDocument}
           onChange={onChange}
           onThemeChange={onThemeChange}
-          beforeElementCreated={beforeElementCreated}
           onIncrement={onIncrement}
           initialData={initialData}
           initialState={initialState}
@@ -246,10 +240,6 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
           detectScroll={detectScroll}
           handleKeyboardGlobally={handleKeyboardGlobally}
           onLibraryChange={onLibraryChange}
-          libraryMenuTitle={libraryMenuTitle}
-          libraryMenuDescription={libraryMenuDescription}
-          onLibrarySaveAs={onLibrarySaveAs}
-          onSaveAsCanvasTemplate={onSaveAsCanvasTemplate}
           autoFocus={autoFocus}
           generateIdForFile={generateIdForFile}
           onLinkOpen={onLinkOpen}
