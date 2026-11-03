@@ -10,7 +10,6 @@ import {
   isTestEnv,
   getVerticalOffset,
   applyDarkModeFilter,
-  MIME_TYPES,
   STICKY_NOTE_EDGE_SHADOW_OPACITY,
   STICKY_NOTE_EDGE_SHADOW_WIDTH,
   STICKY_NOTE_FOOTER,
@@ -19,6 +18,7 @@ import {
 import { normalizeLink, toValidURL } from "@excalidraw/common";
 import { hashString } from "@excalidraw/element";
 import { getUncroppedWidthAndHeight } from "@excalidraw/element";
+import { isInvertedInDarkMode } from "@excalidraw/element";
 import {
   createPlaceholderEmbeddableLabel,
   getEmbedLink,
@@ -664,7 +664,7 @@ const renderElementToSvg = (
 
         if (
           renderConfig.theme === THEME.DARK &&
-          fileData.mimeType === MIME_TYPES.svg
+          isInvertedInDarkMode(element, fileData.mimeType)
         ) {
           g.setAttribute("filter", DARK_THEME_FILTER);
         }

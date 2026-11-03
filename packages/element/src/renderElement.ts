@@ -69,6 +69,7 @@ import {
   isImageElement,
 } from "./typeChecks";
 import { getContainingFrame } from "./frame";
+import { isInvertedInDarkMode } from "./image";
 import { getCornerRadius } from "./utils";
 
 import { ShapeCache } from "./shape";
@@ -211,6 +212,7 @@ export interface ExcalidrawElementWithCanvas {
   canvasOffsetY: number;
   imageCrop: ExcalidrawImageElement["crop"] | null;
   containingFrameOpacity: number;
+  keepColorsInDarkMode: boolean;
 }
 
 const cappedElementCanvasSize = (
@@ -335,6 +337,7 @@ const generateElementCanvas = (
     containingFrameOpacity:
       getContainingFrame(element, elementsMap)?.opacity || 100,
     imageCrop: isImageElement(element) ? element.crop : null,
+    keepColorsInDarkMode: element.customData?.keepColorsInDarkMode === true,
   };
 };
 
@@ -548,7 +551,7 @@ const drawElementOnCanvas = (
 
         const shouldInvertImage =
           renderConfig.theme === THEME.DARK &&
-          cacheEntry?.mimeType === MIME_TYPES.svg;
+          isInvertedInDarkMode(element, cacheEntry?.mimeType);
 
         if (shouldInvertImage && isSafari) {
           const devicePixelRatio = window.devicePixelRatio || 1;
@@ -706,7 +709,9 @@ const generateElementWithCanvas = (
     shouldRegenerateBecauseZoom ||
     prevElementWithCanvas.theme !== appState.theme ||
     prevElementWithCanvas.imageCrop !== imageCrop ||
-    prevElementWithCanvas.containingFrameOpacity !== containingFrameOpacity
+    prevElementWithCanvas.containingFrameOpacity !== containingFrameOpacity ||
+    prevElementWithCanvas.keepColorsInDarkMode !==
+      (element.customData?.keepColorsInDarkMode === true)
   ) {
     const elementWithCanvas = generateElementCanvas(
       element,
