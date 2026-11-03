@@ -5165,24 +5165,26 @@ class App extends React.Component<AppProps, AppState> {
               CLASSES.CONVERT_ELEMENT_TYPE_POPUP,
             ))
         ) {
-          event.preventDefault();
-
           const conversionType =
             getConversionTypeFromElements(selectedElements);
 
-          if (
-            editorJotaiStore.get(convertElementTypePopupAtom)?.type === "panel"
-          ) {
-            if (
-              convertElementTypes(this, {
-                conversionType,
-                direction: event.shiftKey ? "left" : "right",
-              })
-            ) {
-              this.store.scheduleCapture();
-            }
-          }
+          // With nothing to convert, Tab moves the focus as usual
           if (conversionType) {
+            event.preventDefault();
+
+            if (
+              editorJotaiStore.get(convertElementTypePopupAtom)?.type ===
+              "panel"
+            ) {
+              if (
+                convertElementTypes(this, {
+                  conversionType,
+                  direction: event.shiftKey ? "left" : "right",
+                })
+              ) {
+                this.store.scheduleCapture();
+              }
+            }
             this.updateEditorAtom(convertElementTypePopupAtom, {
               type: "panel",
             });
