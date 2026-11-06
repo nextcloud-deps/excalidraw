@@ -9000,7 +9000,11 @@ class App extends React.Component<AppProps, AppState> {
   private onPointerMoveFromPointerDownHandler(
     pointerDownState: PointerDownState,
   ) {
-    return withBatchedUpdatesThrottled((event: PointerEvent) => {
+    // pen samples of every move since the last frame: the throttled handler
+    // below only sees the last move of a frame
+    const penSamples: PointerEvent[] = [];
+
+    const onPointerMove = withBatchedUpdatesThrottled((event: PointerEvent) => {
       if (this.state.openDialog?.name === "elementLinkSelector") {
         return;
       }
@@ -9330,9 +9334,9 @@ class App extends React.Component<AppProps, AppState> {
           const points = [...newElement.points];
           const pressures = [...newElement.pressures];
           const isStylus = event.pointerType === "pen";
-          // pen samples closer than this (squared scene px) to the previous point
-          // are skipped. 0 keeps the original behavior (only exact duplicates skipped).
-          const minDistSq = isStylus ? 0.25 : 0;
+          // pen samples within half a screen pixel of the previous point are
+          // skipped. 0 keeps the original behavior (only exact duplicates skipped).
+          const minDistSq = isStylus ? 0.25 / this.state.zoom.value ** 2 : 0;
 
           const addFreedrawPoint = (
             coords: { x: number; y: number },
@@ -9355,10 +9359,7 @@ class App extends React.Component<AppProps, AppState> {
             return true;
           };
 
-          const coalescedEvents =
-            isStylus && typeof event.getCoalescedEvents === "function"
-              ? event.getCoalescedEvents()
-              : [];
+          const coalescedEvents = penSamples.splice(0);
 
           let pointsChanged = false;
 
@@ -9459,6 +9460,20 @@ class App extends React.Component<AppProps, AppState> {
         pointerDownState,
       );
     }, this.ownerWindow);
+
+    return Object.assign(
+      (event: PointerEvent) => {
+        if (
+          event.pointerType === "pen" &&
+          this.state.activeTool.type === "freedraw"
+        ) {
+          const samples = event.getCoalescedEvents?.() ?? [];
+          penSamples.push(...(samples.length ? samples : [event]));
+        }
+        onPointerMove(event);
+      },
+      { flush: onPointerMove.flush, cancel: onPointerMove.cancel },
+    );
   }
 
   // Returns whether the pointer move happened over either scrollbar
