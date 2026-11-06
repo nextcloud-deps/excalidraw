@@ -1,4 +1,8 @@
-import { queryByText, queryByTestId } from "@testing-library/react";
+import {
+  getByTestId,
+  queryByText,
+  queryByTestId,
+} from "@testing-library/react";
 import { useMemo } from "react";
 
 import { THEME } from "@excalidraw/common";
@@ -495,6 +499,14 @@ describe("<Excalidraw/>", () => {
 
     expect(container.querySelector(".excalidraw")).toHaveClass(
       "custom-excalidraw",
+    );
+  });
+
+  it("gives the main menu button a name for screen readers", async () => {
+    const { container } = await render(<Excalidraw />);
+
+    expect(getByTestId(container, "main-menu-trigger")).toHaveAccessibleName(
+      t("buttons.menu"),
     );
   });
 });

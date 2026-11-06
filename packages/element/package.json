@@ -1,6 +1,6 @@
 {
   "name": "@nextcloud/excalidraw-element",
-  "version": "0.18.0-nc.1",
+  "version": "0.18.0-nc.2",
   "type": "module",
   "types": "./dist/types/element/src/index.d.ts",
   "main": "./dist/prod/index.js",
@@ -63,8 +63,8 @@
     "build:esm": "rimraf dist && node ../../scripts/buildBase.js && yarn gen:types && node ../../scripts/rewriteInternalPackageImports.js dist"
   },
   "dependencies": {
-    "@nextcloud/excalidraw-common": "0.18.0-nc.1",
-    "@nextcloud/excalidraw-math": "0.18.0-nc.1",
-    "@nextcloud/excalidraw-fractional-indexing": "0.18.0-nc.1"
+    "@nextcloud/excalidraw-common": "0.18.0-nc.2",
+    "@nextcloud/excalidraw-math": "0.18.0-nc.2",
+    "@nextcloud/excalidraw-fractional-indexing": "0.18.0-nc.2"
   }
 }

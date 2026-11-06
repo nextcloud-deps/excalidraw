@@ -95,6 +95,18 @@ export const getInitializedImageElements = (
     isInitializedImageElement(element),
   ) as InitializedExcalidrawImageElement[];
 
+/**
+ * Dark mode inverts SVG images so that black line art stays visible. An app
+ * can keep the colors of an image, such as an emoji, with
+ * `customData.keepColorsInDarkMode`.
+ */
+export const isInvertedInDarkMode = (
+  element: ExcalidrawElement,
+  mimeType: string | undefined,
+) =>
+  mimeType === MIME_TYPES.svg &&
+  element.customData?.keepColorsInDarkMode !== true;
+
 export const isHTMLSVGElement = (node: Node | null): node is SVGElement => {
   // lower-casing due to XML/HTML convention differences
   // https://johnresig.com/blog/nodename-case-sensitivity

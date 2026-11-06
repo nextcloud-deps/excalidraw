@@ -5,12 +5,14 @@ import {
   BOUND_TEXT_PADDING,
   FONT_FAMILY,
   FRAME_STYLE,
+  MIME_TYPES,
 } from "@excalidraw/common";
 
 import { pointFrom } from "@excalidraw/math";
 
 import type {
   ExcalidrawTextElement,
+  FileId,
   FractionalIndex,
   NonDeleted,
   NonDeletedExcalidrawElement,
@@ -27,6 +29,8 @@ import {
   textFixture,
 } from "../fixtures/elementFixture";
 import { API } from "../helpers/api";
+
+import type { DataURL } from "../../types";
 
 describe("exportToSvg", () => {
   const ELEMENT_HEIGHT = 100;
@@ -134,6 +138,48 @@ describe("exportToSvg", () => {
       expect(textEl.getAttribute("fill")).toBe(
         applyDarkModeFilter(textFixture.strokeColor),
       );
+    });
+  });
+
+  describe("SVG images in dark mode", () => {
+    const file = {
+      id: "emoji" as FileId,
+      mimeType: MIME_TYPES.svg,
+      dataURL: `data:${MIME_TYPES.svg};base64,${btoa(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><circle cx="5" cy="5" r="5" fill="#fcc21b"/></svg>',
+      )}` as DataURL,
+      created: 1,
+    };
+
+    const exportImage = (customData?: Record<string, any>) =>
+      exportUtils.exportToSvg(
+        [
+          {
+            ...API.createElement({
+              type: "image",
+              fileId: file.id,
+              status: "saved",
+              width: 10,
+              height: 10,
+            }),
+            customData,
+          },
+        ],
+        { ...DEFAULT_OPTIONS, exportWithDarkMode: true },
+        { [file.id]: file },
+      );
+
+    it("inverts them so that dark line art stays visible", async () => {
+      const svgElement = await exportImage();
+
+      expect(svgElement.querySelector("g[filter]")).not.toBeNull();
+    });
+
+    it("keeps the colors when the element asks for it", async () => {
+      const svgElement = await exportImage({ keepColorsInDarkMode: true });
+
+      expect(svgElement.querySelector("use")).not.toBeNull();
+      expect(svgElement.querySelector("g[filter]")).toBeNull();
     });
   });
 
