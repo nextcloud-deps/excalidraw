@@ -1,6 +1,6 @@
 {
   "name": "@nextcloud/excalidraw-math",
-  "version": "0.18.0-nc.2",
+  "version": "0.18.0-nc.3",
   "type": "module",
   "types": "./dist/types/math/src/index.d.ts",
   "main": "./dist/prod/index.js",
@@ -61,6 +61,6 @@
     "build:esm": "rimraf dist && node ../../scripts/buildBase.js && yarn gen:types && node ../../scripts/rewriteInternalPackageImports.js dist"
   },
   "dependencies": {
-    "@nextcloud/excalidraw-common": "0.18.0-nc.2"
+    "@nextcloud/excalidraw-common": "0.18.0-nc.3"
   }
 }

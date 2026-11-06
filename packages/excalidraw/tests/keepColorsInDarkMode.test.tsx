@@ -4,14 +4,13 @@ import { DARK_THEME_FILTER, MIME_TYPES, THEME } from "@excalidraw/common";
 import type { FileId } from "@excalidraw/element/types";
 
 import { Excalidraw } from "../index";
-import { getDefaultAppState } from "../appState";
-import { exportToCanvas } from "../scene/export";
+import { exportScene } from "../scene/export";
 
 import { API } from "./helpers/api";
 import { mockHTMLImageElement } from "./helpers/mocks";
 import { act, render, waitFor } from "./test-utils";
 
-import type { AppState, DataURL } from "../types";
+import type { DataURL } from "../types";
 
 const { h } = window;
 
@@ -51,22 +50,11 @@ describe("keepColorsInDarkMode", () => {
       customData,
     };
 
-    await exportToCanvas(
-      [image],
-      {
-        ...getDefaultAppState(),
-        exportWithDarkMode: true,
-        exportScale: 1,
-        width: 100,
-        height: 100,
-        offsetLeft: 0,
-        offsetTop: 0,
-      } as AppState,
-      { [file.id]: file },
-      { exportBackground: false, viewBackgroundColor: "#ffffff" },
-      undefined,
-      async () => {},
-    );
+    await exportScene({
+      type: "canvas",
+      data: { elements: [image], files: { [file.id]: file } },
+      config: { theme: THEME.DARK, canvasBackgroundColor: false },
+    });
     return filters;
   };
 

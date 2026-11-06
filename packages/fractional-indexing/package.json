@@ -1,6 +1,6 @@
 {
   "name": "@nextcloud/excalidraw-fractional-indexing",
-  "version": "0.18.0-nc.2",
+  "version": "0.18.0-nc.3",
   "description": "Provides functions for generating ordering strings",
   "type": "module",
   "types": "./dist/types/fractional-indexing/src/index.d.ts",
