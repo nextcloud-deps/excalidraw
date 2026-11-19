@@ -287,7 +287,6 @@ export default function LibraryMenuItems({
 
   // Read-only sections can be inserted and dragged, but never selected (and so
   // never deleted or published).
-  const noSelectToggle = useCallback(() => {}, []);
   const neverSelected = useCallback(() => false, []);
 
   const onAddToLibraryClick = useCallback(() => {
@@ -319,7 +318,7 @@ export default function LibraryMenuItems({
 
   const JSX_whenNotSearching = !IS_SEARCHING && (
     <>
-      {(!IS_LIBRARY_EMPTY || hasCustomLibraryMenuHeader) && (
+      {hasPrivateLibraryItems && (
         <div
           className={clsx("library-menu-items-container__header", {
             "library-menu-items-container__header--stacked":
@@ -343,7 +342,7 @@ export default function LibraryMenuItems({
             {t("library.hint_emptyLibrary")}
           </div>
         </div>
-      ) : (
+      ) : hasPrivateLibraryItems ? (
         <LibraryMenuSectionGrid>
           {pendingElements.length > 0 && (
             <LibraryMenuSection
@@ -366,7 +365,7 @@ export default function LibraryMenuItems({
             svgCache={svgCache}
           />
         </LibraryMenuSectionGrid>
-      )}
+      ) : null}
 
       {readonlySections.map((section) => (
         <React.Fragment key={section.name}>
@@ -380,7 +379,6 @@ export default function LibraryMenuItems({
             <LibraryMenuSection
               itemsRenderedPerBatch={itemsRenderedPerBatch}
               items={section.items}
-              onItemSelectToggle={noSelectToggle}
               onItemDrag={onItemDrag}
               onClick={onItemClick}
               isItemSelected={neverSelected}
@@ -427,7 +425,6 @@ export default function LibraryMenuItems({
             <LibraryMenuSection
               itemsRenderedPerBatch={itemsRenderedPerBatch}
               items={filteredReadonlyItems}
-              onItemSelectToggle={noSelectToggle}
               onItemDrag={onItemDrag}
               onClick={onItemClick}
               isItemSelected={neverSelected}

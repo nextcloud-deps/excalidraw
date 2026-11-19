@@ -101,6 +101,7 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
     onLibraryChange,
     libraryMenuTitle,
     libraryMenuDescription,
+    renderLibraryBrowseButton,
     onLibrarySaveAs,
     onSaveAsCanvasTemplate,
     autoFocus = false,
@@ -250,6 +251,7 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
           onLibraryChange={onLibraryChange}
           libraryMenuTitle={libraryMenuTitle}
           libraryMenuDescription={libraryMenuDescription}
+          renderLibraryBrowseButton={renderLibraryBrowseButton}
           onLibrarySaveAs={onLibrarySaveAs}
           onSaveAsCanvasTemplate={onSaveAsCanvasTemplate}
           autoFocus={autoFocus}

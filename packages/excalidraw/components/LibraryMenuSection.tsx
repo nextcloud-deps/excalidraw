@@ -22,7 +22,7 @@ type LibraryOrPendingItem = readonly (
 interface Props {
   items: LibraryOrPendingItem;
   onClick: (id: LibraryItem["id"] | null) => void;
-  onItemSelectToggle: (id: LibraryItem["id"], event: React.MouseEvent) => void;
+  onItemSelectToggle?: (id: LibraryItem["id"], event: React.MouseEvent) => void;
   onItemDrag: (id: LibraryItem["id"], event: React.DragEvent) => void;
   isItemSelected: (id: LibraryItem["id"] | null) => boolean;
   svgCache: SvgCache;

@@ -1055,6 +1055,7 @@ export interface ExcalidrawProps {
   onLibraryChange?: (libraryItems: LibraryItems) => void | Promise<any>;
   libraryMenuTitle?: string;
   libraryMenuDescription?: string;
+  renderLibraryBrowseButton?: (libraryUrl: string) => JSX.Element;
   onLibrarySaveAs?: (libraryItems: LibraryItems) => void | Promise<void>;
   onSaveAsCanvasTemplate?: () => void | Promise<void>;
   autoFocus?: boolean;

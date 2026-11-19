@@ -34,7 +34,7 @@ export const LibraryUnit = memo(
     isPending?: boolean;
     onClick: (id: LibraryItem["id"] | null) => void;
     selected: boolean;
-    onToggle: (id: string, event: React.MouseEvent) => void;
+    onToggle?: (id: string, event: React.MouseEvent) => void;
     onDrag: (id: string, event: React.DragEvent) => void;
     svgCache: SvgCache;
   }) => {
@@ -93,7 +93,7 @@ export const LibraryUnit = memo(
             !!elements || !!isPending
               ? (event) => {
                   if (id && event.shiftKey) {
-                    onToggle(id, event);
+                    onToggle?.(id, event);
                   } else {
                     onClick(id);
                   }
@@ -117,7 +117,7 @@ export const LibraryUnit = memo(
           )}
         </div>
         {adder}
-        {id && elements && (isHovered || isMobile || selected) && (
+        {id && elements && onToggle && (isHovered || isMobile || selected) && (
           <CheckboxItem
             checked={selected}
             onChange={(checked, event) => onToggle(id, event)}
