@@ -2,6 +2,8 @@ import { VERSIONS } from "@excalidraw/common";
 
 import { t } from "../i18n";
 
+import { useAppProps } from "./App";
+
 import type { ExcalidrawProps, UIAppState } from "../types";
 
 const LibraryMenuBrowseButton = ({
@@ -13,16 +15,23 @@ const LibraryMenuBrowseButton = ({
   theme: UIAppState["theme"];
   id: string;
 }) => {
+  const { renderLibraryBrowseButton } = useAppProps();
   const referrer =
     libraryReturnUrl || window.location.origin + window.location.pathname;
+  const libraryUrl = `${import.meta.env.VITE_APP_LIBRARY_URL}?target=${
+    window.name || "_blank"
+  }&referrer=${referrer}&useHash=true&token=${id}&theme=${theme}&version=${
+    VERSIONS.excalidrawLibrary
+  }`;
+
+  if (renderLibraryBrowseButton) {
+    return renderLibraryBrowseButton(libraryUrl);
+  }
+
   return (
     <a
       className="library-menu-browse-button"
-      href={`${import.meta.env.VITE_APP_LIBRARY_URL}?target=${
-        window.name || "_blank"
-      }&referrer=${referrer}&useHash=true&token=${id}&theme=${theme}&version=${
-        VERSIONS.excalidrawLibrary
-      }`}
+      href={libraryUrl}
       target="_excalidraw_libraries"
     >
       {t("labels.libraries")}
